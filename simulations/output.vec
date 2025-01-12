@@ -1,8 +1,8 @@
 version 3
-run General-0-20250112-18:09:55-22984
+run General-0-20250112-19:54:36-38344
 attr configname General
-attr datetime 20250112-18:09:55
-attr datetimef 20250112-180955
+attr datetime 20250112-19:54:36
+attr datetimef 20250112-195436
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network leosatelliteenvironment.RadioCommunication
-attr processid 22984
+attr processid 38344
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -18,7 +18,7 @@ attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
 config network leosatelliteenvironment.RadioCommunication
-config sim-time-limit 200s
+config sim-time-limit 2000s
 config output-vector-file output.vec
 config output-scalar-file output.sca
 config **.debug true
@@ -35,9 +35,10 @@ config *.userTerminal.app[0].stopTime 10s
 config *.userTerminal.wlan[0].radio.antenna.maxGain 35dB
 config *.userTerminal.wlan[0].radio.antenna.minGain -15dB
 config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
-config *.satellite.wlan[0].radio.antenna.maxGain 35dB
-config *.satellite.wlan[0].radio.antenna.minGain -15dB
-config *.satellite.wlan[0].radio.antenna.beamWidth 30deg
+config *.satellite.wlan[*].radio.antenna.typename ParabolicAntenna
+config *.satellite.wlan[*].radio.antenna.beamWidth 30deg
+config *.satellite.wlan[*].radio.antenna.maxGain 10dB
+config *.satellite.wlan[*].radio.antenna.minGain -50dB
 config *.userTerminal.app[0].packetLength 100B
 config *.userTerminal.app[0].sendInterval 1s
 config *.satellite.app[0].recordPackets true
@@ -46,17 +47,18 @@ config *.satellite.app[0].typename UdpSink
 config *.satellite.app[0].localPort 5000
 config *.userTerminal.wlan[0].typename Ieee80211Interface
 config *.satellite.wlan[0].typename Ieee80211Interface
+config *.radioMedium.typename Ieee80211ScalarRadioMedium
+config *.radioMedium.datapath "\"default\""
+config *.userTerminal.wlan[0].dataRate 10Mbps
+config *.satellite.wlan[0].dataRate 10Mbps
+config *.satellite.linkLayerType "\"Mac\""
 config *.visualizer.*.radioVisualizer.displayRadios true
 config *.visualizer.*.radioVisualizer.displayAntennaLobes true
 config *.visualizer.*.radioVisualizer.radioFilter "\"*.source**\""
 config *.visualizer.*.dataLinkVisualizer.displayLinks true
-config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.datapath "\"default\""
-config *.satellite.numClusters 4
-config *.satellite.orbitRadius 5000km
-config *.userTerminal.wlan[0].dataRate 10Mbps
-config *.satellite.wlan[0].dataRate 10Mbps
-config *.satellite.linkLayerType "\"Mac\""
+config *.visualizer.*.radioVisualizer.antennaLobeLogarithmicScale 37.5
+config *.visualizer.*.radioVisualizer.antennaLobeRadius 100
+config **.radioVisualizer.antennaLobeStep 1deg
 
 vector 0 RadioCommunication.userTerminal.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
 attr interpolationmode none
@@ -816,4 +818,124 @@ attr recordingmode vector(count)
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packets dropped (checksum error), count"
 vector 150 RadioCommunication.satellite.app[0] packetReceived:vector(packetBytes) ETV
-attr interpolationmode 
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 151 RadioCommunication.satellite.app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 152 RadioCommunication.satellite.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 153 RadioCommunication.satellite.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 154 RadioCommunication receptionPower:vector ETV
+attr recordingmode vector
+attr source receptionMinSignalPower(radioMedium.signalArrivalStarted)
+4	4	0.163464953215	1
+7	0	0	0
+7	0	0	0
+7	0	0	0
+7	0	0	0
+7	0	0	0
+7	9	0.263464953215	1
+7	11	0.263464953215	0
+8	0	0	0
+8	0	0	0
+8	0	0	0
+8	0	0	0
+8	0	0	0
+8	9	0.263464953215	256
+8	11	0.263464953215	0
+9	11	0.263464953215	0
+10	9	0.263464953215	256
+11	9	0.1	0
+11	9	0.2	0
+12	11	0.263464953215	256
+13	11	0.1	0
+13	11	0.2	0
+18	15	0.263502953215	3.8e-05
+19	0	0	0
+19	0	0	0
+19	11	0.263464953215	1
+19	15	0.263502953215	0
+20	9	0.263464953215	7
+21	0	0	0
+21	0	0	0
+21	9	0.263464953215	1
+21	10	0.263464953215	0
+22	0	0	0
+22	0	0	0
+22	9	0.263464953215	0
+22	9	0.263464953215	2
+22	10	0.263464953215	2
+22	10	0.263464953215	0
+22	12	0.263464953215	0
+22	12	0.263464953215	0
+22	16	0.263502953215	0
+22	16	0.263502953215	0
+24	0	0	31
+25	15	0.263502953215	32
+27	15	0.263502953215	32
+28	15	0.263502953215	32
+30	15	0.263502953215	32
+41	0	0	0
+41	0	0	0
+41	11	0.263464953215	1
+41	15	0.263502953215	0
+42	11	0.263464953215	24000000
+45	11	0.263464953215	32
+55	0	0	0
+55	0	0	0
+55	0	0	2
+55	12	0.263464953215	3
+55	16	0.263502953215	2
+56	0	0	1
+56	12	0.263464953215	0
+56	16	0.263502953215	1
+57	12	0.263464953215	1
+57	13	0.263464953215	2
+57	15	0.263502953215	1
+57	16	0.263502953215	0
+58	0	0	0
+58	7	0.163464953215	0
+71	0	0	0
+72	0	0	0
+73	0	0	0
+83	0	0	0
+83	0	0	0
+83	0	0	0
+83	0	0	0
+83	0	0	0
+84	0	0	0
+84	0	0	0
+84	0	0	0
+84	0	0	0
+84	0	0	0
+95	0	0	0
+95	0	0	0
+97	0	0	0
+97	0	0	0
+98	0	0	0
+98	0	0	0
+100	0	0	31
+117	0	0	0
+117	0	0	0
+131	0	0	0
+131	0	0	0
+131	0	0	2
+132	0	0	1
+134	0	0	0
+147	0	0	0
+148	0	0	0
+149	0	0	0
+154	14	0.263465841354	6.9424998516772e-14

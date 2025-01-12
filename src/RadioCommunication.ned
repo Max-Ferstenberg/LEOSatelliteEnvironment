@@ -3,35 +3,33 @@ package leosatelliteenvironment;
 import leosatelliteenvironment.UserTerminal;
 import leosatelliteenvironment.Satellite;
 import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
-import inet.visualizer.common.RadioVisualizer;
-import inet.visualizer.canvas.physicallayer.RadioCanvasVisualizer;
+import inet.visualizer.common.IntegratedVisualizer;
+import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
+import inet.visualizer.contract.IIntegratedVisualizer;
 
 network RadioCommunication
 {
+    @display("bgb=700,400");
+    @statistic[receptionPower](source="receptionMinSignalPower(radioMedium.signalArrivalStarted)"; record=vector);
+
     submodules:
-        radioMedium: Ieee80211ScalarRadioMedium {
+        configurator: Ipv4NetworkConfigurator {
+            @display("p=62,43;is=s");
+        }
+        visualizer: <default(firstAvailableOrEmpty("IntegratedCanvasVisualizer"))> like IIntegratedVisualizer if typename != "" {
             parameters:
-                @display("p=35,32;is=s");
+                @display("p=100,300;is=s");
+        }
+        radioMedium: Ieee80211ScalarRadioMedium {
+            @display("p=62,199;is=s");
         }
         userTerminal: UserTerminal {
-            parameters:
-                @display("p=100,300;i=device/laptop");
+            @display("p=340,248");
         }
         satellite: Satellite {
-            parameters:
-                @display("p=300,100;i=device/satellite");
+            @display("p=562,101");
         }
-        visualizer: RadioVisualizer {
-            parameters:
-                @display("p=200,200"); // Positioning of the visualizer module in the display
-        }
-        canvasVisualizer: RadioCanvasVisualizer {
-            parameters:
-                zIndex = 10; // Optional: setting zIndex if necessary
-                @display("p=100,100"); // Positioning the canvas visualizer
-        }
+
 
     connections allowunconnected: // Wireless communication doesn’t require explicit connections
 }
-
-

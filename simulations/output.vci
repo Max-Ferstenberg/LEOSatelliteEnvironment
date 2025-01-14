@@ -1,886 +1,1667 @@
-                                                                
+file 81900 1736803861                                           
 version 3
-run General-0-20250112-19:54:36-38344
+run General-0-20250113-20:31:28-28980
 attr configname General
-attr datetime 20250112-19:54:36
-attr datetimef 20250112-195436
+attr datetime 20250113-20:31:28
+attr datetimef 20250113-203128
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
-attr network leosatelliteenvironment.RadioCommunication
-attr processid 38344
+attr network leosatelliteenvironment.GroundToPoP
+attr processid 28980
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
-config network leosatelliteenvironment.RadioCommunication
 config sim-time-limit 2000s
 config output-vector-file output.vec
 config output-scalar-file output.sca
-config **.debug true
-config *.userTerminal.wlan[0].radio.transmitter.debug true
-config *.userTerminal.wlan[0].radio.receiver.debug true
-config *.satellite.wlan[0].radio.transmitter.debug true
-config *.satellite.wlan[0].radio.receiver.debug true
-config *.userTerminal.numApps 1
-config *.userTerminal.app[0].typename UdpBasicApp
-config *.userTerminal.app[0].destAddresses "\"satellite\""
-config *.userTerminal.app[0].destPort 5000
-config *.userTerminal.app[0].startTime 1s
-config *.userTerminal.app[0].stopTime 10s
-config *.userTerminal.wlan[0].radio.antenna.maxGain 35dB
-config *.userTerminal.wlan[0].radio.antenna.minGain -15dB
-config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
-config *.satellite.wlan[*].radio.antenna.typename ParabolicAntenna
-config *.satellite.wlan[*].radio.antenna.beamWidth 30deg
-config *.satellite.wlan[*].radio.antenna.maxGain 10dB
-config *.satellite.wlan[*].radio.antenna.minGain -50dB
-config *.userTerminal.app[0].packetLength 100B
-config *.userTerminal.app[0].sendInterval 1s
-config *.satellite.app[0].recordPackets true
-config *.satellite.numApps 1
-config *.satellite.app[0].typename UdpSink
-config *.satellite.app[0].localPort 5000
-config *.userTerminal.wlan[0].typename Ieee80211Interface
-config *.satellite.wlan[0].typename Ieee80211Interface
+config network leosatelliteenvironment.GroundToPoP
+config total-stack 2MiB
+config **.ipv4.arp.typename GlobalArp
+config **.ipv4.networkConfigurator.addressScheme "\"auto\""
+config **.fcsMode "\"computed\""
+config **.crcMode "\"computed\""
+config **.eth[*].typename LayeredEthernetInterface
+config **.eth[*].duplexMode true
+config **.eth[*].queue.typename EthernetQosQueue
+config **.eth[*].queue.dataQueue.typename DropTailQueue
+config **.eth[*].queue.dataQueue.packetCapacity 10
+config *.configurator.assignAddresses true
+config *.groundStation.wlan[0].typename Ieee80211Interface
 config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.datapath "\"default\""
-config *.userTerminal.wlan[0].dataRate 10Mbps
-config *.satellite.wlan[0].dataRate 10Mbps
-config *.satellite.linkLayerType "\"Mac\""
-config *.visualizer.*.radioVisualizer.displayRadios true
-config *.visualizer.*.radioVisualizer.displayAntennaLobes true
-config *.visualizer.*.radioVisualizer.radioFilter "\"*.source**\""
+config *.groundStation.wlan[0].radio.antenna.typename ParabolicAntenna
+config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
+config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
+config *.groundStation.wlan[0].radio.antenna.minGain -50dB
+config *.groundStation.wlan[0].radio.transmitter.power 25mW
+config *.groundStation.numApps 1
+config *.groundStation.app[*].typename TcpSessionApp
+config *.groundStation.app[*].connectAddress "\"PoP\""
+config *.groundStation.app[*].connectPort 1000
+config *.groundStation.app[*].sendBytes 1MiB
+config *.groundStation.app[*].tOpen 1.0s
+config *.groundStation.app[*].tSend 1.1s
+config *.groundStation.app[*].tClose 0s
+config *.PoP.numApps 1
+config *.PoP.app[*].typename TcpEchoApp
+config *.PoP.app[0].localAddress "\"\""
+config *.PoP.app[0].localPort 1000
+config *.PoP.app[0].echoFactor 2.0
+config *.PoP.app[0].echoDelay 0s
+config *.PoP.eth[0].dataRate default
+config *.groundStation.eth[0].dataRate default
+config *.PoP.eth[0].delay 0.1ms
+config *.groundStation.eth[0].delay 0.1ms
 config *.visualizer.*.dataLinkVisualizer.displayLinks true
-config *.visualizer.*.radioVisualizer.antennaLobeLogarithmicScale 37.5
-config *.visualizer.*.radioVisualizer.antennaLobeRadius 100
-config **.radioVisualizer.antennaLobeStep 1deg
+config *.visualizer.*.transportConnectionVisualizer.displayConnections true
+config *.visualizer.*.networkRouteVisualizer.displayRoutes true
+config *.visualizer.*.packetDropVisualizer.displayPacketDrops true
+config *.visualizer.*.interfaceTableVisualizer.displayInterfaceTables true
+config **.debug true
 
-vector 0 RadioCommunication.userTerminal.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+vector 0 GroundToPoP.PoP.bridging packetDropped:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
-attr source packetReceivedFromUpper
-attr title "packets received from higher layer, packetBytes"
-vector 1 RadioCommunication.userTerminal.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr title "packets dropped, packetBytes"
+vector 1 GroundToPoP.PoP.ethernet encapPk:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
-attr source packetSentToUpper
-attr title "packets passed to higher layer, packetBytes"
-vector 2 RadioCommunication.userTerminal.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 2 GroundToPoP.PoP.ethernet decapPk:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drops: interface down, packetBytes"
-vector 3 RadioCommunication.userTerminal.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsNoCarrier(packetDropped)
-attr title "packet drops: no carrier, packetBytes"
-vector 4 RadioCommunication.userTerminal.wlan[0].agent sentRequest:vector ETV
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 3 GroundToPoP.PoP.ethernet pauseSent:vector ETV
 attr recordingmode vector
-attr title "sent requests"
-vector 5 RadioCommunication.userTerminal.wlan[0].agent acceptConfirm:vector ETV
-attr recordingmode vector
-attr title "accepted confirms"
-vector 6 RadioCommunication.userTerminal.wlan[0].agent dropConfirm:vector ETV
-attr recordingmode vector
-attr title "dropped confirms"
-vector 7 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr title "pause sent"
+vector 4 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
 attr title "queue length"
 attr unit pk
-vector 8 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+vector 5 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
 attr title "queue bit length"
 attr unit b
-vector 9 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+vector 6 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(packetPulled)
 attr title "queueing times"
 attr unit s
-vector 10 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+vector 7 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetPushStarted)
 attr title "incoming packet lengths"
 attr unit b
-vector 11 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+vector 8 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(packetPushStarted)
 attr title "incoming datarate"
 attr unit bps
-vector 12 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+vector 9 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetPulled)
 attr title "outgoing packet lengths"
 attr unit b
-vector 13 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+vector 10 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(packetPulled)
 attr title "outgoing datarate"
 attr unit bps
-vector 14 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+vector 11 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
 attr title "dropped packet lengths: queue overflow"
 attr unit b
-vector 15 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+vector 12 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(demuxFlow(packetPulled))
 attr title "flow queueing times"
 attr unit s
-vector 16 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+vector 13 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
 attr title "flow specific incoming data rate"
 attr unit bps
-vector 17 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+vector 14 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
 attr title "flow specific outgoing data rate"
 attr unit bps
-vector 18 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+vector 15 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(packetDequeued)
 attr title "queueing times"
-vector 19 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+vector 16 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
 attr title "queue length"
-vector 20 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+vector 17 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr title "backoff periods"
-vector 21 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+vector 18 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source warmup(count(backoffStarted)-count(backoffStopped))
 attr title "backoff active"
-vector 22 RadioCommunication.userTerminal.wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+vector 19 GroundToPoP.PoP.wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
 attr enum IDLE,DEFER,IFS_AND_BACKOFF
 attr interpolationmode none
 attr recordingmode vector
 attr title "contention state changed"
 attr type enum
-vector 23 RadioCommunication.userTerminal.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+vector 20 GroundToPoP.PoP.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsDuplicateDetected(packetDropped)
 attr title "packet drops: duplicate detected, packetBytes"
-vector 24 RadioCommunication.userTerminal.wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+vector 21 GroundToPoP.PoP.wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr title "contention window"
-vector 25 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+vector 22 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent, packetBytes"
-vector 26 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+vector 23 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Unicast(packetSentToPeer)
 attr title "packets sent: unicast, packetBytes"
-vector 27 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+vector 24 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Multicast(packetSentToPeer)
 attr title "packets sent: multicast, packetBytes"
-vector 28 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+vector 25 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Broadcast(packetSentToPeer)
 attr title "packets sent: broadcast , packetBytes"
-vector 29 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+vector 26 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Retry(packetSentToPeer)
 attr title "packets sent: with retry, packetBytes"
-vector 30 RadioCommunication.userTerminal.wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+vector 27 GroundToPoP.PoP.wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211NotRetry(packetSentToPeer)
 attr title "packets sent: without retry, packetBytes"
-vector 31 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+vector 28 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received, packetBytes"
-vector 32 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+vector 29 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Unicast(packetReceivedFromPeer)
 attr title "packets received: unicast, packetBytes"
-vector 33 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+vector 30 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Multicast(packetReceivedFromPeer)
 attr title "packets received: multicast, packetBytes"
-vector 34 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+vector 31 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Broadcast(packetReceivedFromPeer)
 attr title "packets received: broadcast, packetBytes"
-vector 35 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+vector 32 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Retry(packetReceivedFromPeer)
 attr title "packets received: with retry, packetBytes"
-vector 36 RadioCommunication.userTerminal.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+vector 33 GroundToPoP.PoP.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211NotRetry(packetReceivedFromPeer)
 attr title "packets received: without retry, packetBytes"
-vector 37 RadioCommunication.userTerminal.wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
+vector 34 GroundToPoP.PoP.wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropped
 attr title "packet drops, packetBytes"
-vector 38 RadioCommunication.userTerminal.wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+vector 35 GroundToPoP.PoP.wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drops: not addressed to us, packetBytes"
-vector 39 RadioCommunication.userTerminal.wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+vector 36 GroundToPoP.PoP.wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, packetBytes"
-vector 40 RadioCommunication.userTerminal.wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+vector 37 GroundToPoP.PoP.wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsRetryLimitReached(packetDropped)
 attr title "packet drops: retry limit reached, packetBytes"
-vector 41 RadioCommunication.userTerminal.wlan[0].mac.dcf frameSequenceActive:vector ETV
+vector 38 GroundToPoP.PoP.wlan[0].mac.dcf frameSequenceActive:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
 attr title "frame sequence active"
-vector 42 RadioCommunication.userTerminal.wlan[0].mac.dcf datarateSelected:vector ETV
+vector 39 GroundToPoP.PoP.wlan[0].mac.dcf datarateSelected:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr title "datarates selected"
-vector 43 RadioCommunication.userTerminal.wlan[0].mac.rx nav:vector ETV
+vector 40 GroundToPoP.PoP.wlan[0].mac.rx nav:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source navChanged
 attr title "network allocation vector"
-vector 44 RadioCommunication.userTerminal.wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+vector 41 GroundToPoP.PoP.wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent to upper layer, packetBytes"
-vector 45 RadioCommunication.userTerminal.wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+vector 42 GroundToPoP.PoP.wlan[0].mac packetSentToLower:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent to lower layer, packetBytes"
-vector 46 RadioCommunication.userTerminal.wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+vector 43 GroundToPoP.PoP.wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received from upper layer, packetBytes"
-vector 47 RadioCommunication.userTerminal.wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+vector 44 GroundToPoP.PoP.wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received from lower layer, packetBytes"
-vector 48 RadioCommunication.userTerminal.wlan[0].mac packetDrop:vector(packetBytes) ETV
+vector 45 GroundToPoP.PoP.wlan[0].mac packetDrop:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropped
 attr title "packet drops, packetBytes"
-vector 49 RadioCommunication.userTerminal.wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+vector 46 GroundToPoP.PoP.wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drops: incorrectly received, packetBytes"
-vector 50 RadioCommunication.userTerminal.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+vector 47 GroundToPoP.PoP.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drops: not addressed to us, packetBytes"
-vector 51 RadioCommunication.userTerminal.wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+vector 48 GroundToPoP.PoP.wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, packetBytes"
-vector 52 RadioCommunication.userTerminal.wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+vector 49 GroundToPoP.PoP.wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsRetryLimitReached(packetDropped)
 attr title "packet drops: retry limit reached, packetBytes"
-vector 53 RadioCommunication.userTerminal.wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+vector 50 GroundToPoP.PoP.wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsDuplicateDetected(packetDropped)
 attr title "packet drops: duplicate detected, packetBytes"
-vector 54 RadioCommunication.userTerminal.wlan[0].mac packetDropOther:vector(packetBytes) ETV
+vector 51 GroundToPoP.PoP.wlan[0].mac packetDropOther:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsOther(packetDropped)
 attr title "packet drops: other, packetBytes"
-vector 55 RadioCommunication.userTerminal.wlan[0].radio radioMode:vector ETV
+vector 52 GroundToPoP.PoP.wlan[0].radio radioMode:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source radioModeChanged
 attr title "Radio mode"
-vector 56 RadioCommunication.userTerminal.wlan[0].radio receptionState:vector ETV
+vector 53 GroundToPoP.PoP.wlan[0].radio receptionState:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source receptionStateChanged
 attr title "Radio reception state"
-vector 57 RadioCommunication.userTerminal.wlan[0].radio transmissionState:vector ETV
+vector 54 GroundToPoP.PoP.wlan[0].radio transmissionState:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source transmissionStateChanged
 attr title "Radio transmission state"
-vector 58 RadioCommunication.userTerminal.wlan[0].radio radioChannel:vector ETV
+vector 55 GroundToPoP.PoP.wlan[0].radio radioChannel:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source radioChannelChanged
 attr title "Radio channel"
-vector 59 RadioCommunication.userTerminal.wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+vector 56 GroundToPoP.PoP.wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drops: interface down, packetBytes"
-vector 60 RadioCommunication.userTerminal.wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+vector 57 GroundToPoP.PoP.wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNoCarrier(packetDropped)
 attr title "packet drops: no carrier, packetBytes"
-vector 61 RadioCommunication.userTerminal.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+vector 58 GroundToPoP.PoP.eth[0].queue.classifier packetLengths:vector ETV
 attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
-attr title "packet drop: address resolution failed, packetBytes"
-vector 62 RadioCommunication.userTerminal.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsHopLimitReached(packetDropped)
-attr title "packet drop: hop limit reached, packetBytes"
-vector 63 RadioCommunication.userTerminal.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsForwardingDisabled(packetDropped)
-attr title "packet drop: forwarding disabled, packetBytes"
-vector 64 RadioCommunication.userTerminal.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsNoInterfaceFound(packetDropped)
-attr title "packet drop: no interface found, packetBytes"
-vector 65 RadioCommunication.userTerminal.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsNoRouteFound(packetDropped)
-attr title "packet drop: no route found, packetBytes"
-vector 66 RadioCommunication.userTerminal.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsUndefined(packetDropped)
-attr title "packet drop: undefined, packetBytes"
-vector 67 RadioCommunication.userTerminal.ipv4.arp arpRequestSent:vector(packetBytes) ETV
-attr recordingmode vector(packetBytes)
-attr source arpRequestSent
-attr title "ARP request sent, packetBytes"
-vector 68 RadioCommunication.userTerminal.ipv4.arp arpReplySent:vector(packetBytes) ETV
-attr recordingmode vector(packetBytes)
-attr source arpReplySent
-attr title "ARP replies sent, packetBytes"
-vector 69 RadioCommunication.userTerminal.udp packetSent:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetSent
-attr title "packets sent, packetBytes"
-vector 70 RadioCommunication.userTerminal.udp packetReceived:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetReceived
-attr title "packets received, packetBytes"
-vector 71 RadioCommunication.userTerminal.udp passedUpPk:vector(count) ETV
-attr interpolationmode none
-attr recordingmode vector(count)
-attr source packetSentToUpper
-attr title "packets passed up, count"
-vector 72 RadioCommunication.userTerminal.udp droppedPkWrongPort:vector(count) ETV
-attr interpolationmode none
-attr recordingmode vector(count)
-attr source packetDropReasonIsNoPortFound(packetDropped)
-attr title "packets dropped (wrong port), count"
-vector 73 RadioCommunication.userTerminal.udp droppedPkBadChecksum:vector(count) ETV
-attr interpolationmode none
-attr recordingmode vector(count)
-attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
-attr title "packets dropped (checksum error), count"
-vector 74 RadioCommunication.userTerminal.app[0] packetReceived:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetReceived
-attr title "packets received, packetBytes"
-vector 75 RadioCommunication.userTerminal.app[0] throughput:vector ETV
 attr recordingmode vector
-attr source throughput(packetReceived)
-attr title throughput
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 59 GroundToPoP.PoP.eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
 attr unit bps
-vector 76 RadioCommunication.userTerminal.app[0] packetSent:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetSent
-attr title "packets sent, packetBytes"
-vector 77 RadioCommunication.userTerminal.app[0] rcvdPkLifetime:vector ETV
-attr interpolationmode none
-attr recordingmode vector
-attr source dataAge(packetReceived)
-attr title "received packet lifetime"
-attr unit s
-vector 78 RadioCommunication.userTerminal.app[0] rcvdPkSeqNo:vector ETV
-attr interpolationmode none
-attr recordingmode vector
-attr source appPkSeqNo(packetReceived)
-attr title "received packet sequence number"
-vector 79 RadioCommunication.satellite.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetReceivedFromUpper
-attr title "packets received from higher layer, packetBytes"
-vector 80 RadioCommunication.satellite.lo[0].lo passedUpPk:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetSentToUpper
-attr title "packets passed to higher layer, packetBytes"
-vector 81 RadioCommunication.satellite.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsInterfaceDown(packetDropped)
-attr title "packet drops: interface down, packetBytes"
-vector 82 RadioCommunication.satellite.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
-attr interpolationmode none
-attr recordingmode vector(packetBytes)
-attr source packetDropReasonIsNoCarrier(packetDropped)
-attr title "packet drops: no carrier, packetBytes"
-vector 83 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+vector 60 GroundToPoP.PoP.eth[0].queue.pauseQueue queueLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
 attr title "queue length"
 attr unit pk
-vector 84 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+vector 61 GroundToPoP.PoP.eth[0].queue.pauseQueue queueBitLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
 attr title "queue bit length"
 attr unit b
-vector 85 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+vector 62 GroundToPoP.PoP.eth[0].queue.pauseQueue queueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(packetPulled)
 attr title "queueing times"
 attr unit s
-vector 86 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+vector 63 GroundToPoP.PoP.eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetPushStarted)
 attr title "incoming packet lengths"
 attr unit b
-vector 87 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+vector 64 GroundToPoP.PoP.eth[0].queue.pauseQueue incomingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(packetPushStarted)
 attr title "incoming datarate"
 attr unit bps
-vector 88 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+vector 65 GroundToPoP.PoP.eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetPulled)
 attr title "outgoing packet lengths"
 attr unit b
-vector 89 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+vector 66 GroundToPoP.PoP.eth[0].queue.pauseQueue outgoingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(packetPulled)
 attr title "outgoing datarate"
 attr unit bps
-vector 90 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+vector 67 GroundToPoP.PoP.eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
 attr title "dropped packet lengths: queue overflow"
 attr unit b
-vector 91 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+vector 68 GroundToPoP.PoP.eth[0].queue.pauseQueue flowQueueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(demuxFlow(packetPulled))
 attr title "flow queueing times"
 attr unit s
-vector 92 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+vector 69 GroundToPoP.PoP.eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
 attr title "flow specific incoming data rate"
 attr unit bps
-vector 93 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+vector 70 GroundToPoP.PoP.eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
 attr title "flow specific outgoing data rate"
 attr unit bps
-vector 94 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+vector 71 GroundToPoP.PoP.eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 72 GroundToPoP.PoP.eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 73 GroundToPoP.PoP.eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 74 GroundToPoP.PoP.eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 75 GroundToPoP.PoP.eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 76 GroundToPoP.PoP.eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 77 GroundToPoP.PoP.eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 78 GroundToPoP.PoP.eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 79 GroundToPoP.PoP.eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 80 GroundToPoP.PoP.eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 81 GroundToPoP.PoP.eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 82 GroundToPoP.PoP.eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 83 GroundToPoP.PoP.eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 84 GroundToPoP.PoP.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 85 GroundToPoP.PoP.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 86 GroundToPoP.PoP.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 87 GroundToPoP.PoP.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 88 GroundToPoP.PoP.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 89 GroundToPoP.PoP.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 90 GroundToPoP.PoP.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 91 GroundToPoP.PoP.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 92 GroundToPoP.PoP.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 93 GroundToPoP.PoP.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 94 GroundToPoP.PoP.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 95 GroundToPoP.PoP.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 96 GroundToPoP.PoP.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 97 GroundToPoP.PoP.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 98 GroundToPoP.PoP.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 99 GroundToPoP.PoP.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 100 GroundToPoP.PoP.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 101 GroundToPoP.PoP.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 102 GroundToPoP.PoP.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 103 GroundToPoP.PoP.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 104 GroundToPoP.PoP.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 105 GroundToPoP.PoP.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 106 GroundToPoP.groundStation.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 107 GroundToPoP.groundStation.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 108 GroundToPoP.groundStation.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 109 GroundToPoP.groundStation.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 110 GroundToPoP.groundStation.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 111 GroundToPoP.groundStation.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 112 GroundToPoP.groundStation.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 113 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 114 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 115 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 116 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 117 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 118 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 119 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 120 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 121 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 122 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 123 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 124 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source queueingTime(packetDequeued)
 attr title "queueing times"
-vector 95 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+vector 125 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
 attr title "queue length"
-vector 96 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+vector 126 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr title "backoff periods"
-vector 97 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+vector 127 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source warmup(count(backoffStarted)-count(backoffStopped))
 attr title "backoff active"
-vector 98 RadioCommunication.satellite.wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+vector 128 GroundToPoP.groundStation.wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
 attr enum IDLE,DEFER,IFS_AND_BACKOFF
 attr interpolationmode none
 attr recordingmode vector
 attr title "contention state changed"
 attr type enum
-vector 99 RadioCommunication.satellite.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+vector 129 GroundToPoP.groundStation.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsDuplicateDetected(packetDropped)
 attr title "packet drops: duplicate detected, packetBytes"
-vector 100 RadioCommunication.satellite.wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+vector 130 GroundToPoP.groundStation.wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr title "contention window"
-vector 101 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+vector 131 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent, packetBytes"
-vector 102 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+vector 132 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Unicast(packetSentToPeer)
 attr title "packets sent: unicast, packetBytes"
-vector 103 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+vector 133 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Multicast(packetSentToPeer)
 attr title "packets sent: multicast, packetBytes"
-vector 104 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+vector 134 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Broadcast(packetSentToPeer)
 attr title "packets sent: broadcast , packetBytes"
-vector 105 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+vector 135 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Retry(packetSentToPeer)
 attr title "packets sent: with retry, packetBytes"
-vector 106 RadioCommunication.satellite.wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+vector 136 GroundToPoP.groundStation.wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211NotRetry(packetSentToPeer)
 attr title "packets sent: without retry, packetBytes"
-vector 107 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+vector 137 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received, packetBytes"
-vector 108 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+vector 138 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Unicast(packetReceivedFromPeer)
 attr title "packets received: unicast, packetBytes"
-vector 109 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+vector 139 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Multicast(packetReceivedFromPeer)
 attr title "packets received: multicast, packetBytes"
-vector 110 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+vector 140 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Broadcast(packetReceivedFromPeer)
 attr title "packets received: broadcast, packetBytes"
-vector 111 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+vector 141 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211Retry(packetReceivedFromPeer)
 attr title "packets received: with retry, packetBytes"
-vector 112 RadioCommunication.satellite.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+vector 142 GroundToPoP.groundStation.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source ieee80211NotRetry(packetReceivedFromPeer)
 attr title "packets received: without retry, packetBytes"
-vector 113 RadioCommunication.satellite.wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
+vector 143 GroundToPoP.groundStation.wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropped
 attr title "packet drops, packetBytes"
-vector 114 RadioCommunication.satellite.wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+vector 144 GroundToPoP.groundStation.wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drops: not addressed to us, packetBytes"
-vector 115 RadioCommunication.satellite.wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+vector 145 GroundToPoP.groundStation.wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, packetBytes"
-vector 116 RadioCommunication.satellite.wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+vector 146 GroundToPoP.groundStation.wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsRetryLimitReached(packetDropped)
 attr title "packet drops: retry limit reached, packetBytes"
-vector 117 RadioCommunication.satellite.wlan[0].mac.dcf frameSequenceActive:vector ETV
+vector 147 GroundToPoP.groundStation.wlan[0].mac.dcf frameSequenceActive:vector ETV
 attr autoWarmupFilter false
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
 attr title "frame sequence active"
-vector 118 RadioCommunication.satellite.wlan[0].mac.dcf datarateSelected:vector ETV
+vector 148 GroundToPoP.groundStation.wlan[0].mac.dcf datarateSelected:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr title "datarates selected"
-vector 119 RadioCommunication.satellite.wlan[0].mac.rx nav:vector ETV
+vector 149 GroundToPoP.groundStation.wlan[0].mac.rx nav:vector ETV
 attr interpolationmode linear
 attr recordingmode vector
 attr source navChanged
 attr title "network allocation vector"
-vector 120 RadioCommunication.satellite.wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+vector 150 GroundToPoP.groundStation.wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent to upper layer, packetBytes"
-vector 121 RadioCommunication.satellite.wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+vector 151 GroundToPoP.groundStation.wlan[0].mac packetSentToLower:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets sent to lower layer, packetBytes"
-vector 122 RadioCommunication.satellite.wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+vector 152 GroundToPoP.groundStation.wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received from upper layer, packetBytes"
-vector 123 RadioCommunication.satellite.wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+vector 153 GroundToPoP.groundStation.wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr title "packets received from lower layer, packetBytes"
-vector 124 RadioCommunication.satellite.wlan[0].mac packetDrop:vector(packetBytes) ETV
+vector 154 GroundToPoP.groundStation.wlan[0].mac packetDrop:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropped
 attr title "packet drops, packetBytes"
-vector 125 RadioCommunication.satellite.wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+vector 155 GroundToPoP.groundStation.wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packet drops: incorrectly received, packetBytes"
-vector 126 RadioCommunication.satellite.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+vector 156 GroundToPoP.groundStation.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drops: not addressed to us, packetBytes"
-vector 127 RadioCommunication.satellite.wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+vector 157 GroundToPoP.groundStation.wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsQueueOverflow(packetDropped)
 attr title "packet drops: queue overflow, packetBytes"
-vector 128 RadioCommunication.satellite.wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+vector 158 GroundToPoP.groundStation.wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsRetryLimitReached(packetDropped)
 attr title "packet drops: retry limit reached, packetBytes"
-vector 129 RadioCommunication.satellite.wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+vector 159 GroundToPoP.groundStation.wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsDuplicateDetected(packetDropped)
 attr title "packet drops: duplicate detected, packetBytes"
-vector 130 RadioCommunication.satellite.wlan[0].mac packetDropOther:vector(packetBytes) ETV
+vector 160 GroundToPoP.groundStation.wlan[0].mac packetDropOther:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsOther(packetDropped)
 attr title "packet drops: other, packetBytes"
-vector 131 RadioCommunication.satellite.wlan[0].radio radioMode:vector ETV
+vector 161 GroundToPoP.groundStation.wlan[0].radio radioMode:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source radioModeChanged
 attr title "Radio mode"
-vector 132 RadioCommunication.satellite.wlan[0].radio receptionState:vector ETV
+vector 162 GroundToPoP.groundStation.wlan[0].radio receptionState:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source receptionStateChanged
 attr title "Radio reception state"
-vector 133 RadioCommunication.satellite.wlan[0].radio transmissionState:vector ETV
+vector 163 GroundToPoP.groundStation.wlan[0].radio transmissionState:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source transmissionStateChanged
 attr title "Radio transmission state"
-vector 134 RadioCommunication.satellite.wlan[0].radio radioChannel:vector ETV
+vector 164 GroundToPoP.groundStation.wlan[0].radio radioChannel:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
 attr source radioChannelChanged
 attr title "Radio channel"
-vector 135 RadioCommunication.satellite.wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+vector 165 GroundToPoP.groundStation.wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsInterfaceDown(packetDropped)
 attr title "packet drops: interface down, packetBytes"
-vector 136 RadioCommunication.satellite.wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+vector 166 GroundToPoP.groundStation.wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNoCarrier(packetDropped)
 attr title "packet drops: no carrier, packetBytes"
-vector 137 RadioCommunication.satellite.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+vector 167 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 168 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 169 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 170 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 171 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 172 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 173 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 174 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 175 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 176 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 177 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 178 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 179 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 180 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 181 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 182 GroundToPoP.groundStation.wlan[1].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 183 GroundToPoP.groundStation.wlan[1].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 184 GroundToPoP.groundStation.wlan[1].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 185 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 186 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, packetBytes"
+vector 187 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 188 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , packetBytes"
+vector 189 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, packetBytes"
+vector 190 GroundToPoP.groundStation.wlan[1].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 191 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 192 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, packetBytes"
+vector 193 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 194 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, packetBytes"
+vector 195 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, packetBytes"
+vector 196 GroundToPoP.groundStation.wlan[1].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 197 GroundToPoP.groundStation.wlan[1].mac.dcf packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 198 GroundToPoP.groundStation.wlan[1].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 199 GroundToPoP.groundStation.wlan[1].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 200 GroundToPoP.groundStation.wlan[1].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 201 GroundToPoP.groundStation.wlan[1].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 202 GroundToPoP.groundStation.wlan[1].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 203 GroundToPoP.groundStation.wlan[1].mac.rx nav:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source navChanged
+attr title "network allocation vector"
+vector 204 GroundToPoP.groundStation.wlan[1].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 205 GroundToPoP.groundStation.wlan[1].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 206 GroundToPoP.groundStation.wlan[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 207 GroundToPoP.groundStation.wlan[1].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 208 GroundToPoP.groundStation.wlan[1].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 209 GroundToPoP.groundStation.wlan[1].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 210 GroundToPoP.groundStation.wlan[1].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 211 GroundToPoP.groundStation.wlan[1].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 212 GroundToPoP.groundStation.wlan[1].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 213 GroundToPoP.groundStation.wlan[1].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 214 GroundToPoP.groundStation.wlan[1].mac packetDropOther:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, packetBytes"
+vector 215 GroundToPoP.groundStation.wlan[1].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 216 GroundToPoP.groundStation.wlan[1].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 217 GroundToPoP.groundStation.wlan[1].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 218 GroundToPoP.groundStation.wlan[1].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 219 GroundToPoP.groundStation.wlan[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 220 GroundToPoP.groundStation.wlan[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 221 GroundToPoP.groundStation.eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 222 GroundToPoP.groundStation.eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 223 GroundToPoP.groundStation.eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 224 GroundToPoP.groundStation.eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 225 GroundToPoP.groundStation.eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 226 GroundToPoP.groundStation.eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 227 GroundToPoP.groundStation.eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 228 GroundToPoP.groundStation.eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 229 GroundToPoP.groundStation.eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 230 GroundToPoP.groundStation.eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 231 GroundToPoP.groundStation.eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 232 GroundToPoP.groundStation.eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 233 GroundToPoP.groundStation.eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 234 GroundToPoP.groundStation.eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 235 GroundToPoP.groundStation.eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 236 GroundToPoP.groundStation.eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 237 GroundToPoP.groundStation.eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 238 GroundToPoP.groundStation.eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 239 GroundToPoP.groundStation.eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 240 GroundToPoP.groundStation.eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 241 GroundToPoP.groundStation.eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 242 GroundToPoP.groundStation.eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 243 GroundToPoP.groundStation.eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 244 GroundToPoP.groundStation.eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 245 GroundToPoP.groundStation.eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 246 GroundToPoP.groundStation.eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 247 GroundToPoP.groundStation.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 248 GroundToPoP.groundStation.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 249 GroundToPoP.groundStation.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 250 GroundToPoP.groundStation.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 251 GroundToPoP.groundStation.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 252 GroundToPoP.groundStation.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 253 GroundToPoP.groundStation.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 254 GroundToPoP.groundStation.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 255 GroundToPoP.groundStation.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 256 GroundToPoP.groundStation.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 257 GroundToPoP.groundStation.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 258 GroundToPoP.groundStation.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 259 GroundToPoP.groundStation.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 260 GroundToPoP.groundStation.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 261 GroundToPoP.groundStation.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 262 GroundToPoP.groundStation.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 263 GroundToPoP.groundStation.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 264 GroundToPoP.groundStation.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 265 GroundToPoP.groundStation.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 266 GroundToPoP.groundStation.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 267 GroundToPoP.groundStation.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 268 GroundToPoP.groundStation.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 269 GroundToPoP.groundStation.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
 attr title "packet drop: address resolution failed, packetBytes"
-vector 138 RadioCommunication.satellite.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+vector 270 GroundToPoP.groundStation.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsHopLimitReached(packetDropped)
 attr title "packet drop: hop limit reached, packetBytes"
-vector 139 RadioCommunication.satellite.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+vector 271 GroundToPoP.groundStation.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsForwardingDisabled(packetDropped)
 attr title "packet drop: forwarding disabled, packetBytes"
-vector 140 RadioCommunication.satellite.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+vector 272 GroundToPoP.groundStation.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNoInterfaceFound(packetDropped)
 attr title "packet drop: no interface found, packetBytes"
-vector 141 RadioCommunication.satellite.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+vector 273 GroundToPoP.groundStation.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsNoRouteFound(packetDropped)
 attr title "packet drop: no route found, packetBytes"
-vector 142 RadioCommunication.satellite.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+vector 274 GroundToPoP.groundStation.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetDropReasonIsUndefined(packetDropped)
 attr title "packet drop: undefined, packetBytes"
-vector 143 RadioCommunication.satellite.ipv4.arp arpRequestSent:vector(packetBytes) ETV
-attr recordingmode vector(packetBytes)
-attr source arpRequestSent
-attr title "ARP request sent, packetBytes"
-vector 144 RadioCommunication.satellite.ipv4.arp arpReplySent:vector(packetBytes) ETV
-attr recordingmode vector(packetBytes)
-attr source arpReplySent
-attr title "ARP replies sent, packetBytes"
-vector 145 RadioCommunication.satellite.udp packetSent:vector(packetBytes) ETV
+vector 275 GroundToPoP.groundStation.udp packetSent:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetSent
 attr title "packets sent, packetBytes"
-vector 146 RadioCommunication.satellite.udp packetReceived:vector(packetBytes) ETV
+vector 276 GroundToPoP.groundStation.udp packetReceived:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetReceived
 attr title "packets received, packetBytes"
-vector 147 RadioCommunication.satellite.udp passedUpPk:vector(count) ETV
+vector 277 GroundToPoP.groundStation.udp passedUpPk:vector(count) ETV
 attr interpolationmode none
 attr recordingmode vector(count)
 attr source packetSentToUpper
 attr title "packets passed up, count"
-vector 148 RadioCommunication.satellite.udp droppedPkWrongPort:vector(count) ETV
+vector 278 GroundToPoP.groundStation.udp droppedPkWrongPort:vector(count) ETV
 attr interpolationmode none
 attr recordingmode vector(count)
 attr source packetDropReasonIsNoPortFound(packetDropped)
 attr title "packets dropped (wrong port), count"
-vector 149 RadioCommunication.satellite.udp droppedPkBadChecksum:vector(count) ETV
+vector 279 GroundToPoP.groundStation.udp droppedPkBadChecksum:vector(count) ETV
 attr interpolationmode none
 attr recordingmode vector(count)
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packets dropped (checksum error), count"
-vector 150 RadioCommunication.satellite.app[0] packetReceived:vector(packetBytes) ETV
+vector 280 GroundToPoP.groundStation.app[0] packetReceived:vector(packetBytes) ETV
 attr interpolationmode none
 attr recordingmode vector(packetBytes)
 attr source packetReceived
 attr title "packets received, packetBytes"
-vector 151 RadioCommunication.satellite.app[0] throughput:vector ETV
-attr recordingmode vector
-attr source throughput(packetReceived)
-attr title throughput
-attr unit bps
-vector 152 RadioCommunication.satellite.app[0] endToEndDelay:vector ETV
+vector 281 GroundToPoP.groundStation.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 282 GroundToPoP.groundStation.app[0] endToEndDelay:vector ETV
 attr interpolationmode none
 attr recordingmode vector
 attr source dataAge(packetReceived)
 attr title "end-to-end delay"
 attr unit s
-vector 153 RadioCommunication.satellite.app[0] rcvdPkSeqNo:vector ETV
-attr interpolationmode none
-attr recordingmode vector
-attr source appPkSeqNo(packetReceived)
-attr title "received packet sequence number"
-vector 154 RadioCommunication receptionPower:vector ETV
-attr recordingmode vector
-attr source receptionMinSignalPower(radioMedium.signalArrivalStarted)
-4	42826 22 4 4 0.163464953215 0.163464953215 1 1 1 1 1
-7	42848 90 0 11 0 0.263464953215 7 0 1 1 1
-8	42938 92 0 11 0 0.263464953215 7 0 256 256 65536
-9	43030 23 11 11 0.263464953215 0.263464953215 1 0 0 0 0
-10	43053 25 9 9 0.263464953215 0.263464953215 1 256 256 256 65536
-11	43078 24 9 9 0.1 0.2 2 0 0 0 0
-12	43102 26 11 11 0.263464953215 0.263464953215 1 256 256 256 65536
-13	43128 26 11 11 0.1 0.2 2 0 0 0 0
-18	43154 30 15 15 0.263502953215 0.263502953215 1 3.8e-05 3.8e-05 3.8e-05 1.444e-09
-19	43184 68 0 15 0 0.263502953215 4 0 1 1 1
-20	43252 23 9 9 0.263464953215 0.263464953215 1 7 7 7 49
-21	43275 67 0 10 0 0.263464953215 4 0 1 1 1
-22	43342 210 0 16 0 0.263502953215 10 0 2 4 8
-24	43552 11 0 0 0 0 1 31 31 31 961
-25	43563 25 15 15 0.263502953215 0.263502953215 1 32 32 32 1024
-27	43588 25 15 15 0.263502953215 0.263502953215 1 32 32 32 1024
-28	43613 25 15 15 0.263502953215 0.263502953215 1 32 32 32 1024
-30	43638 25 15 15 0.263502953215 0.263502953215 1 32 32 32 1024
-41	43663 68 0 15 0 0.263502953215 4 0 1 1 1
-42	43731 31 11 11 0.263464953215 0.263464953215 1 24000000 24000000 24000000 5.76e+14
-45	43762 25 11 11 0.263464953215 0.263464953215 1 32 32 32 1024
-55	43787 78 0 16 0 0.263502953215 5 0 3 7 17
-56	43865 58 0 16 0 0.263502953215 3 0 1 2 2
-57	43923 96 12 16 0.263464953215 0.263502953215 4 0 2 4 6
-58	44019 33 0 7 0 0.163464953215 2 0 0 0 0
-71	44052 10 0 0 0 0 1 0 0 0 0
-72	44062 10 0 0 0 0 1 0 0 0 0
-73	44072 10 0 0 0 0 1 0 0 0 0
-83	44082 50 0 0 0 0 5 0 0 0 0
-84	44132 50 0 0 0 0 5 0 0 0 0
-95	44182 20 0 0 0 0 2 0 0 0 0
-97	44202 20 0 0 0 0 2 0 0 0 0
-98	44222 20 0 0 0 0 2 0 0 0 0
-100	44242 12 0 0 0 0 1 31 31 31 961
-117	44254 22 0 0 0 0 2 0 0 0 0
-131	44276 33 0 0 0 0 3 0 2 2 4
-132	44309 11 0 0 0 0 1 1 1 1 1
-134	44320 11 0 0 0 0 1 0 0 0 0
-147	44331 11 0 0 0 0 1 0 0 0 0
-148	44342 11 0 0 0 0 1 0 0 0 0
-149	44353 11 0 0 0 0 1 0 0 0 0
-154	44364 43 14 14 0.263465841354 0.263465841354 1 6.9424998516772e-14 6.9424998516772e-14 6.9424998516772e-14 4.8198304190538e-27
+4	76191 181 0 34 0 0.254488317738 11 0 1 3 3
+5	76372 187 0 34 0 0.254488317738 11 0 384 1152 442368
+6	76559 68 4 34 0.054488317738 0.254488317738 3 0 0 0 0
+7	76627 74 2 32 0.054488317738 0.254488317738 3 384 384 1152 442368
+8	76701 30 17 32 0.1 0.2 2 3840 3840 7680 29491200
+9	76731 74 4 34 0.054488317738 0.254488317738 3 384 384 1152 442368
+10	76805 32 19 34 0.1 0.2 2 3840 3840 7680 29491200
+15	76837 89 9 39 0.054534317738 0.254534317738 3 4.6e-05 4.6e-05 0.000138 6.348e-09
+16	76926 162 0 39 0 0.254534317738 8 0 1 3 3
+17	77088 72 2 32 0.054488317738 0.254488317738 3 7 19 35 491
+18	77160 162 0 33 0 0.254488317738 8 0 1 3 3
+19	77322 590 0 40 0 0.254534317738 26 0 2 12 24
+21	77912 11 0 0 0 0 1 31 31 31 961
+22	77923 74 9 39 0.054534317738 0.254534317738 3 48 48 144 6912
+24	77997 74 9 39 0.054534317738 0.254534317738 3 48 48 144 6912
+25	78071 74 9 39 0.054534317738 0.254534317738 3 48 48 144 6912
+27	78145 74 9 39 0.054534317738 0.254534317738 3 48 48 144 6912
+38	78219 162 0 39 0 0.254534317738 8 0 1 3 3
+39	78381 92 4 34 0.054488317738 0.254488317738 3 24000000 24000000 72000000 1.728e+15
+42	78473 74 4 34 0.054488317738 0.254488317738 3 48 48 144 6912
+52	78547 173 0 40 0 0.254534317738 9 0 3 17 43
+53	78720 153 0 40 0 0.254534317738 7 0 1 4 4
+54	78873 285 5 40 0.054488317738 0.254534317738 12 0 2 12 18
+55	79158 10 0 0 0 0 1 0 0 0 0
+60	79168 50 0 0 0 0 5 0 0 0 0
+61	79218 50 0 0 0 0 5 0 0 0 0
+71	79268 50 0 0 0 0 5 0 0 0 0
+72	79318 50 0 0 0 0 5 0 0 0 0
+84	79368 50 0 0 0 0 5 0 0 0 0
+85	79418 50 0 0 0 0 5 0 0 0 0
+113	79468 55 0 0 0 0 5 0 0 0 0
+114	79523 55 0 0 0 0 5 0 0 0 0
+125	79578 22 0 0 0 0 2 0 0 0 0
+127	79600 22 0 0 0 0 2 0 0 0 0
+128	79622 22 0 0 0 0 2 0 0 0 0
+130	79644 12 0 0 0 0 1 31 31 31 961
+147	79656 22 0 0 0 0 2 0 0 0 0
+161	79678 33 0 0 0 0 3 0 2 2 4
+162	79711 11 0 0 0 0 1 1 1 1 1
+164	79722 11 0 0 0 0 1 0 0 0 0
+167	79733 55 0 0 0 0 5 0 0 0 0
+168	79788 55 0 0 0 0 5 0 0 0 0
+179	79843 22 0 0 0 0 2 0 0 0 0
+181	79865 22 0 0 0 0 2 0 0 0 0
+182	79887 270 0 38 0 0.254488621281 12 0 0 0 0
+184	80157 12 0 0 0 0 1 31 31 31 961
+191	80169 52 13 28 0.054534621281 0.154534621281 2 48 48 96 4608
+193	80221 52 13 28 0.054534621281 0.154534621281 2 48 48 96 4608
+194	80273 52 13 28 0.054534621281 0.154534621281 2 48 48 96 4608
+196	80325 52 13 28 0.054534621281 0.154534621281 2 48 48 96 4608
+201	80377 22 0 0 0 0 2 0 0 0 0
+207	80399 52 13 28 0.054534621281 0.154534621281 2 48 48 96 4608
+215	80451 33 0 0 0 0 3 0 2 2 4
+216	80484 135 0 38 0 0.254488621281 6 1 3 12 30
+218	80619 11 0 0 0 0 1 0 0 0 0
+223	80630 55 0 0 0 0 5 0 0 0 0
+224	80685 55 0 0 0 0 5 0 0 0 0
+234	80740 55 0 0 0 0 5 0 0 0 0
+235	80795 55 0 0 0 0 5 0 0 0 0
+247	80850 55 0 0 0 0 5 0 0 0 0
+248	80905 55 0 0 0 0 5 0 0 0 0
+277	80960 11 0 0 0 0 1 0 0 0 0
+278	80971 11 0 0 0 0 1 0 0 0 0
+279	80982 11 0 0 0 0 1 0 0 0 0
+8	80993 37 40 40 0.254534453581 0.254534453581 1 7041.4201442331 7041.4201442331 7041.4201442331 49581597.647612
+10	81030 38 40 40 0.254534453581 0.254534453581 1 7041.4201442331 7041.4201442331 7041.4201442331 49581597.647612
+59	81068 50 40 40 0.1 0.254534453581 3 0 0 0 0
+64	81118 50 40 40 0.1 0.254534453581 3 0 0 0 0
+66	81168 50 40 40 0.1 0.254534453581 3 0 0 0 0
+75	81218 50 40 40 0.1 0.254534453581 3 0 0 0 0
+77	81268 50 40 40 0.1 0.254534453581 3 0 0 0 0
+83	81318 50 40 40 0.1 0.254534453581 3 0 0 0 0
+117	81368 53 40 40 0.1 0.254534453581 3 0 0 0 0
+119	81421 53 40 40 0.1 0.254534453581 3 0 0 0 0
+171	81474 53 40 40 0.1 0.254534453581 3 0 0 0 0
+173	81527 53 40 40 0.1 0.254534453581 3 0 0 0 0
+222	81580 53 40 40 0.1 0.254534453581 3 0 0 0 0
+227	81633 53 40 40 0.1 0.254534453581 3 0 0 0 0
+229	81686 53 40 40 0.1 0.254534453581 3 0 0 0 0
+238	81739 53 40 40 0.1 0.254534453581 3 0 0 0 0
+240	81792 53 40 40 0.1 0.254534453581 3 0 0 0 0
+246	81845 53 40 40 0.1 0.254534453581 3 0 0 0 0
+

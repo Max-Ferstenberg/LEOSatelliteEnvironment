@@ -9,10 +9,8 @@ module GroundStation extends AdhocHost {
         numWlanInterfaces = 1; // Two wlan interfaces
         // Wireless interface
         wlan[0].typename = "Ieee80211Interface"; 
-        wlan[0].radio.antenna.typename = "ParabolicAntenna";
-        wlan[0].radio.transmitter.power = 100mW; // Set transmission power
-        wlan[0].radio.receiver.sensitivity = -90dBm; // Set receiver sensitivity
 
-        eth[0].typename = "EthernetInterface"; // Simulates a wired connection
+        wlan[1].typename = "EthernetInterface"; // Simulates a wired connection
         @display("i=device/router"); // Display icon
+        @class(GroundStation);
 }

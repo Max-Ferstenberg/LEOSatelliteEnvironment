@@ -1,0 +1,3243 @@
+version 3
+run General-0-20250116-20:32:50-2084
+attr configname General
+attr datetime 20250116-20:32:50
+attr datetimef 20250116-203250
+attr experiment General
+attr inifile LISL.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network leosatelliteenvironment.SingleConnectionNetworks.LISL
+attr processid 2084
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../inet4.5/images
+config network leosatelliteenvironment.SingleConnectionNetworks.LISL
+config **.debug true
+config *.satellite2.wlan[0].radio.transmitter.debug true
+config *.satellite2.wlan[0].radio.receiver.debug true
+config *.satellite1.wlan[0].radio.transmitter.debug true
+config *.satellite1.wlan[0].radio.receiver.debug true
+config **.satellite*.mobility.typename CircleMobility
+config **.satellite*.mobility.cx 200m
+config **.satellite*.mobility.cy 200m
+config **.satellite*.mobility.r 150m
+config **.satellite*.mobility.speed 40mps
+config **.satellite1.mobility.startAngle 0deg
+config **.satellite2.mobility.startAngle 120deg
+
+par LISL.configurator typename "\"inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator\""
+par LISL.configurator minLinkWeight 0.001
+par LISL.configurator configureIsolatedNetworksSeparatly false
+par LISL.configurator config "<config>...</config> at content:1"
+par LISL.configurator assignAddresses true
+par LISL.configurator assignUniqueAddresses true
+par LISL.configurator assignDisjunctSubnetAddresses true
+par LISL.configurator addStaticRoutes true
+par LISL.configurator addDefaultRoutes true
+par LISL.configurator addSubnetRoutes true
+par LISL.configurator addDirectRoutes true
+par LISL.configurator optimizeRoutes true
+par LISL.configurator dumpTopology false
+par LISL.configurator dumpLinks false
+par LISL.configurator dumpAddresses false
+par LISL.configurator dumpRoutes false
+par LISL.configurator dumpConfig "\"\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer typename "\"inet.visualizer.canvas.scene.SceneCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer physicalEnvironmentModule "\"physicalEnvironment\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer axisLength "nan m"
+attr mutable ""
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer animationSpeed 0
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMinX "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMinY "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMinZ "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMaxX "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMaxY "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer sceneMaxZ "nan m"
+attr unit m
+par LISL.visualizer.canvasVisualizer.sceneVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.sceneVisualizer viewAngle "\"x right y down z out\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer viewScale "\"1 1\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer viewTranslation "\"0 0\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.sceneVisualizer descriptionFigure "\"\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer typename "\"inet.visualizer.canvas.environment.PhysicalEnvironmentCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer physicalEnvironmentModule "\"physicalEnvironment\""
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer displayObjects true
+par LISL.visualizer.canvasVisualizer.physicalEnvironmentVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer typename "\"inet.visualizer.canvas.scene.NetworkNodeCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer annotationSpacing 4
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer placementPenalty 10
+par LISL.visualizer.canvasVisualizer.networkNodeVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer typename "\"inet.visualizer.canvas.scene.NetworkConnectionCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer displayNetworkConnections true
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer nodeFilter "\"\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer lineColor "\"black\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer lineWidth 1
+par LISL.visualizer.canvasVisualizer.networkConnectionVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer typename "\"inet.visualizer.canvas.mobility.MobilityCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer displayMobility true
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer animationSpeed 0
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer moduleFilter "\"**.mobility\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer displayPositions false
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer positionCircleRadius 4
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer positionCircleLineWidth 1
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer positionCircleLineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer positionCircleFillColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer displayOrientations false
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationPieRadius 32
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationPieSize 0.2
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationPieOpacity 0.25
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationLineColor "\"black\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationLineWidth 1
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer orientationFillColor "\"blue\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer displayVelocities false
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer velocityArrowScale 1
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer velocityLineColor "\"black\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer velocityLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer velocityLineWidth 1
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer displayMovementTrails false
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer movementTrailLineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer movementTrailLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer movementTrailLineWidth 1
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer trailLength 100
+par LISL.visualizer.canvasVisualizer.mobilityVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.statisticVisualizer typename "\"inet.visualizer.canvas.common.StatisticCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer displayStatistics true
+par LISL.visualizer.canvasVisualizer.statisticVisualizer signalName "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer statisticName "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer statisticUnit "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer statisticExpression "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer sourceFilter "\"**\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer format "\"%n: %v %u\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer unit "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer font "\"<default>\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer textColor "\"black\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer backgroundColor "\"white\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer opacity 1
+par LISL.visualizer.canvasVisualizer.statisticVisualizer placementHint "\"top\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.statisticVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.statisticVisualizer propertyName "\"\""
+par LISL.visualizer.canvasVisualizer.statisticVisualizer propertyIndex "\"\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer typename "\"inet.visualizer.canvas.common.InfoCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer displayInfos true
+par LISL.visualizer.canvasVisualizer.infoVisualizer modules "\"\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.infoVisualizer format "\"%t\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.infoVisualizer font "\"<default>\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer textColor "\"black\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer backgroundColor "\"white\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer opacity 1
+par LISL.visualizer.canvasVisualizer.infoVisualizer placementHint "\"top\""
+par LISL.visualizer.canvasVisualizer.infoVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.infoVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer typename "\"inet.visualizer.canvas.power.EnergyStorageCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer displayEnergyStorages false
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer energyStorageFilter "\"**\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer color "\"green\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer width 8
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer height 24
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer spacing 2
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer placementHint "\"right\""
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.energyStorageVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.mediumVisualizer typename "\"inet.visualizer.canvas.physicallayer.MediumCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mediumModule "\"radioMedium\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displaySignals false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalPropagationAnimationSpeed "nan "
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalPropagationAnimationTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalPropagationAdditionalTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalTransmissionAnimationSpeed "nan "
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalTransmissionAnimationTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalAnimationSpeedChangeTimeMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalAnimationSpeedChangeTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displaySignalDepartures false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalDepartureImage "\"misc/signal_departure.png\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalDeparturePlacementHint "\"topCenter\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalDeparturePlacementPriority 1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displaySignalArrivals false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalArrivalImage "\"misc/signal_arrival.png\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalArrivalPlacementHint "\"topCenter\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalArrivalPlacementPriority -1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displayCommunicationRanges false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer communicationRangeLineColor "\"blue\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer communicationRangeLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer communicationRangeLineWidth 1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displayInterferenceRanges false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer interferenceRangeLineColor "\"gray\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer interferenceRangeLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer interferenceRangeLineWidth 1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer autoPowerAxis true
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMinPower "inf dBmW"
+attr unit dBmW
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMaxPower 0dBmW
+attr unit dBmW
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMinPowerDensity "inf dBmWpMHz"
+attr unit dBmWpMHz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMaxPowerDensity "-inf dBmWpMHz"
+attr unit dBmWpMHz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer autoTimeAxis true
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMinTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMaxTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.mediumVisualizer autoFrequencyAxis true
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMinFrequency "inf Hz"
+attr unit Hz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalMaxFrequency "-inf Hz"
+attr unit Hz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displayMainPowerDensityMap false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapPixmapDensity 1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapMinX 0
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapMaxX "nan "
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapMinY 0
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapMaxY "nan "
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapZ 0
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapFigureXTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer mainPowerDensityMapFigureYTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displayPowerDensityMaps false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapMode "\"auto\""
+attr enum total,signal,auto
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapPixelMode "\"mean\""
+attr enum sample,partition,mean
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapApproximationSize 10
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapCenterFrequency "nan Hz"
+attr mutable ""
+attr unit Hz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapBandwidth 0Hz
+attr mutable ""
+attr unit Hz
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapFigureWidth 200
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapFigureHeight 120
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapPixmapWidth 200
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapPixmapHeight 120
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapZ 0
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapFigureXTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer powerDensityMapFigureYTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displaySpectrums false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumMode "\"auto\""
+attr enum total,signal,auto
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumFigureWidth 200
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumFigureHeight 120
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumFigureXTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumFigureYTickCount 5
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumFigureInterpolationSize 5
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumPlacementHint "\"bottomCenter\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrumPlacementPriority -1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displaySpectrograms false
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramMode "\"auto\""
+attr enum total,signal,auto
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramPixelMode "\"mean\""
+attr enum sample,partition,mean
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramFigureWidth 200
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramFigureHeight 120
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramPixmapWidth 200
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramPixmapHeight 120
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramFigureXTickCount 3
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramFigureYTickCount 5
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramPlacementHint "\"bottomCenter\""
+par LISL.visualizer.canvasVisualizer.mediumVisualizer spectrogramPlacementPriority -1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalShape "\"ring\""
+attr enum ring,sphere
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalOpacity 0.5
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalRingCount 20
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalRingSize 50m
+attr unit m
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalFadingDistance 50m
+attr unit m
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalFadingFactor 1.2
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalWaveCount 20
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalWaveLength 50m
+attr unit m
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalWaveWidth 10m
+attr unit m
+par LISL.visualizer.canvasVisualizer.mediumVisualizer signalWaveFadingAnimationSpeedFactor 1
+par LISL.visualizer.canvasVisualizer.mediumVisualizer displayCommunicationHeat false
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer typename "\"inet.visualizer.canvas.physicallayer.TracingObstacleLossCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer displayIntersections false
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer intersectionLineColor "\"red\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer intersectionLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer intersectionLineWidth 1
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer displayFaceNormalVectors false
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer faceNormalLineColor "\"grey\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer faceNormalLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer faceNormalLineWidth 1
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.obstacleLossVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer typename "\"inet.visualizer.canvas.common.PacketDropCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer displayPacketDrops false
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer detailsFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer icon "\"msg/packet_s\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer iconTintAmount 1
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer iconTintColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer labelFormat "\"%n\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer labelFont "\"<default>\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer labelColor "\"black\""
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer dx 32
+par LISL.visualizer.canvasVisualizer.packetDropVisualizer dy 64
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer typename "\"inet.visualizer.canvas.flow.PacketFlowCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer displayRoutes false
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer startPathSignal "\"packetFlowStarted\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer extendPathSignal "\"packetReceivedFromLower\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer endPathSignal "\"packetFlowEnded\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineStyle "\"dashed\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineSmooth false
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer labelFormat "\"%L %p pk (%l)\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer labelColor "\"\""
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer fadeOutTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.packetFlowVisualizer zIndex 4
+par LISL.visualizer.canvasVisualizer.queueVisualizer typename "\"inet.visualizer.canvas.common.QueueCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer displayQueues false
+par LISL.visualizer.canvasVisualizer.queueVisualizer queueFilter "\"**\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer color "\"blue\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer width 8
+par LISL.visualizer.canvasVisualizer.queueVisualizer height 24
+par LISL.visualizer.canvasVisualizer.queueVisualizer spacing 2
+par LISL.visualizer.canvasVisualizer.queueVisualizer placementHint "\"right\""
+par LISL.visualizer.canvasVisualizer.queueVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.queueVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer typename "\"inet.visualizer.canvas.common.GateScheduleCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer displayGateSchedules false
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer labelFormat "\"%i %D\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer gateFilter "\"**\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer width 100
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer height 8
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer spacing 2
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer placementHint "\"right\""
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer displayDuration 0s
+attr mutable ""
+attr unit s
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer currentTimePosition 50
+par LISL.visualizer.canvasVisualizer.gateScheduleVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.radioVisualizer typename "\"inet.visualizer.canvas.physicallayer.RadioCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer displayRadios false
+par LISL.visualizer.canvasVisualizer.radioVisualizer displayRadioMode true
+par LISL.visualizer.canvasVisualizer.radioVisualizer displayReceptionState true
+par LISL.visualizer.canvasVisualizer.radioVisualizer displayTransmissionState true
+par LISL.visualizer.canvasVisualizer.radioVisualizer displayAntennaLobes false
+par LISL.visualizer.canvasVisualizer.radioVisualizer radioFilter "\"**\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.radioVisualizer radioModeImages "\"block/process_vs block/timer_vs block/wrx_vs block/wtx_vs block/wrxtx_vs block/cogwheel_vs\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer receptionStateImages "\"- - misc/receiving misc/receiving\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer transmissionStateImages "\"- - misc/transmitting\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer width 16
+par LISL.visualizer.canvasVisualizer.radioVisualizer height 16
+par LISL.visualizer.canvasVisualizer.radioVisualizer placementHint "\"bottomRight\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeNormalize false
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeRelativeLabels false
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobePlaneGlobal true
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobePlane "\"view\""
+attr enum view,xy,xz,yz
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeMode "\"logarithmic\""
+attr enum logarithmic,linear
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLogarithmicBase 10
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLogarithmicScale 100
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeRadius 100
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeStep 10deg
+attr unit deg
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeOpacity 0.25
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLineSmooth true
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLineColor "\"black\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeLineWidth 1
+par LISL.visualizer.canvasVisualizer.radioVisualizer antennaLobeFillColor "\"white\""
+par LISL.visualizer.canvasVisualizer.radioVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer typename "\"inet.visualizer.canvas.physicallayer.PhysicalLinkCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer displayLinks false
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer activityLevel "\"service\""
+attr enum service,peer,protocol
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineColor "\"olive\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineStyle "\"dotted\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer labelFormat "\"%n\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer labelColor "\"olive\""
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer holdAnimationTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.physicalLinkVisualizer zIndex 1
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer typename "\"inet.visualizer.canvas.linklayer.InterfaceTableCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer displayInterfaceTables false
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer displayWiredInterfacesAtConnections true
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer displayBackground false
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer interfaceFilter "\"not(lo*)\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer format "\"%N %\\\\%a%/%l\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer placementHint "\"top\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer font "\"<default>\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer textColor "\"#005030\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer backgroundColor "\"white\""
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer opacity 1
+par LISL.visualizer.canvasVisualizer.interfaceTableVisualizer zIndex 10
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer typename "\"inet.visualizer.canvas.linklayer.DataLinkCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer displayLinks false
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer activityLevel "\"service\""
+attr enum service,peer,protocol
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineColor "\"darkcyan\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer labelFormat "\"%n\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer labelColor "\"darkcyan\""
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer holdAnimationTime 0s
+attr unit s
+par LISL.visualizer.canvasVisualizer.dataLinkVisualizer zIndex 2
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer typename "\"inet.visualizer.canvas.linklayer.LinkBreakCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer displayLinkBreaks false
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer icon "\"status/stop\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer iconTintAmount 0
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer iconTintColor "\"\""
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.linkBreakVisualizer zIndex 2
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer typename "\"inet.visualizer.canvas.linklayer.Ieee80211CanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer displayAssociations false
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer interfaceFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer minPower -85dBm
+attr unit dBm
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer maxPower -50dBm
+attr unit dBm
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer icons "\"misc/signal_power_0 misc/signal_power_1 misc/signal_power_2 misc/signal_power_3\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer iconColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer labelFont "\"<default>\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer labelColor "\"black\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer placementHint "\"top\""
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.ieee80211Visualizer zIndex 2
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer typename "\"inet.visualizer.canvas.networklayer.NetworkRouteCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer displayRoutes false
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer startPathSignal "\"packetReceivedFromUpper\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer extendPathSignal "\"packetReceivedFromLower\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer endPathSignal "\"packetSentToUpper\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineSmooth false
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer labelFormat "\"%n\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer labelColor "\"\""
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.networkRouteVisualizer zIndex 3
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer typename "\"inet.visualizer.canvas.networklayer.RoutingTableCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer displayRoutingTables false
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer displayRoutesIndividually true
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer displayLabels true
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer destinationFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineColor "\"black\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineWidth 2
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer labelFormat "\"%d/%m -> %g (%n)\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer labelColor "\"black\""
+par LISL.visualizer.canvasVisualizer.routingTableVisualizer zIndex 0
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer typename "\"inet.visualizer.canvas.transportlayer.TransportRouteCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer displayRoutes false
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer startPathSignal "\"packetReceivedFromUpper\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer extendPathSignal "\"packetReceivedFromLower\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer endPathSignal "\"packetSentToUpper\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer nodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineSmooth false
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer labelFormat "\"%n\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer labelFont "\"<default>, 8px\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer labelColor "\"\""
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer fadeOutMode "\"realTime\""
+attr enum realTime,animationTime,simulationTime
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer fadeOutTime 1s
+attr unit s
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer fadeOutAnimationSpeed 0
+par LISL.visualizer.canvasVisualizer.transportRouteVisualizer zIndex 4
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer typename "\"inet.visualizer.canvas.transportlayer.TransportConnectionCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer networkNodeVisualizerModule "\"^.networkNodeVisualizer\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer displayTransportConnections false
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer sourceNodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer sourcePortFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer destinationNodeFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer destinationPortFilter "\"*\""
+attr mutable ""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer icon "\"misc/marker_s\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer iconColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer labelFont "\"<default>\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer labelColor "\"black\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer placementHint "\"top\""
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer placementPriority 0
+par LISL.visualizer.canvasVisualizer.transportConnectionVisualizer zIndex 4
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer typename "\"inet.visualizer.canvas.configurator.FailureProtectionConfigurationCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer displayTrees false
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineSmooth false
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer failureProtectionConfiguratorModule "\"failureProtectionConfigurator\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer streamFilter "\"*\""
+par LISL.visualizer.canvasVisualizer.failureProtectionConfigurationVisualizer zIndex 3
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer typename "\"inet.visualizer.canvas.configurator.StreamRedundancyConfigurationCanvasVisualizer\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer visualizationTargetModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer visualizationSubjectModule "\"^.^.^\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer tags "\"\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer displayTrees false
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineColor "\"dark\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineStyle "\"solid\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineWidth 3
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineSmooth false
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineShift 16
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineShiftMode "\"normal\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineContactSpacing 3
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer lineContactMode "\"rectangular\""
+attr enum circular,rectangular
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer streamRedundancyConfiguratorModule "\"streamRedundancyConfigurator\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer streamFilter "\"*\""
+par LISL.visualizer.canvasVisualizer.streamRedundancyConfigurationVisualizer zIndex 3
+par LISL.visualizer.canvasVisualizer typename "\"inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer\""
+par LISL.visualizer typename "\"inet.visualizer.common.IntegratedVisualizer\""
+par LISL.radioMedium.propagation typename "\"inet.physicallayer.wireless.common.propagation.ConstantSpeedPropagation\""
+par LISL.radioMedium.propagation propagationSpeed 2.99792e+08mps
+attr unit mps
+par LISL.radioMedium.propagation ignoreMovementDuringTransmission true
+par LISL.radioMedium.propagation ignoreMovementDuringPropagation true
+par LISL.radioMedium.propagation ignoreMovementDuringReception true
+scalar LISL.radioMedium.propagation "Arrival computation count" 0
+par LISL.radioMedium.analogModel typename "\"inet.physicallayer.wireless.common.analogmodel.packetlevel.ScalarAnalogModel\""
+par LISL.radioMedium.analogModel ignorePartialInterference false
+par LISL.radioMedium.backgroundNoise typename "\"inet.physicallayer.wireless.common.backgroundnoise.IsotropicScalarBackgroundNoise\""
+par LISL.radioMedium.backgroundNoise power -110dBm
+attr unit dBm
+par LISL.radioMedium.backgroundNoise bandwidth "nan Hz"
+attr unit Hz
+par LISL.radioMedium.pathLoss typename "\"inet.physicallayer.wireless.common.pathloss.FreeSpacePathLoss\""
+par LISL.radioMedium.pathLoss alpha 2
+par LISL.radioMedium.pathLoss systemLoss 0dB
+attr unit dB
+par LISL.radioMedium.mediumLimitCache typename "\"inet.physicallayer.wireless.common.medium.MediumLimitCache\""
+par LISL.radioMedium.mediumLimitCache centerFrequency 2.4e+09Hz
+attr unit Hz
+par LISL.radioMedium.mediumLimitCache maxSpeed "nan mps"
+attr unit mps
+par LISL.radioMedium.mediumLimitCache maxTransmissionPower "nan W"
+attr unit W
+par LISL.radioMedium.mediumLimitCache minInterferencePower -110dBm
+attr unit dBm
+par LISL.radioMedium.mediumLimitCache minReceptionPower -85dBm
+attr unit dBm
+par LISL.radioMedium.mediumLimitCache maxAntennaGain 0dB
+attr unit dB
+par LISL.radioMedium.mediumLimitCache minInterferenceTime 1e-12s
+attr unit s
+par LISL.radioMedium.mediumLimitCache maxTransmissionDuration 0.01s
+attr unit s
+par LISL.radioMedium.mediumLimitCache maxCommunicationRange "nan m"
+attr unit m
+par LISL.radioMedium.mediumLimitCache maxInterferenceRange "nan m"
+attr unit m
+par LISL.radioMedium.communicationCache typename "\"inet.physicallayer.wireless.common.communicationcache.VectorCommunicationCache\""
+par LISL.radioMedium typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium\""
+par LISL.radioMedium physicalEnvironmentModule "\"physicalEnvironment\""
+par LISL.radioMedium signalAnalogRepresentation "\"scalar\""
+attr enum unitDisk,scalar,dimensional
+par LISL.radioMedium rangeFilter "\"\""
+par LISL.radioMedium radioModeFilter false
+par LISL.radioMedium listeningFilter false
+par LISL.radioMedium macAddressFilter false
+par LISL.radioMedium recordTransmissionLog false
+par LISL.radioMedium recordReceptionLog false
+scalar LISL.radioMedium "transmission count" 0
+scalar LISL.radioMedium "signal send count" 0
+scalar LISL.radioMedium "reception computation count" 0
+scalar LISL.radioMedium "interference computation count" 4
+scalar LISL.radioMedium "reception decision computation count" 0
+scalar LISL.radioMedium "listening decision computation count" 4
+scalar LISL.radioMedium "reception cache hit" nan
+attr unit %
+scalar LISL.radioMedium "interference cache hit" nan
+attr unit %
+scalar LISL.radioMedium "noise cache hit" nan
+attr unit %
+scalar LISL.radioMedium "snir cache hit" nan
+attr unit %
+scalar LISL.radioMedium "reception decision cache hit" nan
+attr unit %
+scalar LISL.radioMedium "reception result cache hit" nan
+attr unit %
+par LISL.satellite1.radioIn[0].channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.mobility typename "\"inet.mobility.single.CircleMobility\""
+par LISL.satellite1.mobility subjectModule "\"^\""
+par LISL.satellite1.mobility coordinateSystemModule "\"\""
+par LISL.satellite1.mobility displayStringTextFormat "\"p: %p\\nv: %v\""
+attr mutable ""
+par LISL.satellite1.mobility updateDisplayString true
+par LISL.satellite1.mobility constraintAreaMinX "-inf m"
+attr unit m
+par LISL.satellite1.mobility constraintAreaMinY "-inf m"
+attr unit m
+par LISL.satellite1.mobility constraintAreaMinZ "-inf m"
+attr unit m
+par LISL.satellite1.mobility constraintAreaMaxX "inf m"
+attr unit m
+par LISL.satellite1.mobility constraintAreaMaxY "inf m"
+attr unit m
+par LISL.satellite1.mobility constraintAreaMaxZ "inf m"
+attr unit m
+par LISL.satellite1.mobility updateInterval 0.1s
+attr unit s
+par LISL.satellite1.mobility faceForward true
+par LISL.satellite1.mobility cx 200m
+attr unit m
+par LISL.satellite1.mobility cy 200m
+attr unit m
+par LISL.satellite1.mobility cz 0m
+attr unit m
+par LISL.satellite1.mobility r 150m
+attr unit m
+par LISL.satellite1.mobility speed 40mps
+attr unit mps
+par LISL.satellite1.mobility startAngle 0deg
+attr unit deg
+par LISL.satellite1.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par LISL.satellite1.interfaceTable displayAddresses false
+par LISL.satellite1.cb typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.cb displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.cb forwardServiceRegistration true
+par LISL.satellite1.cb forwardProtocolRegistration true
+par LISL.satellite1.bl typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.bl displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.bl forwardServiceRegistration true
+par LISL.satellite1.bl forwardProtocolRegistration true
+par LISL.satellite1.li typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.li displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.li forwardServiceRegistration true
+par LISL.satellite1.li forwardProtocolRegistration true
+par LISL.satellite1.lo[0].upperLayerIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.lo[0].lo.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.lo[0].lo typename "\"inet.linklayer.loopback.Loopback\""
+par LISL.satellite1.lo[0].lo interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.lo[0].lo mtu 4470B
+attr unit B
+scalar LISL.satellite1.lo[0].lo rcvdPkFromHl:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar LISL.satellite1.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar LISL.satellite1.lo[0].lo passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar LISL.satellite1.lo[0].lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+par LISL.satellite1.lo[0] typename "\"inet.linklayer.loopback.LoopbackInterface\""
+par LISL.satellite1.lo[0] displayStringTextFormat "\"%a (%i)\\n%m\""
+par LISL.satellite1.lo[0] recordPcap false
+par LISL.satellite1.lo[0] numPcapRecorders 0
+par LISL.satellite1.lo[0] interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+scalar LISL.satellite1.lo[0] packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar LISL.satellite1.lo[0] packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar LISL.satellite1.lo[0] packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar LISL.satellite1.lo[0] packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par LISL.satellite1.wlan[0].radioIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.wlan[0].llc.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.wlan[0].upperLayerIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.wlan[0].mib typename "\"inet.linklayer.ieee80211.mib.Ieee80211Mib\""
+par LISL.satellite1.wlan[0].llc typename "\"inet.linklayer.ieee80211.llc.Ieee80211LlcLpd\""
+par LISL.satellite1.wlan[0].llc registerProtocol false
+par LISL.satellite1.wlan[0].mgmt typename "\"inet.linklayer.ieee80211.mgmt.Ieee80211MgmtAdhoc\""
+par LISL.satellite1.wlan[0].mgmt mibModule "\"LISL.satellite1.wlan[0].mib\""
+par LISL.satellite1.wlan[0].mgmt macModule "\"LISL.satellite1.wlan[0].mac\""
+par LISL.satellite1.wlan[0].mgmt interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue typename "\"inet.linklayer.ieee80211.mac.queue.PendingQueue\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue packetCapacity 100
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue dataCapacity -1b
+attr unit b
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue comparatorClass "\"inet::ieee80211::MgmtOverDataComparator\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue bufferModule "\"\""
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPackets:count 0
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames typename "\"inet.linklayer.ieee80211.mac.queue.InProgressFrames\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames pendingQueueModule "\"^.pendingQueue\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames originatorMacDataServiceModule "\"^.^.originatorMacDataService\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames ackHandlerModule "\"^.^.ackHandler\""
+statistic LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length, max"
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length, timeavg"
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.contention typename "\"inet.linklayer.ieee80211.mac.contention.Contention\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.contention initialChannelBusy true
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess.contention backoffOptimization true
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.contention stateChanged:count 2
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode count
+attr title "contention state changed, count"
+attr type enum
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess.contention channelAccessGranted:count 0
+attr recordingmode count
+attr title "channel access granted, count"
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess typename "\"inet.linklayer.ieee80211.mac.channelaccess.Dcaf\""
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess difsn -1
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess cwMin -1
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess cwMax -1
+par LISL.satellite1.wlan[0].mac.dcf.channelAccess rxModule "\"^.^.rx\""
+scalar LISL.satellite1.wlan[0].mac.dcf.channelAccess channelOwnershipChanged:count 0
+attr interpolationmode sample-hold
+attr recordingmode count
+attr title "channel ownership, count"
+par LISL.satellite1.wlan[0].mac.dcf.originatorMacDataService.fragmentationPolicy typename "\"inet.linklayer.ieee80211.mac.fragmentation.BasicFragmentationPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.originatorMacDataService.fragmentationPolicy fragmentationThreshold 1500B
+attr unit B
+par LISL.satellite1.wlan[0].mac.dcf.originatorMacDataService typename "\"inet.linklayer.ieee80211.mac.originator.OriginatorMacDataService\""
+scalar LISL.satellite1.wlan[0].mac.dcf.originatorMacDataService packetAggregated:count 0
+attr recordingmode count
+attr title "packets aggregated, count"
+scalar LISL.satellite1.wlan[0].mac.dcf.originatorMacDataService packetFragmented:count 0
+attr recordingmode count
+attr title "packets fragmented, count"
+par LISL.satellite1.wlan[0].mac.dcf.recipientMacDataService typename "\"inet.linklayer.ieee80211.mac.recipient.RecipientMacDataService\""
+scalar LISL.satellite1.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, count"
+scalar LISL.satellite1.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf.recipientMacDataService packetDeaggregated:count 0
+attr recordingmode count
+attr title "packets deaggregated, count"
+scalar LISL.satellite1.wlan[0].mac.dcf.recipientMacDataService packetDefragmented:count 0
+attr recordingmode count
+attr title "packets defragmented, count"
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection typename "\"inet.linklayer.ieee80211.mac.rateselection.RateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection rateControlModule "\"^.rateControl\""
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection multicastFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection responseAckFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection responseCtsFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection dataFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection dataFrameBandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection dataFrameNumSpatialStreams -1
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection mgmtFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.rateSelection controlFrameBitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure typename "\"inet.linklayer.ieee80211.mac.originator.NonQosRecoveryProcedure\""
+par LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure cwCalculatorModule "\"^.channelAccess\""
+par LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure rtsPolicyModule "\"^.rtsPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure shortRetryLimit 7
+par LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure longRetryLimit 4
+scalar LISL.satellite1.wlan[0].mac.dcf.recoveryProcedure retryLimitReached:count 0
+attr recordingmode count
+attr title "retry limit reached, count"
+par LISL.satellite1.wlan[0].mac.dcf.originatorProtectionMechanism typename "\"inet.linklayer.ieee80211.mac.protectionmechanism.OriginatorProtectionMechanism\""
+par LISL.satellite1.wlan[0].mac.dcf.originatorProtectionMechanism rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf.ackHandler typename "\"inet.linklayer.ieee80211.mac.originator.AckHandler\""
+par LISL.satellite1.wlan[0].mac.dcf.originatorAckPolicy typename "\"inet.linklayer.ieee80211.mac.originator.OriginatorAckPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.originatorAckPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf.originatorAckPolicy ackTimeout -1s
+attr unit s
+par LISL.satellite1.wlan[0].mac.dcf.recipientAckPolicy typename "\"inet.linklayer.ieee80211.mac.recipient.RecipientAckPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.recipientAckPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf.rtsPolicy typename "\"inet.linklayer.ieee80211.mac.originator.RtsPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.rtsPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf.rtsPolicy ctsTimeout -1s
+attr unit s
+par LISL.satellite1.wlan[0].mac.dcf.rtsPolicy rtsThreshold 2346B
+attr unit B
+par LISL.satellite1.wlan[0].mac.dcf.ctsPolicy typename "\"inet.linklayer.ieee80211.mac.recipient.CtsPolicy\""
+par LISL.satellite1.wlan[0].mac.dcf.ctsPolicy rxModule "\"^.^.rx\""
+par LISL.satellite1.wlan[0].mac.dcf.ctsPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite1.wlan[0].mac.dcf typename "\"inet.linklayer.ieee80211.mac.coordinationfunction.Dcf\""
+par LISL.satellite1.wlan[0].mac.dcf rxModule "\"^.rx\""
+par LISL.satellite1.wlan[0].mac.dcf txModule "\"^.tx\""
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeer:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeer:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerUnicast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerUnicast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerMulticast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerMulticast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeer:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeer:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerUnicast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerUnicast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerMulticast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerMulticast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerBroadcast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerBroadcast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerWithRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerWithRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerWithoutRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetSentToPeerWithoutRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDrop:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropped
+attr title "packet drops, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDrop:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropped
+attr title "packet drops, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, count"
+scalar LISL.satellite1.wlan[0].mac.dcf packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac.dcf linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "link breaks, count"
+scalar LISL.satellite1.wlan[0].mac.dcf frameSequenceFinished:count 0
+attr recordingmode count
+attr title "finished frame sequences, count"
+statistic LISL.satellite1.wlan[0].mac.dcf frameSequenceDuration:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source frameSequenceDuration(frameSequenceFinished)
+attr title "frame sequence durations"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite1.wlan[0].mac.dcf frameSequenceNumPackets:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source frameSequenceNumPackets(frameSequenceFinished)
+attr title "frame sequences: number of packets"
+bin	-inf	0
+bin	0	0
+bin	1	0
+par LISL.satellite1.wlan[0].mac.ds typename "\"inet.linklayer.ieee80211.mac.Ds\""
+par LISL.satellite1.wlan[0].mac.ds mibModule "\"LISL.satellite1.wlan[0].mib\""
+par LISL.satellite1.wlan[0].mac.rx typename "\"inet.linklayer.ieee80211.mac.Rx\""
+par LISL.satellite1.wlan[0].mac.tx typename "\"inet.linklayer.ieee80211.mac.Tx\""
+par LISL.satellite1.wlan[0].mac.tx rxModule "\"^.rx\""
+par LISL.satellite1.wlan[0].mac typename "\"inet.linklayer.ieee80211.mac.Ieee80211Mac\""
+par LISL.satellite1.wlan[0].mac interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.wlan[0].mac mibModule "\"LISL.satellite1.wlan[0].mib\""
+par LISL.satellite1.wlan[0].mac modeSet "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite1.wlan[0].mac fcsMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite1.wlan[0].mac initialRadioMode "\"receiver\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par LISL.satellite1.wlan[0].mac mtu 2304B
+attr unit B
+par LISL.satellite1.wlan[0].mac qosStation false
+scalar LISL.satellite1.wlan[0].mac packetReceivedFromLower:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received from lower layer, count"
+scalar LISL.satellite1.wlan[0].mac packetReceivedFromLower:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received from lower layer, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetSentToLower:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent to lower layer, count"
+scalar LISL.satellite1.wlan[0].mac packetSentToLower:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent to lower layer, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetReceivedFromUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received from upper layer, count"
+scalar LISL.satellite1.wlan[0].mac packetReceivedFromUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received from upper layer, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetSentToUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent to upper layer, count"
+scalar LISL.satellite1.wlan[0].mac packetSentToUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent to upper layer, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDrop:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropped
+attr title "packet drops, count"
+scalar LISL.satellite1.wlan[0].mac packetDrop:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropped
+attr title "packet drops, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, count"
+scalar LISL.satellite1.wlan[0].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, count"
+scalar LISL.satellite1.wlan[0].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar LISL.satellite1.wlan[0].mac packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, count"
+scalar LISL.satellite1.wlan[0].mac packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropDuplicateDetected:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, count"
+scalar LISL.satellite1.wlan[0].mac packetDropDuplicateDetected:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac packetDropOther:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, count"
+scalar LISL.satellite1.wlan[0].mac packetDropOther:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0].mac linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "link breaks, count"
+par LISL.satellite1.wlan[0].radio.antenna typename "\"inet.physicallayer.wireless.common.antenna.IsotropicAntenna\""
+par LISL.satellite1.wlan[0].radio.antenna mobilityModule "\"^.^.^.mobility\""
+par LISL.satellite1.wlan[0].radio.antenna numAntennas 1
+par LISL.satellite1.wlan[0].radio.transmitter typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarTransmitter\""
+par LISL.satellite1.wlan[0].radio.transmitter preambleDuration -1s
+attr unit s
+par LISL.satellite1.wlan[0].radio.transmitter headerLength 192b
+attr unit b
+par LISL.satellite1.wlan[0].radio.transmitter bitrate -1bps
+attr unit bps
+par LISL.satellite1.wlan[0].radio.transmitter power 0.02W
+attr unit W
+par LISL.satellite1.wlan[0].radio.transmitter centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite1.wlan[0].radio.transmitter bandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite1.wlan[0].radio.transmitter codeRate 1
+par LISL.satellite1.wlan[0].radio.transmitter modulation "\"BPSK\""
+par LISL.satellite1.wlan[0].radio.transmitter opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite1.wlan[0].radio.transmitter bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite1.wlan[0].radio.transmitter channelNumber 0
+par LISL.satellite1.wlan[0].radio.receiver.errorModel typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.errormodel.Ieee80211NistErrorModel\""
+par LISL.satellite1.wlan[0].radio.receiver.errorModel corruptionMode "\"packet\""
+attr enum packet,chunk,byte,bit
+par LISL.satellite1.wlan[0].radio.receiver.errorModel snirMode "\"min\""
+attr enum min,mean
+par LISL.satellite1.wlan[0].radio.receiver.errorModel snirOffset 0dB
+attr unit dB
+par LISL.satellite1.wlan[0].radio.receiver typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarReceiver\""
+par LISL.satellite1.wlan[0].radio.receiver snirThreshold 4dB
+attr unit dB
+par LISL.satellite1.wlan[0].radio.receiver snirThresholdMode "\"min\""
+attr enum min,mean
+par LISL.satellite1.wlan[0].radio.receiver energyDetection -85dBm
+attr unit dBm
+par LISL.satellite1.wlan[0].radio.receiver sensitivity -85dBm
+attr unit dBm
+par LISL.satellite1.wlan[0].radio.receiver centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite1.wlan[0].radio.receiver bandwidth 2.2e+07Hz
+attr unit Hz
+par LISL.satellite1.wlan[0].radio.receiver modulation "\"BPSK\""
+par LISL.satellite1.wlan[0].radio.receiver opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite1.wlan[0].radio.receiver bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite1.wlan[0].radio.receiver channelNumber 0
+par LISL.satellite1.wlan[0].radio typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadio\""
+par LISL.satellite1.wlan[0].radio radioMediumModule "\"radioMedium\""
+par LISL.satellite1.wlan[0].radio energySourceModule "\"\""
+par LISL.satellite1.wlan[0].radio initialRadioMode "\"off\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par LISL.satellite1.wlan[0].radio switchingTimes "\"ms 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\""
+par LISL.satellite1.wlan[0].radio sendRawBytes false
+par LISL.satellite1.wlan[0].radio separateTransmissionParts false
+par LISL.satellite1.wlan[0].radio separateReceptionParts false
+par LISL.satellite1.wlan[0].radio displayCommunicationRange false
+par LISL.satellite1.wlan[0].radio displayInterferenceRange false
+par LISL.satellite1.wlan[0].radio centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite1.wlan[0].radio bandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite1.wlan[0].radio signalAnalogRepresentation "\"scalar\""
+attr enum scalar,dimensional
+par LISL.satellite1.wlan[0].radio opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite1.wlan[0].radio bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite1.wlan[0].radio channelNumber 0
+par LISL.satellite1.wlan[0].radio crcMode "\"declared\""
+attr enum declared,computed
+statistic LISL.satellite1.wlan[0].radio minSnir:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source minimumSnir(packetSentToUpper)
+attr title "Min SNIR"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite1.wlan[0].radio packetErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source packetErrorRate(packetSentToUpper)
+attr title "Packet error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite1.wlan[0].radio bitErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source bitErrorRate(packetSentToUpper)
+attr title "Bit error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite1.wlan[0].radio symbolErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source symbolErrorRate(packetSentToUpper)
+attr title "Symbol error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite1.wlan[0].radio transmissionState:count 0
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source transmissionStateChanged
+attr title "Radio transmission state, count"
+scalar LISL.satellite1.wlan[0].radio receptionState:count 1
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source receptionStateChanged
+attr title "Radio reception state, count"
+scalar LISL.satellite1.wlan[0].radio radioMode:count 3
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source radioModeChanged
+attr title "Radio mode, count"
+statistic LISL.satellite1.wlan[0].radio radioChannel:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr source radioChannelChanged
+attr title "Radio channel"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	1
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+par LISL.satellite1.wlan[0] typename "\"inet.linklayer.ieee80211.Ieee80211Interface\""
+par LISL.satellite1.wlan[0] displayStringTextFormat "\"%a (%i)\\n%m\""
+par LISL.satellite1.wlan[0] recordPcap false
+par LISL.satellite1.wlan[0] numPcapRecorders 0
+par LISL.satellite1.wlan[0] interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.wlan[0] energySourceModule "\"\""
+par LISL.satellite1.wlan[0] opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite1.wlan[0] address "\"0A-AA-00-00-00-01\""
+attr mutable ""
+par LISL.satellite1.wlan[0] protocol "\"\""
+par LISL.satellite1.wlan[0] bitrate -1bps
+attr unit bps
+scalar LISL.satellite1.wlan[0] packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar LISL.satellite1.wlan[0] packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar LISL.satellite1.wlan[0] packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar LISL.satellite1.wlan[0] packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par LISL.satellite1.ipv4.transportIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.ipv4.up.out[0].channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.ipv4.lp.out[2].channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.ipv4.ifIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite1.ipv4.configurator typename "\"inet.networklayer.configurator.ipv4.Ipv4NodeConfigurator\""
+par LISL.satellite1.ipv4.configurator interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.configurator routingTableModule "\"LISL.satellite1.ipv4.routingTable\""
+par LISL.satellite1.ipv4.configurator networkConfiguratorModule "\"configurator\""
+par LISL.satellite1.ipv4.configurator configureRoutingTable true
+par LISL.satellite1.ipv4.routingTable typename "\"inet.networklayer.ipv4.Ipv4RoutingTable\""
+par LISL.satellite1.ipv4.routingTable interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.routingTable routerId "\"auto\""
+par LISL.satellite1.ipv4.routingTable netmaskRoutes "\"*\""
+par LISL.satellite1.ipv4.routingTable forwarding true
+par LISL.satellite1.ipv4.routingTable multicastForwarding false
+par LISL.satellite1.ipv4.routingTable useAdminDist false
+par LISL.satellite1.ipv4.routingTable routingFile "\"\""
+par LISL.satellite1.ipv4.natTable typename "\"inet.networklayer.ipv4.Ipv4NatTable\""
+par LISL.satellite1.ipv4.natTable networkProtocolModule "\"^.ip\""
+par LISL.satellite1.ipv4.natTable config "<config/> at content:1"
+par LISL.satellite1.ipv4.up typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.ipv4.up displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.ipv4.up forwardServiceRegistration true
+par LISL.satellite1.ipv4.up forwardProtocolRegistration true
+par LISL.satellite1.ipv4.igmp typename "\"inet.networklayer.ipv4.Igmpv2\""
+par LISL.satellite1.ipv4.igmp interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.igmp routingTableModule "\"LISL.satellite1.ipv4.routingTable\""
+par LISL.satellite1.ipv4.igmp crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite1.ipv4.igmp enabled true
+par LISL.satellite1.ipv4.igmp robustnessVariable 2
+par LISL.satellite1.ipv4.igmp queryInterval 125s
+attr unit s
+par LISL.satellite1.ipv4.igmp queryResponseInterval 10s
+attr unit s
+par LISL.satellite1.ipv4.igmp groupMembershipInterval 260s
+attr unit s
+par LISL.satellite1.ipv4.igmp otherQuerierPresentInterval 255s
+attr unit s
+par LISL.satellite1.ipv4.igmp startupQueryInterval 31.25s
+attr unit s
+par LISL.satellite1.ipv4.igmp startupQueryCount 2
+par LISL.satellite1.ipv4.igmp lastMemberQueryInterval 1s
+attr unit s
+par LISL.satellite1.ipv4.igmp lastMemberQueryCount 2
+par LISL.satellite1.ipv4.igmp unsolicitedReportInterval 10s
+attr unit s
+par LISL.satellite1.ipv4.icmp typename "\"inet.networklayer.ipv4.Icmp\""
+par LISL.satellite1.ipv4.icmp interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.icmp routingTableModule "\"LISL.satellite1.ipv4.routingTable\""
+par LISL.satellite1.ipv4.icmp crcMode "\"declared\""
+attr enum declared,computed
+attr mutable ""
+par LISL.satellite1.ipv4.icmp quoteLength 8B
+attr mutable ""
+attr unit B
+par LISL.satellite1.ipv4.mp typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.ipv4.mp displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.ipv4.mp forwardServiceRegistration true
+par LISL.satellite1.ipv4.mp forwardProtocolRegistration true
+par LISL.satellite1.ipv4.ip typename "\"inet.networklayer.ipv4.Ipv4\""
+par LISL.satellite1.ipv4.ip interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.ip routingTableModule "\"LISL.satellite1.ipv4.routingTable\""
+par LISL.satellite1.ipv4.ip arpModule "\"LISL.satellite1.ipv4.arp\""
+par LISL.satellite1.ipv4.ip icmpModule "\"LISL.satellite1.ipv4.icmp\""
+par LISL.satellite1.ipv4.ip crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite1.ipv4.ip timeToLive 32
+par LISL.satellite1.ipv4.ip multicastTimeToLive 32
+par LISL.satellite1.ipv4.ip fragmentTimeout 60s
+attr unit s
+par LISL.satellite1.ipv4.ip limitedBroadcast false
+par LISL.satellite1.ipv4.ip directBroadcastInterfaces "\"\""
+scalar LISL.satellite1.ipv4.ip packetDropAddressResolutionFailed:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, count"
+scalar LISL.satellite1.ipv4.ip packetDropAddressResolutionFailed:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.ip packetDropHopLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, count"
+scalar LISL.satellite1.ipv4.ip packetDropHopLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.ip packetDropForwardingDisabled:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, count"
+scalar LISL.satellite1.ipv4.ip packetDropForwardingDisabled:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.ip packetDropNoInterfaceFound:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, count"
+scalar LISL.satellite1.ipv4.ip packetDropNoInterfaceFound:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.ip packetDropNoRouteFound:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, count"
+scalar LISL.satellite1.ipv4.ip packetDropNoRouteFound:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.ip packetDropUndefined:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, count"
+scalar LISL.satellite1.ipv4.ip packetDropUndefined:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, sum(packetBytes)"
+par LISL.satellite1.ipv4.arp typename "\"inet.networklayer.arp.ipv4.Arp\""
+par LISL.satellite1.ipv4.arp interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4.arp routingTableModule "\"LISL.satellite1.ipv4.routingTable\""
+par LISL.satellite1.ipv4.arp retryTimeout 1s
+attr unit s
+par LISL.satellite1.ipv4.arp retryCount 3
+par LISL.satellite1.ipv4.arp cacheTimeout 120s
+attr unit s
+par LISL.satellite1.ipv4.arp proxyArpInterfaces "\"\""
+scalar LISL.satellite1.ipv4.arp arpReplySent:count 0
+attr recordingmode count
+attr source arpReplySent
+attr title "ARP replies sent, count"
+scalar LISL.satellite1.ipv4.arp arpReplySent:sum(packetBytes) 0
+attr recordingmode sum(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.arp arpRequestSent:count 0
+attr recordingmode count
+attr source arpRequestSent
+attr title "ARP request sent, count"
+scalar LISL.satellite1.ipv4.arp arpRequestSent:sum(packetBytes) 0
+attr recordingmode sum(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, sum(packetBytes)"
+scalar LISL.satellite1.ipv4.arp arpResolutionFailed:count 0
+attr recordingmode count
+attr title "ARP failed resolutions, count"
+scalar LISL.satellite1.ipv4.arp arpResolutionCompleted:count 0
+attr recordingmode count
+attr title "ARP completed resolutions, count"
+scalar LISL.satellite1.ipv4.arp arpResolutionInitiated:count 0
+attr recordingmode count
+attr title "ARP initiated resolutions, count"
+par LISL.satellite1.ipv4.lp typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.ipv4.lp displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.ipv4.lp forwardServiceRegistration true
+par LISL.satellite1.ipv4.lp forwardProtocolRegistration true
+par LISL.satellite1.ipv4 typename "\"inet.networklayer.ipv4.Ipv4NetworkLayer\""
+par LISL.satellite1.ipv4 forwarding true
+par LISL.satellite1.ipv4 multicastForwarding false
+par LISL.satellite1.ipv4 interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.ipv4 displayStringTextFormat "\"%i\""
+par LISL.satellite1.nl typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.nl displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.nl forwardServiceRegistration true
+par LISL.satellite1.nl forwardProtocolRegistration true
+par LISL.satellite1.udp typename "\"inet.transportlayer.udp.Udp\""
+par LISL.satellite1.udp interfaceTableModule "\"LISL.satellite1.interfaceTable\""
+par LISL.satellite1.udp icmpModule "\"^.ipv4.icmp\""
+par LISL.satellite1.udp icmpv6Module "\"^.ipv6.icmpv6\""
+par LISL.satellite1.udp crcMode "\"declared\""
+attr enum disabled,declared,computed
+par LISL.satellite1.udp defaultMulticastLoop true
+scalar LISL.satellite1.udp packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar LISL.satellite1.udp packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+scalar LISL.satellite1.udp packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar LISL.satellite1.udp packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+scalar LISL.satellite1.udp passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed up, count"
+scalar LISL.satellite1.udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+scalar LISL.satellite1.udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+par LISL.satellite1.tcp typename "\"inet.transportlayer.tcp.Tcp\""
+par LISL.satellite1.tcp crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite1.tcp advertisedWindow 7504
+par LISL.satellite1.tcp delayedAcksEnabled false
+par LISL.satellite1.tcp nagleEnabled true
+par LISL.satellite1.tcp limitedTransmitEnabled false
+par LISL.satellite1.tcp increasedIWEnabled false
+par LISL.satellite1.tcp sackSupport false
+par LISL.satellite1.tcp windowScalingSupport false
+par LISL.satellite1.tcp windowScalingFactor -1
+par LISL.satellite1.tcp timestampSupport false
+par LISL.satellite1.tcp mss 536
+par LISL.satellite1.tcp msl 120s
+attr unit s
+par LISL.satellite1.tcp tcpAlgorithmClass "\"TcpReno\""
+par LISL.satellite1.tcp useDataNotification false
+par LISL.satellite1.tcp dupthresh 3
+par LISL.satellite1.tcp initialSsthresh 4294967295
+par LISL.satellite1.tcp stopOperationExtraTime 0s
+attr unit s
+par LISL.satellite1.tcp stopOperationTimeout 2s
+attr unit s
+par LISL.satellite1.tcp ecnWillingness false
+par LISL.satellite1.tcp dctcpGamma 0.0625
+par LISL.satellite1.tn typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.tn displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.tn forwardServiceRegistration true
+par LISL.satellite1.tn forwardProtocolRegistration true
+par LISL.satellite1.at typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite1.at displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite1.at forwardServiceRegistration true
+par LISL.satellite1.at forwardProtocolRegistration true
+par LISL.satellite1 typename "\"leosatelliteenvironment.Modules.Satellite\""
+par LISL.satellite1 hasStatus false
+par LISL.satellite1 osgModel "\"\""
+par LISL.satellite1 osgModelColor "\"\""
+par LISL.satellite1 canvasImage "\"\""
+par LISL.satellite1 canvasImageColor "\"\""
+par LISL.satellite1 recordPcap false
+par LISL.satellite1 numPcapRecorders 0
+par LISL.satellite1 numLoInterfaces 1
+par LISL.satellite1 numWlanInterfaces 1
+par LISL.satellite1 numEthInterfaces 0
+par LISL.satellite1 numPppInterfaces 0
+par LISL.satellite1 numTunInterfaces 0
+par LISL.satellite1 numVirtInterfaces 0
+par LISL.satellite1 fcsMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite1 hasIpv4 true
+par LISL.satellite1 hasIpv6 false
+par LISL.satellite1 hasGn false
+par LISL.satellite1 forwarding true
+par LISL.satellite1 multicastForwarding false
+par LISL.satellite1 hasUdp true
+par LISL.satellite1 hasTcp true
+par LISL.satellite1 hasSctp false
+par LISL.satellite1 numApps 0
+par LISL.satellite2.radioIn[0].channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.mobility typename "\"inet.mobility.single.CircleMobility\""
+par LISL.satellite2.mobility subjectModule "\"^\""
+par LISL.satellite2.mobility coordinateSystemModule "\"\""
+par LISL.satellite2.mobility displayStringTextFormat "\"p: %p\\nv: %v\""
+attr mutable ""
+par LISL.satellite2.mobility updateDisplayString true
+par LISL.satellite2.mobility constraintAreaMinX "-inf m"
+attr unit m
+par LISL.satellite2.mobility constraintAreaMinY "-inf m"
+attr unit m
+par LISL.satellite2.mobility constraintAreaMinZ "-inf m"
+attr unit m
+par LISL.satellite2.mobility constraintAreaMaxX "inf m"
+attr unit m
+par LISL.satellite2.mobility constraintAreaMaxY "inf m"
+attr unit m
+par LISL.satellite2.mobility constraintAreaMaxZ "inf m"
+attr unit m
+par LISL.satellite2.mobility updateInterval 0.1s
+attr unit s
+par LISL.satellite2.mobility faceForward true
+par LISL.satellite2.mobility cx 200m
+attr unit m
+par LISL.satellite2.mobility cy 200m
+attr unit m
+par LISL.satellite2.mobility cz 0m
+attr unit m
+par LISL.satellite2.mobility r 150m
+attr unit m
+par LISL.satellite2.mobility speed 40mps
+attr unit mps
+par LISL.satellite2.mobility startAngle 120deg
+attr unit deg
+par LISL.satellite2.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par LISL.satellite2.interfaceTable displayAddresses false
+par LISL.satellite2.cb typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.cb displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.cb forwardServiceRegistration true
+par LISL.satellite2.cb forwardProtocolRegistration true
+par LISL.satellite2.bl typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.bl displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.bl forwardServiceRegistration true
+par LISL.satellite2.bl forwardProtocolRegistration true
+par LISL.satellite2.li typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.li displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.li forwardServiceRegistration true
+par LISL.satellite2.li forwardProtocolRegistration true
+par LISL.satellite2.lo[0].upperLayerIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.lo[0].lo.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.lo[0].lo typename "\"inet.linklayer.loopback.Loopback\""
+par LISL.satellite2.lo[0].lo interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.lo[0].lo mtu 4470B
+attr unit B
+scalar LISL.satellite2.lo[0].lo rcvdPkFromHl:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar LISL.satellite2.lo[0].lo rcvdPkFromHl:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar LISL.satellite2.lo[0].lo passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar LISL.satellite2.lo[0].lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+par LISL.satellite2.lo[0] typename "\"inet.linklayer.loopback.LoopbackInterface\""
+par LISL.satellite2.lo[0] displayStringTextFormat "\"%a (%i)\\n%m\""
+par LISL.satellite2.lo[0] recordPcap false
+par LISL.satellite2.lo[0] numPcapRecorders 0
+par LISL.satellite2.lo[0] interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+scalar LISL.satellite2.lo[0] packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar LISL.satellite2.lo[0] packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar LISL.satellite2.lo[0] packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar LISL.satellite2.lo[0] packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par LISL.satellite2.wlan[0].radioIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.wlan[0].llc.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.wlan[0].upperLayerIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.wlan[0].mib typename "\"inet.linklayer.ieee80211.mib.Ieee80211Mib\""
+par LISL.satellite2.wlan[0].llc typename "\"inet.linklayer.ieee80211.llc.Ieee80211LlcLpd\""
+par LISL.satellite2.wlan[0].llc registerProtocol false
+par LISL.satellite2.wlan[0].mgmt typename "\"inet.linklayer.ieee80211.mgmt.Ieee80211MgmtAdhoc\""
+par LISL.satellite2.wlan[0].mgmt mibModule "\"LISL.satellite2.wlan[0].mib\""
+par LISL.satellite2.wlan[0].mgmt macModule "\"LISL.satellite2.wlan[0].mac\""
+par LISL.satellite2.wlan[0].mgmt interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue typename "\"inet.linklayer.ieee80211.mac.queue.PendingQueue\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue packetCapacity 100
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue dataCapacity -1b
+attr unit b
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue comparatorClass "\"inet::ieee80211::MgmtOverDataComparator\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue bufferModule "\"\""
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPackets:count 0
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames typename "\"inet.linklayer.ieee80211.mac.queue.InProgressFrames\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames pendingQueueModule "\"^.pendingQueue\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames originatorMacDataServiceModule "\"^.^.originatorMacDataService\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames ackHandlerModule "\"^.^.ackHandler\""
+statistic LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length, max"
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length, timeavg"
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.contention typename "\"inet.linklayer.ieee80211.mac.contention.Contention\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.contention initialChannelBusy true
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess.contention backoffOptimization true
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.contention stateChanged:count 2
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode count
+attr title "contention state changed, count"
+attr type enum
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess.contention channelAccessGranted:count 0
+attr recordingmode count
+attr title "channel access granted, count"
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess typename "\"inet.linklayer.ieee80211.mac.channelaccess.Dcaf\""
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess difsn -1
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess cwMin -1
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess cwMax -1
+par LISL.satellite2.wlan[0].mac.dcf.channelAccess rxModule "\"^.^.rx\""
+scalar LISL.satellite2.wlan[0].mac.dcf.channelAccess channelOwnershipChanged:count 0
+attr interpolationmode sample-hold
+attr recordingmode count
+attr title "channel ownership, count"
+par LISL.satellite2.wlan[0].mac.dcf.originatorMacDataService.fragmentationPolicy typename "\"inet.linklayer.ieee80211.mac.fragmentation.BasicFragmentationPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.originatorMacDataService.fragmentationPolicy fragmentationThreshold 1500B
+attr unit B
+par LISL.satellite2.wlan[0].mac.dcf.originatorMacDataService typename "\"inet.linklayer.ieee80211.mac.originator.OriginatorMacDataService\""
+scalar LISL.satellite2.wlan[0].mac.dcf.originatorMacDataService packetAggregated:count 0
+attr recordingmode count
+attr title "packets aggregated, count"
+scalar LISL.satellite2.wlan[0].mac.dcf.originatorMacDataService packetFragmented:count 0
+attr recordingmode count
+attr title "packets fragmented, count"
+par LISL.satellite2.wlan[0].mac.dcf.recipientMacDataService typename "\"inet.linklayer.ieee80211.mac.recipient.RecipientMacDataService\""
+scalar LISL.satellite2.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, count"
+scalar LISL.satellite2.wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf.recipientMacDataService packetDeaggregated:count 0
+attr recordingmode count
+attr title "packets deaggregated, count"
+scalar LISL.satellite2.wlan[0].mac.dcf.recipientMacDataService packetDefragmented:count 0
+attr recordingmode count
+attr title "packets defragmented, count"
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection typename "\"inet.linklayer.ieee80211.mac.rateselection.RateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection rateControlModule "\"^.rateControl\""
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection multicastFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection responseAckFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection responseCtsFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection dataFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection dataFrameBandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection dataFrameNumSpatialStreams -1
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection mgmtFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.rateSelection controlFrameBitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure typename "\"inet.linklayer.ieee80211.mac.originator.NonQosRecoveryProcedure\""
+par LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure cwCalculatorModule "\"^.channelAccess\""
+par LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure rtsPolicyModule "\"^.rtsPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure shortRetryLimit 7
+par LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure longRetryLimit 4
+scalar LISL.satellite2.wlan[0].mac.dcf.recoveryProcedure retryLimitReached:count 0
+attr recordingmode count
+attr title "retry limit reached, count"
+par LISL.satellite2.wlan[0].mac.dcf.originatorProtectionMechanism typename "\"inet.linklayer.ieee80211.mac.protectionmechanism.OriginatorProtectionMechanism\""
+par LISL.satellite2.wlan[0].mac.dcf.originatorProtectionMechanism rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf.ackHandler typename "\"inet.linklayer.ieee80211.mac.originator.AckHandler\""
+par LISL.satellite2.wlan[0].mac.dcf.originatorAckPolicy typename "\"inet.linklayer.ieee80211.mac.originator.OriginatorAckPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.originatorAckPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf.originatorAckPolicy ackTimeout -1s
+attr unit s
+par LISL.satellite2.wlan[0].mac.dcf.recipientAckPolicy typename "\"inet.linklayer.ieee80211.mac.recipient.RecipientAckPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.recipientAckPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf.rtsPolicy typename "\"inet.linklayer.ieee80211.mac.originator.RtsPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.rtsPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf.rtsPolicy ctsTimeout -1s
+attr unit s
+par LISL.satellite2.wlan[0].mac.dcf.rtsPolicy rtsThreshold 2346B
+attr unit B
+par LISL.satellite2.wlan[0].mac.dcf.ctsPolicy typename "\"inet.linklayer.ieee80211.mac.recipient.CtsPolicy\""
+par LISL.satellite2.wlan[0].mac.dcf.ctsPolicy rxModule "\"^.^.rx\""
+par LISL.satellite2.wlan[0].mac.dcf.ctsPolicy rateSelectionModule "\"^.rateSelection\""
+par LISL.satellite2.wlan[0].mac.dcf typename "\"inet.linklayer.ieee80211.mac.coordinationfunction.Dcf\""
+par LISL.satellite2.wlan[0].mac.dcf rxModule "\"^.rx\""
+par LISL.satellite2.wlan[0].mac.dcf txModule "\"^.tx\""
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeer:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeer:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerUnicast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerUnicast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerMulticast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerMulticast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerBroadcast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerWithRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeer:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeer:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerUnicast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerUnicast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerMulticast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerMulticast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerBroadcast:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerBroadcast:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerWithRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerWithRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerWithoutRetry:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetSentToPeerWithoutRetry:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDrop:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropped
+attr title "packet drops, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDrop:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropped
+attr title "packet drops, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, count"
+scalar LISL.satellite2.wlan[0].mac.dcf packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac.dcf linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "link breaks, count"
+scalar LISL.satellite2.wlan[0].mac.dcf frameSequenceFinished:count 0
+attr recordingmode count
+attr title "finished frame sequences, count"
+statistic LISL.satellite2.wlan[0].mac.dcf frameSequenceDuration:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source frameSequenceDuration(frameSequenceFinished)
+attr title "frame sequence durations"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite2.wlan[0].mac.dcf frameSequenceNumPackets:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source frameSequenceNumPackets(frameSequenceFinished)
+attr title "frame sequences: number of packets"
+bin	-inf	0
+bin	0	0
+bin	1	0
+par LISL.satellite2.wlan[0].mac.ds typename "\"inet.linklayer.ieee80211.mac.Ds\""
+par LISL.satellite2.wlan[0].mac.ds mibModule "\"LISL.satellite2.wlan[0].mib\""
+par LISL.satellite2.wlan[0].mac.rx typename "\"inet.linklayer.ieee80211.mac.Rx\""
+par LISL.satellite2.wlan[0].mac.tx typename "\"inet.linklayer.ieee80211.mac.Tx\""
+par LISL.satellite2.wlan[0].mac.tx rxModule "\"^.rx\""
+par LISL.satellite2.wlan[0].mac typename "\"inet.linklayer.ieee80211.mac.Ieee80211Mac\""
+par LISL.satellite2.wlan[0].mac interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.wlan[0].mac mibModule "\"LISL.satellite2.wlan[0].mib\""
+par LISL.satellite2.wlan[0].mac modeSet "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite2.wlan[0].mac fcsMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite2.wlan[0].mac initialRadioMode "\"receiver\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par LISL.satellite2.wlan[0].mac mtu 2304B
+attr unit B
+par LISL.satellite2.wlan[0].mac qosStation false
+scalar LISL.satellite2.wlan[0].mac packetReceivedFromLower:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received from lower layer, count"
+scalar LISL.satellite2.wlan[0].mac packetReceivedFromLower:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received from lower layer, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetSentToLower:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent to lower layer, count"
+scalar LISL.satellite2.wlan[0].mac packetSentToLower:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent to lower layer, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetReceivedFromUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets received from upper layer, count"
+scalar LISL.satellite2.wlan[0].mac packetReceivedFromUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets received from upper layer, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetSentToUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "packets sent to upper layer, count"
+scalar LISL.satellite2.wlan[0].mac packetSentToUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr title "packets sent to upper layer, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDrop:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropped
+attr title "packet drops, count"
+scalar LISL.satellite2.wlan[0].mac packetDrop:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropped
+attr title "packet drops, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, count"
+scalar LISL.satellite2.wlan[0].mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, count"
+scalar LISL.satellite2.wlan[0].mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, count"
+scalar LISL.satellite2.wlan[0].mac packetDropQueueOverflow:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropRetryLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, count"
+scalar LISL.satellite2.wlan[0].mac packetDropRetryLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropDuplicateDetected:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, count"
+scalar LISL.satellite2.wlan[0].mac packetDropDuplicateDetected:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac packetDropOther:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, count"
+scalar LISL.satellite2.wlan[0].mac packetDropOther:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0].mac linkBroken:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "link breaks, count"
+par LISL.satellite2.wlan[0].radio.antenna typename "\"inet.physicallayer.wireless.common.antenna.IsotropicAntenna\""
+par LISL.satellite2.wlan[0].radio.antenna mobilityModule "\"^.^.^.mobility\""
+par LISL.satellite2.wlan[0].radio.antenna numAntennas 1
+par LISL.satellite2.wlan[0].radio.transmitter typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarTransmitter\""
+par LISL.satellite2.wlan[0].radio.transmitter preambleDuration -1s
+attr unit s
+par LISL.satellite2.wlan[0].radio.transmitter headerLength 192b
+attr unit b
+par LISL.satellite2.wlan[0].radio.transmitter bitrate -1bps
+attr unit bps
+par LISL.satellite2.wlan[0].radio.transmitter power 0.02W
+attr unit W
+par LISL.satellite2.wlan[0].radio.transmitter centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite2.wlan[0].radio.transmitter bandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite2.wlan[0].radio.transmitter codeRate 1
+par LISL.satellite2.wlan[0].radio.transmitter modulation "\"BPSK\""
+par LISL.satellite2.wlan[0].radio.transmitter opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite2.wlan[0].radio.transmitter bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite2.wlan[0].radio.transmitter channelNumber 0
+par LISL.satellite2.wlan[0].radio.receiver.errorModel typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.errormodel.Ieee80211NistErrorModel\""
+par LISL.satellite2.wlan[0].radio.receiver.errorModel corruptionMode "\"packet\""
+attr enum packet,chunk,byte,bit
+par LISL.satellite2.wlan[0].radio.receiver.errorModel snirMode "\"min\""
+attr enum min,mean
+par LISL.satellite2.wlan[0].radio.receiver.errorModel snirOffset 0dB
+attr unit dB
+par LISL.satellite2.wlan[0].radio.receiver typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarReceiver\""
+par LISL.satellite2.wlan[0].radio.receiver snirThreshold 4dB
+attr unit dB
+par LISL.satellite2.wlan[0].radio.receiver snirThresholdMode "\"min\""
+attr enum min,mean
+par LISL.satellite2.wlan[0].radio.receiver energyDetection -85dBm
+attr unit dBm
+par LISL.satellite2.wlan[0].radio.receiver sensitivity -85dBm
+attr unit dBm
+par LISL.satellite2.wlan[0].radio.receiver centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite2.wlan[0].radio.receiver bandwidth 2.2e+07Hz
+attr unit Hz
+par LISL.satellite2.wlan[0].radio.receiver modulation "\"BPSK\""
+par LISL.satellite2.wlan[0].radio.receiver opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite2.wlan[0].radio.receiver bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite2.wlan[0].radio.receiver channelNumber 0
+par LISL.satellite2.wlan[0].radio typename "\"inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadio\""
+par LISL.satellite2.wlan[0].radio radioMediumModule "\"radioMedium\""
+par LISL.satellite2.wlan[0].radio energySourceModule "\"\""
+par LISL.satellite2.wlan[0].radio initialRadioMode "\"off\""
+attr enum off,sleep,receiver,transmitter,transceiver
+par LISL.satellite2.wlan[0].radio switchingTimes "\"ms 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\""
+par LISL.satellite2.wlan[0].radio sendRawBytes false
+par LISL.satellite2.wlan[0].radio separateTransmissionParts false
+par LISL.satellite2.wlan[0].radio separateReceptionParts false
+par LISL.satellite2.wlan[0].radio displayCommunicationRange false
+par LISL.satellite2.wlan[0].radio displayInterferenceRange false
+par LISL.satellite2.wlan[0].radio centerFrequency 2.412e+09Hz
+attr unit Hz
+par LISL.satellite2.wlan[0].radio bandwidth "nan Hz"
+attr unit Hz
+par LISL.satellite2.wlan[0].radio signalAnalogRepresentation "\"scalar\""
+attr enum scalar,dimensional
+par LISL.satellite2.wlan[0].radio opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite2.wlan[0].radio bandName "\"2.4 GHz\""
+attr enum "2.4 GHz,5 GHz,5 GHz (20 MHz),5 GHz (40 MHz),5 GHz (80 MHz),5 GHz (160 MHz),5.9 GHz"
+par LISL.satellite2.wlan[0].radio channelNumber 0
+par LISL.satellite2.wlan[0].radio crcMode "\"declared\""
+attr enum declared,computed
+statistic LISL.satellite2.wlan[0].radio minSnir:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source minimumSnir(packetSentToUpper)
+attr title "Min SNIR"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite2.wlan[0].radio packetErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source packetErrorRate(packetSentToUpper)
+attr title "Packet error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite2.wlan[0].radio bitErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source bitErrorRate(packetSentToUpper)
+attr title "Bit error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic LISL.satellite2.wlan[0].radio symbolErrorRate:histogram
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode histogram
+attr source symbolErrorRate(packetSentToUpper)
+attr title "Symbol error rate"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar LISL.satellite2.wlan[0].radio transmissionState:count 0
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source transmissionStateChanged
+attr title "Radio transmission state, count"
+scalar LISL.satellite2.wlan[0].radio receptionState:count 1
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source receptionStateChanged
+attr title "Radio reception state, count"
+scalar LISL.satellite2.wlan[0].radio radioMode:count 3
+attr interpolationmode sample-hold
+attr recordingmode count
+attr source radioModeChanged
+attr title "Radio mode, count"
+statistic LISL.satellite2.wlan[0].radio radioChannel:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr source radioChannelChanged
+attr title "Radio channel"
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	1
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+par LISL.satellite2.wlan[0] typename "\"inet.linklayer.ieee80211.Ieee80211Interface\""
+par LISL.satellite2.wlan[0] displayStringTextFormat "\"%a (%i)\\n%m\""
+par LISL.satellite2.wlan[0] recordPcap false
+par LISL.satellite2.wlan[0] numPcapRecorders 0
+par LISL.satellite2.wlan[0] interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.wlan[0] energySourceModule "\"\""
+par LISL.satellite2.wlan[0] opMode "\"g(mixed)\""
+attr enum a,b,g(erp),g(mixed),n(mixed-2.4Ghz),p,ac
+par LISL.satellite2.wlan[0] address "\"0A-AA-00-00-00-02\""
+attr mutable ""
+par LISL.satellite2.wlan[0] protocol "\"\""
+par LISL.satellite2.wlan[0] bitrate -1bps
+attr unit bps
+scalar LISL.satellite2.wlan[0] packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar LISL.satellite2.wlan[0] packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar LISL.satellite2.wlan[0] packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar LISL.satellite2.wlan[0] packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par LISL.satellite2.ipv4.transportIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.ipv4.up.out[0].channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.ipv4.lp.out[2].channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.ipv4.ifIn.channel typename "\"ned.IdealChannel\""
+par LISL.satellite2.ipv4.configurator typename "\"inet.networklayer.configurator.ipv4.Ipv4NodeConfigurator\""
+par LISL.satellite2.ipv4.configurator interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.configurator routingTableModule "\"LISL.satellite2.ipv4.routingTable\""
+par LISL.satellite2.ipv4.configurator networkConfiguratorModule "\"configurator\""
+par LISL.satellite2.ipv4.configurator configureRoutingTable true
+par LISL.satellite2.ipv4.routingTable typename "\"inet.networklayer.ipv4.Ipv4RoutingTable\""
+par LISL.satellite2.ipv4.routingTable interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.routingTable routerId "\"auto\""
+par LISL.satellite2.ipv4.routingTable netmaskRoutes "\"*\""
+par LISL.satellite2.ipv4.routingTable forwarding true
+par LISL.satellite2.ipv4.routingTable multicastForwarding false
+par LISL.satellite2.ipv4.routingTable useAdminDist false
+par LISL.satellite2.ipv4.routingTable routingFile "\"\""
+par LISL.satellite2.ipv4.natTable typename "\"inet.networklayer.ipv4.Ipv4NatTable\""
+par LISL.satellite2.ipv4.natTable networkProtocolModule "\"^.ip\""
+par LISL.satellite2.ipv4.natTable config "<config/> at content:1"
+par LISL.satellite2.ipv4.up typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.ipv4.up displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.ipv4.up forwardServiceRegistration true
+par LISL.satellite2.ipv4.up forwardProtocolRegistration true
+par LISL.satellite2.ipv4.igmp typename "\"inet.networklayer.ipv4.Igmpv2\""
+par LISL.satellite2.ipv4.igmp interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.igmp routingTableModule "\"LISL.satellite2.ipv4.routingTable\""
+par LISL.satellite2.ipv4.igmp crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite2.ipv4.igmp enabled true
+par LISL.satellite2.ipv4.igmp robustnessVariable 2
+par LISL.satellite2.ipv4.igmp queryInterval 125s
+attr unit s
+par LISL.satellite2.ipv4.igmp queryResponseInterval 10s
+attr unit s
+par LISL.satellite2.ipv4.igmp groupMembershipInterval 260s
+attr unit s
+par LISL.satellite2.ipv4.igmp otherQuerierPresentInterval 255s
+attr unit s
+par LISL.satellite2.ipv4.igmp startupQueryInterval 31.25s
+attr unit s
+par LISL.satellite2.ipv4.igmp startupQueryCount 2
+par LISL.satellite2.ipv4.igmp lastMemberQueryInterval 1s
+attr unit s
+par LISL.satellite2.ipv4.igmp lastMemberQueryCount 2
+par LISL.satellite2.ipv4.igmp unsolicitedReportInterval 10s
+attr unit s
+par LISL.satellite2.ipv4.icmp typename "\"inet.networklayer.ipv4.Icmp\""
+par LISL.satellite2.ipv4.icmp interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.icmp routingTableModule "\"LISL.satellite2.ipv4.routingTable\""
+par LISL.satellite2.ipv4.icmp crcMode "\"declared\""
+attr enum declared,computed
+attr mutable ""
+par LISL.satellite2.ipv4.icmp quoteLength 8B
+attr mutable ""
+attr unit B
+par LISL.satellite2.ipv4.mp typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.ipv4.mp displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.ipv4.mp forwardServiceRegistration true
+par LISL.satellite2.ipv4.mp forwardProtocolRegistration true
+par LISL.satellite2.ipv4.ip typename "\"inet.networklayer.ipv4.Ipv4\""
+par LISL.satellite2.ipv4.ip interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.ip routingTableModule "\"LISL.satellite2.ipv4.routingTable\""
+par LISL.satellite2.ipv4.ip arpModule "\"LISL.satellite2.ipv4.arp\""
+par LISL.satellite2.ipv4.ip icmpModule "\"LISL.satellite2.ipv4.icmp\""
+par LISL.satellite2.ipv4.ip crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite2.ipv4.ip timeToLive 32
+par LISL.satellite2.ipv4.ip multicastTimeToLive 32
+par LISL.satellite2.ipv4.ip fragmentTimeout 60s
+attr unit s
+par LISL.satellite2.ipv4.ip limitedBroadcast false
+par LISL.satellite2.ipv4.ip directBroadcastInterfaces "\"\""
+scalar LISL.satellite2.ipv4.ip packetDropAddressResolutionFailed:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, count"
+scalar LISL.satellite2.ipv4.ip packetDropAddressResolutionFailed:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.ip packetDropHopLimitReached:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, count"
+scalar LISL.satellite2.ipv4.ip packetDropHopLimitReached:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.ip packetDropForwardingDisabled:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, count"
+scalar LISL.satellite2.ipv4.ip packetDropForwardingDisabled:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.ip packetDropNoInterfaceFound:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, count"
+scalar LISL.satellite2.ipv4.ip packetDropNoInterfaceFound:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.ip packetDropNoRouteFound:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, count"
+scalar LISL.satellite2.ipv4.ip packetDropNoRouteFound:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.ip packetDropUndefined:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, count"
+scalar LISL.satellite2.ipv4.ip packetDropUndefined:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, sum(packetBytes)"
+par LISL.satellite2.ipv4.arp typename "\"inet.networklayer.arp.ipv4.Arp\""
+par LISL.satellite2.ipv4.arp interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4.arp routingTableModule "\"LISL.satellite2.ipv4.routingTable\""
+par LISL.satellite2.ipv4.arp retryTimeout 1s
+attr unit s
+par LISL.satellite2.ipv4.arp retryCount 3
+par LISL.satellite2.ipv4.arp cacheTimeout 120s
+attr unit s
+par LISL.satellite2.ipv4.arp proxyArpInterfaces "\"\""
+scalar LISL.satellite2.ipv4.arp arpReplySent:count 0
+attr recordingmode count
+attr source arpReplySent
+attr title "ARP replies sent, count"
+scalar LISL.satellite2.ipv4.arp arpReplySent:sum(packetBytes) 0
+attr recordingmode sum(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.arp arpRequestSent:count 0
+attr recordingmode count
+attr source arpRequestSent
+attr title "ARP request sent, count"
+scalar LISL.satellite2.ipv4.arp arpRequestSent:sum(packetBytes) 0
+attr recordingmode sum(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, sum(packetBytes)"
+scalar LISL.satellite2.ipv4.arp arpResolutionFailed:count 0
+attr recordingmode count
+attr title "ARP failed resolutions, count"
+scalar LISL.satellite2.ipv4.arp arpResolutionCompleted:count 0
+attr recordingmode count
+attr title "ARP completed resolutions, count"
+scalar LISL.satellite2.ipv4.arp arpResolutionInitiated:count 0
+attr recordingmode count
+attr title "ARP initiated resolutions, count"
+par LISL.satellite2.ipv4.lp typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.ipv4.lp displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.ipv4.lp forwardServiceRegistration true
+par LISL.satellite2.ipv4.lp forwardProtocolRegistration true
+par LISL.satellite2.ipv4 typename "\"inet.networklayer.ipv4.Ipv4NetworkLayer\""
+par LISL.satellite2.ipv4 forwarding true
+par LISL.satellite2.ipv4 multicastForwarding false
+par LISL.satellite2.ipv4 interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.ipv4 displayStringTextFormat "\"%i\""
+par LISL.satellite2.nl typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.nl displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.nl forwardServiceRegistration true
+par LISL.satellite2.nl forwardProtocolRegistration true
+par LISL.satellite2.udp typename "\"inet.transportlayer.udp.Udp\""
+par LISL.satellite2.udp interfaceTableModule "\"LISL.satellite2.interfaceTable\""
+par LISL.satellite2.udp icmpModule "\"^.ipv4.icmp\""
+par LISL.satellite2.udp icmpv6Module "\"^.ipv6.icmpv6\""
+par LISL.satellite2.udp crcMode "\"declared\""
+attr enum disabled,declared,computed
+par LISL.satellite2.udp defaultMulticastLoop true
+scalar LISL.satellite2.udp packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar LISL.satellite2.udp packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+scalar LISL.satellite2.udp packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar LISL.satellite2.udp packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+scalar LISL.satellite2.udp passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed up, count"
+scalar LISL.satellite2.udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+scalar LISL.satellite2.udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+par LISL.satellite2.tcp typename "\"inet.transportlayer.tcp.Tcp\""
+par LISL.satellite2.tcp crcMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite2.tcp advertisedWindow 7504
+par LISL.satellite2.tcp delayedAcksEnabled false
+par LISL.satellite2.tcp nagleEnabled true
+par LISL.satellite2.tcp limitedTransmitEnabled false
+par LISL.satellite2.tcp increasedIWEnabled false
+par LISL.satellite2.tcp sackSupport false
+par LISL.satellite2.tcp windowScalingSupport false
+par LISL.satellite2.tcp windowScalingFactor -1
+par LISL.satellite2.tcp timestampSupport false
+par LISL.satellite2.tcp mss 536
+par LISL.satellite2.tcp msl 120s
+attr unit s
+par LISL.satellite2.tcp tcpAlgorithmClass "\"TcpReno\""
+par LISL.satellite2.tcp useDataNotification false
+par LISL.satellite2.tcp dupthresh 3
+par LISL.satellite2.tcp initialSsthresh 4294967295
+par LISL.satellite2.tcp stopOperationExtraTime 0s
+attr unit s
+par LISL.satellite2.tcp stopOperationTimeout 2s
+attr unit s
+par LISL.satellite2.tcp ecnWillingness false
+par LISL.satellite2.tcp dctcpGamma 0.0625
+par LISL.satellite2.tn typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.tn displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.tn forwardServiceRegistration true
+par LISL.satellite2.tn forwardProtocolRegistration true
+par LISL.satellite2.at typename "\"inet.common.MessageDispatcher\""
+par LISL.satellite2.at displayStringTextFormat "\"processed %p pk (%l)\""
+par LISL.satellite2.at forwardServiceRegistration true
+par LISL.satellite2.at forwardProtocolRegistration true
+par LISL.satellite2 typename "\"leosatelliteenvironment.Modules.Satellite\""
+par LISL.satellite2 hasStatus false
+par LISL.satellite2 osgModel "\"\""
+par LISL.satellite2 osgModelColor "\"\""
+par LISL.satellite2 canvasImage "\"\""
+par LISL.satellite2 canvasImageColor "\"\""
+par LISL.satellite2 recordPcap false
+par LISL.satellite2 numPcapRecorders 0
+par LISL.satellite2 numLoInterfaces 1
+par LISL.satellite2 numWlanInterfaces 1
+par LISL.satellite2 numEthInterfaces 0
+par LISL.satellite2 numPppInterfaces 0
+par LISL.satellite2 numTunInterfaces 0
+par LISL.satellite2 numVirtInterfaces 0
+par LISL.satellite2 fcsMode "\"declared\""
+attr enum declared,computed
+par LISL.satellite2 hasIpv4 true
+par LISL.satellite2 hasIpv6 false
+par LISL.satellite2 hasGn false
+par LISL.satellite2 forwarding true
+par LISL.satellite2 multicastForwarding false
+par LISL.satellite2 hasUdp true
+par LISL.satellite2 hasTcp true
+par LISL.satellite2 hasSctp false
+par LISL.satellite2 numApps 0
+par LISL typename "\"leosatelliteenvironment.SingleConnectionNetworks.LISL\""
+

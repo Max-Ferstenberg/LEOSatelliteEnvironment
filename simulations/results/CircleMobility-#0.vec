@@ -1,62 +1,23 @@
-file 336484 1737395524                                          
 version 3
-run General-0-20250120-17:40:49-27704
-attr configname General
-attr datetime 20250120-17:40:49
-attr datetimef 20250120-174049
-attr experiment General
+run CircleMobility-0-20250116-20:26:04-4792
+attr configname CircleMobility
+attr datetime 20250116-20:26:04
+attr datetimef 20250116-202604
+attr experiment CircleMobility
 attr inifile SatelliteEnvironment.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network leosatelliteenvironment.SatelliteNetwork
-attr processid 27704
+attr processid 4792
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
-config network leosatelliteenvironment.SatelliteNetwork
-config *.*.ipv4.arp.typename GlobalArp
-config *.satellite1.typename SatelliteNode
-config *.satellite2.typename SatelliteNode
-config *.userTerminal.typename UserTerminal
-config *.groundStation.typename GroundStation
-config **.routingTable.debug true
-config *.configurator.optimizeRoutes false
-config *.satellite2.wlan[0].typename Ieee80211Interface
-config *.satellite1.wlan[0].typename Ieee80211Interface
-config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
-config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
-config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
-config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
-config *.userTerminal.wlan[0].radio.maxTransmissionPower 25W
-config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
-config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
-config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
-config *.groundStation.wlan[0].radio.antenna.minGain -10dB
-config *.groundStation.wlan[0].radio.transmitter.power 25mW
-config **.wlan[*].typename Ieee80211Interface
-config **.wlan[*].dataRate 10Mbps
-config *.visualizer.*.radioVisualizer.displayRadios true
-config *.visualizer.*.radioVisualizer.dislayAntennaLobes true
-config *.visualizer.*.dataLinkVisualizer.displayLinks true
-config *.visualizer.*.transportConnectionVisualizer.displayConnections true
-config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.mediumLimitCache.maxTransmissionPower "50 W"
-config *.radioMedium.mediumLimitCache.maxCommunicationRange "175 m"
-config **.debug true
-config **.wlan[*].radio.transmitter.debug true
-config **.wlan[*].radio.receiver.debug true
-config **.constraintAreaMinX 0m
-config **.constraintAreaMinY 0m
-config **.constraintAreaMinZ 0m
-config **.constraintAreaMaxX 1000m
-config **.constraintAreaMaxY 600m
-config **.constraintAreaMaxZ 0m
-config **.updateInterval 0.1s
+config extends "SatelliteNetwork, Area, Update"
 config *.satellite1.mobility.typename CircleMobility
 config *.satellite1.mobility.cx 600m
 config *.satellite1.mobility.cy 300m
@@ -69,6 +30,21 @@ config *.satellite2.mobility.cy 300m
 config *.satellite2.mobility.r 150m
 config *.satellite2.mobility.startAngle 180deg
 config *.satellite2.mobility.speed 40mps
+config *.visualizer.*.mobilityVisualizer.displayMobilityTrajectories true
+config *.visualizer.*.mobilityVisualizer.trajectoryLineColor "\"blue\""
+config *.visualizer.*.mobilityVisualizer.trajectoryLineWidth 2
+config *.*.ipv4.arp.typename GlobalArp
+config *.userTerminal.ipv4.address "\"192.168.1.1\""
+config *.userTerminal.ipv4.netmask "\"255.255.255.248\""
+config *.satellite1.ipv4.address "\"192.168.1.2\""
+config *.satellite1.ipv4.netmask "\"255.255.255.248\""
+config *.satellite2.ipv4.address "\"192.168.1.4\""
+config *.satellite2.ipv4.netmask "\"255.255.255.248\""
+config *.groundStation.ipv4.address "\"192.168.1.3\""
+config *.groundStation.ipv4.netmask "\"255.255.255.248\""
+config *.configurator.config "xmldoc(\"SatelliteRoutingTable.xml\")"
+config **.routingTable.debug true
+config *.configurator.optimizeRoutes false
 config *.userTerminal.numApps 2
 config *.userTerminal.app[0].typename TcpClientApp
 config *.userTerminal.app[0].io.connectAddress "\"192.168.1.2\""
@@ -133,6 +109,38 @@ config *.satellite2.app[1].sink.tokenGenerator[0].numTokensPerPacket "intuniform
 config *.satellite2.app[1].sink.tokenGenerator[1].numTokensPerPacket "intuniform(5, 10)"
 config *.satellite2.app[1].source.provider[0].packetLength "intuniform(100B, 1000B)"
 config *.satellite2.app[1].source.provider[0].providingInterval "uniform(0s, 0.2s)"
+config *.satellite2.wlan[0].typename Ieee80211Interface
+config *.satellite1.wlan[0].typename Ieee80211Interface
+config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
+config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
+config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
+config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
+config *.userTerminal.wlan[0].radio.transmitter.power 25mW
+config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
+config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
+config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
+config *.groundStation.wlan[0].radio.antenna.minGain -10dB
+config *.groundStation.wlan[0].radio.transmitter.power 25mW
+config *.radioMedium.transmissionPathFilter "\"*.userTerminal wlan[0] <-> *.satellite1 wlan[0]; *.satellite1 wlan[0] <-> *.groundStation wlan[0]; *.satellite1 wlan[0] <-> *.satellite2 wlan[0]\""
+config **.wlan[*].typename Ieee80211Interface
+config **.wlan[*].dataRate 10Mbps
+config *.visualizer.*.radioVisualizer.displayRadios true
+config *.visualizer.*.radioVisualizer.displayAntennaLobes true
+config *.visualizer.*.dataLinkVisualizer.displayLinks true
+config *.visualizer.*.transportConnectionVisualizer.displayConnections true
+config *.radioMedium.typename Ieee80211ScalarRadioMedium
+config *.radioMedium.datapath "\"default\""
+config **.debug true
+config **.wlan[*].radio.transmitter.debug true
+config **.wlan[*].radio.receiver.debug true
+config **.constraintAreaMinX 0m
+config **.constraintAreaMinY 0m
+config **.constraintAreaMinZ 0m
+config **.constraintAreaMaxX 1000m
+config **.constraintAreaMaxY 600m
+config **.constraintAreaMaxZ 0m
+config **.updateInterval 0.1s
+config network leosatelliteenvironment.SatelliteNetwork
 
 vector 0 SatelliteNetwork.userTerminal.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
 attr interpolationmode none
@@ -3121,105 +3129,2097 @@ attr recordingmode vector
 vector 629 SatelliteNetwork.satellite2.tcp.conn-9 markingProb:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
-559	148113 67 16 1851 0 45 5 0 0 0 0
-548	148180 67 16 1851 0 45 5 0 0 0 0
-546	148247 82 16 1851 0 45 5 7504 7504 37520 281550080
-545	148329 82 16 1851 0 45 5 7504 7504 37520 281550080
-588	148411 67 19 1852 0 45 5 0 0 0 0
-577	148478 67 19 1852 0 45 5 0 0 0 0
-575	148545 82 19 1852 0 45 5 7504 7504 37520 281550080
-574	148627 82 19 1852 0 45 5 7504 7504 37520 281550080
-617	148709 67 21 1853 0 45 5 0 0 0 0
-606	148776 67 21 1853 0 45 5 0 0 0 0
-604	148843 82 21 1853 0 45 5 7504 7504 37520 281550080
-603	148925 82 21 1853 0 45 5 7504 7504 37520 281550080
-4	149007 45 0 0 0 0 5 0 0 0 0
-5	149052 45 0 0 0 0 5 0 0 0 0
-16	149097 20 0 0 0 0 2 0 0 0 0
-18	149117 20 0 0 0 0 2 0 0 0 0
-19	149137 20 0 0 0 0 2 0 0 0 0
-21	149157 11 0 0 0 0 1 31 31 31 961
-38	149168 20 0 0 0 0 2 0 0 0 0
-52	149188 30 0 0 0 0 3 0 2 2 4
-53	149218 10 0 0 0 0 1 1 1 1 1
-55	149228 10 0 0 0 0 1 0 0 0 0
-62	149238 2953 23 3088 0 75.113567281742 107 44 528 35305 13412871
-64	152191 2886 18 3087 0 75.113567281742 102 112 508 33045 12040591
-66	155077 10 0 0 0 0 1 0 0 0 0
-67	155087 10 0 0 0 0 1 0 0 0 0
-68	155097 10 0 0 0 0 1 0 0 0 0
-69	155107 3063 0 3091 0 75.179884089623 105 800 3976 257048 725385664
-70	158170 11926 55 3091 0.1 75.1 751 0 39760 2548560 72058080000
-79	170096 2984 0 3085 0 75.113567281742 102 832 4000 257832 737177536
-80	173080 11922 49 3085 0.1 75.1 751 0 40000 2560400 73396627200
-89	185002 2885 2 3086 0 75.113567281742 102 104 500 32229 11518399
-95	187887 50 0 0 0 0 5 0 0 0 0
-96	187937 50 0 0 0 0 5 0 0 0 0
-107	187987 22 0 0 0 0 2 0 0 0 0
-109	188009 22 0 0 0 0 2 0 0 0 0
-110	188031 22 0 0 0 0 2 0 0 0 0
-112	188053 12 0 0 0 0 1 31 31 31 961
-129	188065 22 0 0 0 0 2 0 0 0 0
-143	188087 33 0 0 0 0 3 0 2 2 4
-144	188120 11 0 0 0 0 1 1 1 1 1
-146	188131 11 0 0 0 0 1 0 0 0 0
-153	188142 72 25 1857 0 45 5 44 44 220 9680
-157	188214 11 0 0 0 0 1 0 0 0 0
-158	188225 11 0 0 0 0 1 0 0 0 0
-159	188236 11 0 0 0 0 1 0 0 0 0
-168	188247 22 0 0 0 0 2 0 0 0 0
-173	188269 22 0 0 0 0 2 0 0 0 0
-177	188291 55 0 0 0 0 5 0 0 0 0
-178	188346 55 0 0 0 0 5 0 0 0 0
-192	188401 22 0 0 0 0 2 0 0 0 0
-199	188423 3058 0 3043 0 74.237017576465 101 896 3952 248728 700370368
-200	191481 12522 44 3043 0.1 74.2 742 0 39520 2478320 69956755200
-209	204003 22780 0 3083 0 75.1 754 450.0001260881 750 457992.91568006 286806009.13389
-210	226783 22793 0 3083 0 75.1 754 150.00011539538 449.9995172701 229792.17031255 78325791.869714
-211	249576 12322 0 3083 0 75.1 754 0 0 0 0
-216	261898 55 0 0 0 0 5 0 0 0 0
-217	261953 55 0 0 0 0 5 0 0 0 0
-228	262008 22 0 0 0 0 2 0 0 0 0
-230	262030 22 0 0 0 0 2 0 0 0 0
-231	262052 22 0 0 0 0 2 0 0 0 0
-233	262074 12 0 0 0 0 1 31 31 31 961
-250	262086 22 0 0 0 0 2 0 0 0 0
-264	262108 33 0 0 0 0 3 0 2 2 4
-265	262141 11 0 0 0 0 1 1 1 1 1
-267	262152 11 0 0 0 0 1 0 0 0 0
-274	262163 72 26 1858 0 45 5 44 44 220 9680
-278	262235 11 0 0 0 0 1 0 0 0 0
-279	262246 11 0 0 0 0 1 0 0 0 0
-280	262257 11 0 0 0 0 1 0 0 0 0
-289	262268 22 0 0 0 0 2 0 0 0 0
-294	262290 22 0 0 0 0 2 0 0 0 0
-298	262312 55 0 0 0 0 5 0 0 0 0
-299	262367 55 0 0 0 0 5 0 0 0 0
-313	262422 22 0 0 0 0 2 0 0 0 0
-320	262444 3024 0 3067 0 74.857150756171 100 816 3976 242848 675265536
-321	265468 12613 62 3067 0.1 74.8 748 0 39760 2411280 67230713600
-330	278081 22780 0 3084 0 75.1 754 450 749.9998739119 446807.08431994 273383011.50175
-331	300861 22792 0 3084 0 75.1 754 150.0004827299 449.99988460462 222607.82968745 74015187.494651
-332	323653 12322 0 3084 0 75.1 754 0 0 0 0
-337	335975 55 0 0 0 0 5 0 0 0 0
-338	336030 55 0 0 0 0 5 0 0 0 0
-349	336085 22 0 0 0 0 2 0 0 0 0
-351	336107 22 0 0 0 0 2 0 0 0 0
-352	336129 22 0 0 0 0 2 0 0 0 0
-354	336151 12 0 0 0 0 1 31 31 31 961
-371	336163 22 0 0 0 0 2 0 0 0 0
-385	336185 33 0 0 0 0 3 0 2 2 4
-386	336218 11 0 0 0 0 1 1 1 1 1
-388	336229 11 0 0 0 0 1 0 0 0 0
-399	336240 11 0 0 0 0 1 0 0 0 0
-400	336251 11 0 0 0 0 1 0 0 0 0
-401	336262 11 0 0 0 0 1 0 0 0 0
-410	336273 22 0 0 0 0 2 0 0 0 0
-415	336295 22 0 0 0 0 2 0 0 0 0
-419	336317 55 0 0 0 0 5 0 0 0 0
-420	336372 55 0 0 0 0 5 0 0 0 0
-434	336427 22 0 0 0 0 2 0 0 0 0
-453	336449 11 0 0 0 0 1 0 0 0 0
-454	336460 11 0 0 0 0 1 0 0 0 0
-455	336471 11 0 0 0 0 1 0 0 0 0
+vector 630 SatelliteNetwork.groundStation.tcp.conn-10 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 631 SatelliteNetwork.groundStation.tcp.conn-10 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 632 SatelliteNetwork.groundStation.tcp.conn-10 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 633 SatelliteNetwork.groundStation.tcp.conn-10 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 634 SatelliteNetwork.groundStation.tcp.conn-10 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 635 SatelliteNetwork.groundStation.tcp.conn-10 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 636 SatelliteNetwork.groundStation.tcp.conn-10 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 637 SatelliteNetwork.groundStation.tcp.conn-10 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 638 SatelliteNetwork.groundStation.tcp.conn-10 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 639 SatelliteNetwork.groundStation.tcp.conn-10 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 640 SatelliteNetwork.groundStation.tcp.conn-10 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 641 SatelliteNetwork.groundStation.tcp.conn-10 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 642 SatelliteNetwork.groundStation.tcp.conn-10 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 643 SatelliteNetwork.groundStation.tcp.conn-10 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 644 SatelliteNetwork.groundStation.tcp.conn-10 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 645 SatelliteNetwork.groundStation.tcp.conn-10 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 646 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 647 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 648 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 649 SatelliteNetwork.groundStation.tcp.conn-10 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 650 SatelliteNetwork.groundStation.tcp.conn-10 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 651 SatelliteNetwork.groundStation.tcp.conn-10 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 652 SatelliteNetwork.groundStation.tcp.conn-10 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 653 SatelliteNetwork.groundStation.tcp.conn-10 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 654 SatelliteNetwork.groundStation.tcp.conn-10 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 655 SatelliteNetwork.groundStation.tcp.conn-10 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 656 SatelliteNetwork.groundStation.tcp.conn-10 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 657 SatelliteNetwork.groundStation.tcp.conn-10 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 658 SatelliteNetwork.groundStation.tcp.conn-10 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 659 SatelliteNetwork.groundStation.tcp.conn-11 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 660 SatelliteNetwork.groundStation.tcp.conn-11 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 661 SatelliteNetwork.groundStation.tcp.conn-11 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 662 SatelliteNetwork.groundStation.tcp.conn-11 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 663 SatelliteNetwork.groundStation.tcp.conn-11 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 664 SatelliteNetwork.groundStation.tcp.conn-11 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 665 SatelliteNetwork.groundStation.tcp.conn-11 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 666 SatelliteNetwork.groundStation.tcp.conn-11 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 667 SatelliteNetwork.groundStation.tcp.conn-11 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 668 SatelliteNetwork.groundStation.tcp.conn-11 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 669 SatelliteNetwork.groundStation.tcp.conn-11 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 670 SatelliteNetwork.groundStation.tcp.conn-11 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 671 SatelliteNetwork.groundStation.tcp.conn-11 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 672 SatelliteNetwork.groundStation.tcp.conn-11 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 673 SatelliteNetwork.groundStation.tcp.conn-11 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 674 SatelliteNetwork.groundStation.tcp.conn-11 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 675 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 676 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 677 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 678 SatelliteNetwork.groundStation.tcp.conn-11 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 679 SatelliteNetwork.groundStation.tcp.conn-11 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 680 SatelliteNetwork.groundStation.tcp.conn-11 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 681 SatelliteNetwork.groundStation.tcp.conn-11 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 682 SatelliteNetwork.groundStation.tcp.conn-11 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 683 SatelliteNetwork.groundStation.tcp.conn-11 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 684 SatelliteNetwork.groundStation.tcp.conn-11 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 685 SatelliteNetwork.groundStation.tcp.conn-11 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 686 SatelliteNetwork.groundStation.tcp.conn-11 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 687 SatelliteNetwork.groundStation.tcp.conn-11 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 688 SatelliteNetwork.satellite1.tcp.conn-12 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 689 SatelliteNetwork.satellite1.tcp.conn-12 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 690 SatelliteNetwork.satellite1.tcp.conn-12 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 691 SatelliteNetwork.satellite1.tcp.conn-12 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 692 SatelliteNetwork.satellite1.tcp.conn-12 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 693 SatelliteNetwork.satellite1.tcp.conn-12 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 694 SatelliteNetwork.satellite1.tcp.conn-12 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 695 SatelliteNetwork.satellite1.tcp.conn-12 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 696 SatelliteNetwork.satellite1.tcp.conn-12 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 697 SatelliteNetwork.satellite1.tcp.conn-12 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 698 SatelliteNetwork.satellite1.tcp.conn-12 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 699 SatelliteNetwork.satellite1.tcp.conn-12 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 700 SatelliteNetwork.satellite1.tcp.conn-12 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 701 SatelliteNetwork.satellite1.tcp.conn-12 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 702 SatelliteNetwork.satellite1.tcp.conn-12 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 703 SatelliteNetwork.satellite1.tcp.conn-12 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 704 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 705 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 706 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 707 SatelliteNetwork.satellite1.tcp.conn-12 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 708 SatelliteNetwork.satellite1.tcp.conn-12 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 709 SatelliteNetwork.satellite1.tcp.conn-12 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 710 SatelliteNetwork.satellite1.tcp.conn-12 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 711 SatelliteNetwork.satellite1.tcp.conn-12 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 712 SatelliteNetwork.satellite1.tcp.conn-12 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 713 SatelliteNetwork.satellite1.tcp.conn-12 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 714 SatelliteNetwork.satellite1.tcp.conn-12 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 715 SatelliteNetwork.satellite1.tcp.conn-12 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 716 SatelliteNetwork.satellite1.tcp.conn-12 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	31	0	1
+4	32	0	2
+4	154	0.000959815679	1
+4	154	0.000959815679	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	31	0	640
+5	32	0	3640
+5	154	0.000959815679	3000
+5	154	0.000959815679	0
+6	154	0.000959815679	0.000959815679
+6	154	0.000959815679	0.000959815679
+7	31	0	640
+7	32	0	3000
+9	154	0.000959815679	640
+9	154	0.000959815679	3000
+15	211	0.001548891073	0.000589075394
+15	307	0.002835966539	0.00187615086
+16	0	0	0
+16	0	0	0
+16	154	0.000959815679	1
+16	154	0.000959815679	2
+16	211	0.001548891073	1
+16	307	0.002835966539	0
+17	31	0	26
+17	175	0.001068815679	17
+17	211	0.001548891073	5
+17	241	0.001907891073	13
+17	271	0.002415891073	9
+18	0	0	0
+18	0	0	0
+18	31	0	1
+18	41	0.000071537657	0
+18	54	0.000125537657	1
+18	55	0.000125537657	0
+18	66	0.000169537657	1
+18	76	0.000320740321	0
+18	81	0.000374740321	1
+18	82	0.000374740321	0
+18	100	0.000418740321	1
+18	135	0.000575815679	0
+18	144	0.000609815679	1
+18	153	0.000959815679	0
+18	175	0.001068815679	1
+18	176	0.001447815679	0
+18	211	0.001548891073	1
+18	219	0.001698891073	0
+18	241	0.001907891073	1
+18	242	0.002206891073	0
+18	271	0.002415891073	1
+18	272	0.002634891073	0
+19	0	0	0
+19	0	0	0
+19	31	0	0
+19	31	0	2
+19	41	0.000071537657	2
+19	41	0.000071537657	1
+19	54	0.000125537657	1
+19	54	0.000125537657	2
+19	55	0.000125537657	2
+19	55	0.000125537657	1
+19	66	0.000169537657	1
+19	66	0.000169537657	2
+19	76	0.000320740321	2
+19	76	0.000320740321	1
+19	81	0.000374740321	1
+19	81	0.000374740321	2
+19	82	0.000374740321	2
+19	82	0.000374740321	1
+19	100	0.000418740321	1
+19	100	0.000418740321	2
+19	135	0.000575815679	2
+19	135	0.000575815679	1
+19	144	0.000609815679	1
+19	144	0.000609815679	2
+19	153	0.000959815679	2
+19	153	0.000959815679	0
+19	155	0.000959815679	0
+19	155	0.000959815679	0
+19	174	0.001057815679	0
+19	174	0.001057815679	0
+19	175	0.001068815679	0
+19	175	0.001068815679	2
+19	176	0.001447815679	2
+19	176	0.001447815679	0
+19	178	0.001447815679	0
+19	178	0.001447815679	0
+19	210	0.001548891073	0
+19	210	0.001548891073	0
+19	211	0.001548891073	0
+19	211	0.001548891073	2
+19	219	0.001698891073	2
+19	219	0.001698891073	0
+19	221	0.001698891073	0
+19	221	0.001698891073	0
+19	240	0.001896891073	0
+19	240	0.001896891073	0
+19	241	0.001907891073	0
+19	241	0.001907891073	2
+19	242	0.002206891073	2
+19	242	0.002206891073	0
+19	244	0.002206891073	0
+19	244	0.002206891073	0
+19	269	0.002404891073	0
+19	269	0.002404891073	0
+19	271	0.002415891073	0
+19	271	0.002415891073	2
+19	272	0.002634891073	2
+19	272	0.002634891073	0
+19	274	0.002634891073	0
+19	274	0.002634891073	0
+19	306	0.002835966539	0
+19	306	0.002835966539	0
+19	314	0.002945966544	0
+19	314	0.002945966544	0
+21	0	0	31
+21	175	0.001068815679	63
+21	211	0.001548891073	31
+21	241	0.001907891073	63
+21	271	0.002415891073	127
+21	307	0.002835966539	31
+22	167	0.001013815679	80
+22	183	0.001501815679	80
+22	235	0.001852891073	375
+22	258	0.002360891073	375
+22	279	0.002788891073	375
+23	167	0.001013815679	80
+23	183	0.001501815679	80
+23	235	0.001852891073	375
+23	258	0.002360891073	375
+23	279	0.002788891073	375
+26	183	0.001501815679	80
+26	258	0.002360891073	375
+26	279	0.002788891073	375
+27	167	0.001013815679	80
+27	235	0.001852891073	375
+28	211	0.001548891073	14
+28	307	0.002835966539	14
+29	211	0.001548891073	14
+29	307	0.002835966539	14
+33	211	0.001548891073	14
+33	307	0.002835966539	14
+34	55	0.000125537657	80
+34	82	0.000374740321	80
+34	145	0.000609815679	14
+35	55	0.000125537657	80
+35	82	0.000374740321	80
+35	145	0.000609815679	14
+38	0	0	0
+38	0	0	0
+38	154	0.000959815679	1
+38	175	0.001068815679	0
+38	177	0.001447815679	1
+38	211	0.001548891073	0
+38	220	0.001698891073	1
+38	241	0.001907891073	0
+38	243	0.002206891073	1
+38	271	0.002415891073	0
+38	273	0.002634891073	1
+38	307	0.002835966539	0
+39	154	0.000959815679	24000000
+39	177	0.001447815679	24000000
+39	220	0.001698891073	24000000
+39	243	0.002206891073	24000000
+39	273	0.002634891073	24000000
+40	55	0.000125537657	0
+40	55	0.000125537657	4.4e-05
+40	66	0.000169537657	0
+40	82	0.000374740321	0
+40	82	0.000374740321	4.4e-05
+40	100	0.000418740321	0
+40	167	0.001013815679	0
+40	167	0.001013815679	4.4e-05
+40	174	0.001057815679	0
+40	183	0.001501815679	0
+40	183	0.001501815679	4.4e-05
+40	202	0.001545815679	0
+40	235	0.001852891073	0
+40	235	0.001852891073	4.4e-05
+40	240	0.001896891073	0
+40	258	0.002360891073	0
+40	258	0.002360891073	4.4e-05
+40	269	0.002404891073	0
+40	279	0.002788891073	0
+40	279	0.002788891073	4.4e-05
+40	298	0.002832891073	0
+42	154	0.000959815679	80
+42	177	0.001447815679	80
+42	220	0.001698891073	375
+42	243	0.002206891073	375
+42	273	0.002634891073	375
+43	31	0	52
+43	32	0	347
+44	55	0.000125537657	80
+44	82	0.000374740321	80
+44	145	0.000609815679	14
+44	211	0.001548891073	14
+44	307	0.002835966539	14
+45	55	0.000125537657	80
+45	82	0.000374740321	80
+45	145	0.000609815679	14
+47	55	0.000125537657	80
+47	82	0.000374740321	80
+47	145	0.000609815679	14
+52	0	0	0
+52	0	0	0
+52	0	0	2
+52	155	0.000959815679	3
+52	168	0.001013815679	2
+52	178	0.001447815679	3
+52	184	0.001501815679	2
+52	221	0.001698891073	3
+52	236	0.001852891073	2
+52	244	0.002206891073	3
+52	259	0.002360891073	2
+52	274	0.002634891073	3
+52	280	0.002788891073	2
+53	0	0	1
+53	41	0.000071537657	3
+53	54	0.000125537657	1
+53	76	0.000320740321	3
+53	81	0.000374740321	1
+53	135	0.000575815679	3
+53	144	0.000609815679	1
+53	155	0.000959815679	0
+53	168	0.001013815679	1
+53	178	0.001447815679	0
+53	184	0.001501815679	1
+53	201	0.001514891073	3
+53	210	0.001548891073	1
+53	221	0.001698891073	0
+53	236	0.001852891073	1
+53	244	0.002206891073	0
+53	259	0.002360891073	1
+53	274	0.002634891073	0
+53	280	0.002788891073	1
+53	297	0.002801966539	3
+53	306	0.002835966539	1
+53	314	0.002945966544	3
+54	155	0.000959815679	1
+54	156	0.000959815679	2
+54	167	0.001013815679	1
+54	168	0.001013815679	0
+54	178	0.001447815679	1
+54	179	0.001447815679	2
+54	183	0.001501815679	1
+54	184	0.001501815679	0
+54	221	0.001698891073	1
+54	222	0.001698891073	2
+54	235	0.001852891073	1
+54	236	0.001852891073	0
+54	244	0.002206891073	1
+54	245	0.002206891073	2
+54	258	0.002360891073	1
+54	259	0.002360891073	0
+54	274	0.002634891073	1
+54	275	0.002634891073	2
+54	279	0.002788891073	1
+54	280	0.002788891073	0
+55	0	0	0
+64	18	0	319
+66	0	0	0
+67	0	0	0
+68	0	0	0
+69	0	0	3672
+79	0	0	2488
+89	2	0	311
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	33	0	1
+95	36	0.00007	0
+95	129	0.000564278008	1
+95	195	0.001503353375	2
+95	291	0.002790428804	3
+95	309	0.002944428804	2
+95	309	0.002944428804	1
+96	0	0	0
+96	0	0	0
+96	0	0	0
+96	0	0	0
+96	0	0	0
+96	33	0	640
+96	36	0.00007	0
+96	129	0.000564278008	3744
+96	195	0.001503353375	4384
+96	291	0.002790428804	5120
+96	309	0.002944428804	1376
+96	309	0.002944428804	736
+97	36	0.00007	7e-05
+97	309	0.002944428804	0.002380150796
+97	309	0.002944428804	0.001441075429
+98	33	0	640
+98	129	0.000564278008	3744
+98	195	0.001503353375	640
+98	291	0.002790428804	736
+100	36	0.00007	640
+100	309	0.002944428804	3744
+100	309	0.002944428804	640
+106	71	0.000171075303	0.000101075303
+107	0	0	0
+107	0	0	0
+107	36	0.00007	1
+107	71	0.000171075303	0
+107	309	0.002944428804	1
+107	309	0.002944428804	2
+108	33	0	1
+108	129	0.000564278008	23
+109	0	0	0
+109	0	0	0
+109	33	0	1
+109	35	0.00007	0
+109	129	0.000564278008	1
+109	131	0.000574278008	0
+109	139	0.000608278008	1
+109	152	0.000941353273	0
+109	171	0.001015353361	1
+109	182	0.001449353375	0
+109	188	0.001503353375	1
+109	197	0.001513353375	0
+109	205	0.001547353375	1
+109	218	0.001660428592	0
+109	239	0.001854428777	1
+109	248	0.002208428791	0
+109	266	0.002362428791	1
+109	267	0.002362428791	0
+109	267	0.002362428791	1
+109	278	0.002636428804	0
+109	284	0.002790428804	1
+109	293	0.002800428804	0
+109	301	0.002834428804	1
+109	308	0.002944428804	0
+110	0	0	0
+110	0	0	0
+110	33	0	0
+110	33	0	2
+110	35	0.00007	2
+110	35	0.00007	0
+110	37	0.00007	0
+110	37	0.00007	0
+110	70	0.000171075303	0
+110	70	0.000171075303	0
+110	78	0.000321139695	0
+110	78	0.000321139695	0
+110	91	0.000375139695	0
+110	91	0.000375139695	0
+110	92	0.000375139695	0
+110	92	0.000375139695	0
+110	107	0.000420278011	0
+110	107	0.000420278011	0
+110	115	0.000510278008	0
+110	115	0.000510278008	0
+110	121	0.000564278008	0
+110	121	0.000564278008	0
+110	129	0.000564278008	0
+110	129	0.000564278008	2
+110	131	0.000574278008	2
+110	131	0.000574278008	1
+110	139	0.000608278008	1
+110	139	0.000608278008	2
+110	152	0.000941353273	2
+110	152	0.000941353273	1
+110	166	0.000995353273	1
+110	166	0.000995353273	1
+110	171	0.001015353361	1
+110	171	0.001015353361	2
+110	182	0.001449353375	2
+110	182	0.001449353375	1
+110	188	0.001503353375	1
+110	188	0.001503353375	2
+110	197	0.001513353375	2
+110	197	0.001513353375	1
+110	205	0.001547353375	1
+110	205	0.001547353375	2
+110	218	0.001660428592	2
+110	218	0.001660428592	1
+110	232	0.001714428592	1
+110	232	0.001714428592	1
+110	239	0.001854428777	1
+110	239	0.001854428777	2
+110	248	0.002208428791	2
+110	248	0.002208428791	1
+110	266	0.002362428791	1
+110	266	0.002362428791	2
+110	267	0.002362428791	2
+110	267	0.002362428791	2
+110	278	0.002636428804	2
+110	278	0.002636428804	1
+110	284	0.002790428804	1
+110	284	0.002790428804	2
+110	293	0.002800428804	2
+110	293	0.002800428804	1
+110	301	0.002834428804	1
+110	301	0.002834428804	2
+110	308	0.002944428804	2
+110	308	0.002944428804	0
+110	310	0.002944428804	0
+110	310	0.002944428804	0
+112	0	0	31
+113	42	0.000124	80
+113	138	0.000608278008	14
+113	204	0.001547353375	14
+113	300	0.002834428804	14
+113	315	0.003130428804	468
+114	42	0.000124	80
+114	138	0.000608278008	14
+114	204	0.001547353375	14
+114	300	0.002834428804	14
+114	315	0.003130428804	468
+118	42	0.000124	80
+118	138	0.000608278008	14
+118	204	0.001547353375	14
+118	300	0.002834428804	14
+118	315	0.003130428804	468
+119	71	0.000171075303	14
+119	122	0.000564278008	80
+119	189	0.001503353375	80
+119	285	0.002790428804	375
+120	71	0.000171075303	14
+120	122	0.000564278008	80
+120	189	0.001503353375	80
+120	285	0.002790428804	375
+123	189	0.001503353375	80
+123	285	0.002790428804	375
+124	71	0.000171075303	14
+124	122	0.000564278008	80
+125	92	0.000375139695	80
+125	108	0.000420278011	14
+126	92	0.000375139695	80
+126	108	0.000420278011	14
+129	0	0	0
+129	0	0	0
+129	36	0.00007	1
+129	71	0.000171075303	0
+129	309	0.002944428804	1
+130	36	0.00007	24000000
+130	122	0.000564278008	24000000
+130	189	0.001503353375	24000000
+130	285	0.002790428804	24000000
+130	309	0.002944428804	24000000
+131	42	0.000124	0
+131	42	0.000124	4.4e-05
+131	62	0.000168	0
+131	92	0.000375139695	0
+131	92	0.000375139695	4.4e-05
+131	103	0.000419139695	0
+131	315	0.003130428804	0
+131	315	0.003130428804	4.4e-05
+132	122	0.000564278008	52
+132	189	0.001503353375	52
+132	285	0.002790428804	347
+133	36	0.00007	80
+133	130	0.000574278008	14
+133	196	0.001513353375	14
+133	292	0.002800428804	14
+133	309	0.002944428804	468
+134	33	0	52
+134	129	0.000564278008	440
+134	195	0.001503353375	52
+134	291	0.002790428804	64
+135	71	0.000171075303	14
+135	92	0.000375139695	80
+135	108	0.000420278011	14
+135	122	0.000564278008	80
+135	166	0.000995353273	80
+135	189	0.001503353375	80
+135	232	0.001714428592	80
+135	267	0.002362428791	375
+135	285	0.002790428804	375
+136	92	0.000375139695	80
+136	108	0.000420278011	14
+136	166	0.000995353273	80
+136	232	0.001714428592	80
+136	267	0.002362428791	375
+137	166	0.000995353273	80
+137	232	0.001714428592	80
+137	267	0.002362428791	375
+138	92	0.000375139695	80
+138	108	0.000420278011	14
+143	0	0	0
+143	0	0	0
+143	0	0	2
+143	37	0.00007	3
+143	43	0.000124	2
+143	131	0.000574278008	3
+143	139	0.000608278008	2
+143	197	0.001513353375	3
+143	205	0.001547353375	2
+143	293	0.002800428804	3
+143	301	0.002834428804	2
+143	310	0.002944428804	3
+143	316	0.003130428804	2
+144	0	0	1
+144	37	0.00007	0
+144	43	0.000124	1
+144	61	0.000137075303	3
+144	70	0.000171075303	1
+144	78	0.000321139695	3
+144	91	0.000375139695	1
+144	98	0.000386278011	3
+144	107	0.000420278011	1
+144	115	0.000510278008	3
+144	121	0.000564278008	1
+144	131	0.000574278008	0
+144	139	0.000608278008	1
+144	152	0.000941353273	3
+144	165	0.000995353273	2
+144	171	0.001015353361	1
+144	182	0.001449353375	3
+144	188	0.001503353375	1
+144	197	0.001513353375	0
+144	205	0.001547353375	1
+144	218	0.001660428592	3
+144	231	0.001714428592	2
+144	239	0.001854428777	1
+144	248	0.002208428791	3
+144	266	0.002362428791	1
+144	278	0.002636428804	3
+144	284	0.002790428804	1
+144	293	0.002800428804	0
+144	301	0.002834428804	1
+144	310	0.002944428804	0
+144	316	0.003130428804	1
+145	37	0.00007	1
+145	38	0.00007	2
+145	42	0.000124	1
+145	43	0.000124	0
+145	131	0.000574278008	1
+145	132	0.000574278008	2
+145	138	0.000608278008	1
+145	139	0.000608278008	0
+145	197	0.001513353375	1
+145	198	0.001513353375	2
+145	204	0.001547353375	1
+145	205	0.001547353375	0
+145	293	0.002800428804	1
+145	294	0.002800428804	2
+145	300	0.002834428804	1
+145	301	0.002834428804	0
+145	310	0.002944428804	1
+145	311	0.002944428804	2
+145	315	0.003130428804	1
+145	316	0.003130428804	0
+146	0	0	0
+156	288	0.002790428804	319
+157	0	0	0
+158	0	0	0
+158	288	0.002790428804	1
+159	0	0	0
+168	0	0	0
+168	0	0	0
+173	0	0	0
+173	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+192	0	0	0
+192	0	0	0
+199	0	0	3136
+209	0	0	750
+209	35	0.00007	749.99999997387
+209	38	0.000070012398	749.99999997386
+209	38	0.000070071618	749.99999997381
+209	38	0.00007009618	749.99999997379
+209	38	0.000070123176	749.99999997377
+209	38	0.000070147081	749.99999997376
+209	38	0.000070171615	749.99999997374
+209	38	0.000070198569	749.99999997372
+209	38	0.000070222358	749.9999999737
+209	38	0.000070247438	749.99999997368
+209	38	0.000070273876	749.99999997366
+209	38	0.000070298322	749.99999997364
+209	38	0.000070323571	749.99999997362
+209	38	0.000070348513	749.99999997361
+209	38	0.000070373733	749.99999997359
+209	38	0.000070397225	749.99999997357
+209	38	0.000070420937	749.99999997355
+209	38	0.000070446397	749.99999997353
+209	38	0.00007047319	749.99999997351
+209	38	0.00007049771	749.99999997349
+209	38	0.000070522795	749.99999997347
+209	38	0.000070549587	749.99999997345
+209	38	0.000070576099	749.99999997343
+209	38	0.000070601624	749.99999997342
+209	38	0.00007062662	749.9999999734
+209	38	0.000070652144	749.99999997338
+209	38	0.00007067797	749.99999997336
+209	38	0.000070703862	749.99999997334
+209	38	0.000070731297	749.99999997332
+209	38	0.000070761744	749.99999997329
+209	38	0.00007079585	749.99999997327
+209	38	0.000070823868	749.99999997325
+209	38	0.000070849317	749.99999997323
+209	38	0.000070873505	749.99999997321
+209	38	0.00007090174	749.99999997319
+209	38	0.000070930247	749.99999997317
+209	38	0.00007095712	749.99999997315
+209	38	0.000070981325	749.99999997313
+209	39	0.000071007295	749.99999997311
+209	39	0.000071052821	749.99999997307
+209	39	0.000071094128	749.99999997304
+209	39	0.000071137322	749.99999997301
+209	39	0.000071176967	749.99999997298
+209	39	0.000071217464	749.99999997295
+209	39	0.000071255548	749.99999997292
+209	39	0.000071293105	749.99999997289
+209	39	0.000071332912	749.99999997286
+209	39	0.000071369847	749.99999997283
+209	39	0.000071409431	749.9999999728
+209	39	0.000071452532	749.99999997277
+209	39	0.000071492849	749.99999997274
+209	39	0.000071530671	749.99999997271
+209	41	0.000071571342	749.99999997268
+209	41	0.000074808836	749.99999997015
+209	41	0.000078235363	749.99999996736
+209	43	0.000124	749.99999991799
+209	58	0.000135537652	749.99999990202
+209	61	0.000158205291	749.99999986651
+209	70	0.000171075303	749.99999984391
+209	75	0.000320139003	749.99999945339
+209	78	0.00035301704	749.99999933535
+209	91	0.000375139695	749.99999924944
+209	95	0.000384740368	749.99999921053
+209	107	0.000420278011	749.99999905795
+209	108	0.000423702689	749.99999904254
+209	112	0.000508740368	749.99999861964
+209	112	0.000509128979	749.99999861753
+209	121	0.000564278008	749.99999830182
+209	132	0.000574278008	749.99999824109
+209	135	0.000583148992	749.99999818633
+209	139	0.000608278008	749.99999802666
+209	149	0.000939815646	749.99999528931
+209	156	0.000959815679	749.99999508669
+209	161	0.000994242246	749.99999472791
+209	165	0.000995353273	749.99999471612
+209	171	0.001015353361	749.99999450164
+209	174	0.001066614061	749.99999393245
+209	179	0.001447815679	749.99998882043
+209	179	0.001448188985	749.99998881466
+209	182	0.001498381021	749.99998802589
+209	188	0.001503353375	749.99998794629
+209	198	0.001513353375	749.9999877854
+209	205	0.001547353375	749.99998723039
+209	211	0.001582901036	749.99998663693
+209	215	0.001658890986	749.9999853231
+209	215	0.001659282238	749.99998531617
+209	222	0.001698891073	749.99998460677
+209	230	0.00171432757	749.99998432577
+209	231	0.001714428592	749.99998432392
+209	234	0.001848520442	749.99998177585
+209	239	0.001854428777	749.99998165917
+209	245	0.002206891073	749.9999740247
+209	248	0.002245952228	749.99997309706
+209	252	0.002306890986	749.99997161736
+209	266	0.002362428791	749.9999702343
+209	267	0.002380899427	749.99996976703
+209	275	0.002634891073	749.99996297253
+209	275	0.002635271418	749.99996296184
+209	278	0.002692032465	749.99996134913
+209	284	0.002790428804	749.99995847204
+209	294	0.002800428804	749.99995817386
+209	301	0.002834428804	749.99995715207
+209	307	0.002862173165	749.99995630915
+209	311	0.002944428804	749.99995376181
+209	311	0.002945041828	749.99995374256
+209	314	0.003033426448	749.9999509244
+209	316	0.003130428804	749.99994773555
+210	0	0	300
+210	35	0.00007	300.0028
+210	38	0.000070012398	300.00280049592
+210	38	0.000070071618	300.00280286472
+210	38	0.00007009618	300.0028038472
+210	38	0.000070123176	300.00280492704
+210	38	0.000070147081	300.00280588324
+210	38	0.000070171615	300.0028068646
+210	38	0.000070198569	300.00280794276
+210	38	0.000070222358	300.00280889432
+210	38	0.000070247438	300.00280989752
+210	38	0.000070273876	300.00281095504
+210	38	0.000070298322	300.00281193288
+210	38	0.000070323571	300.00281294284
+210	38	0.000070348513	300.00281394052
+210	38	0.000070373733	300.00281494932
+210	38	0.000070397225	300.002815889
+210	38	0.000070420937	300.00281683748
+210	38	0.000070446397	300.00281785588
+210	38	0.00007047319	300.0028189276
+210	38	0.00007049771	300.0028199084
+210	38	0.000070522795	300.0028209118
+210	38	0.000070549587	300.00282198348
+210	38	0.000070576099	300.00282304396
+210	38	0.000070601624	300.00282406496
+210	38	0.00007062662	300.0028250648
+210	38	0.000070652144	300.00282608576
+210	38	0.00007067797	300.0028271188
+210	38	0.000070703862	300.00282815448
+210	38	0.000070731297	300.00282925188
+210	38	0.000070761744	300.00283046976
+210	38	0.00007079585	300.002831834
+210	38	0.000070823868	300.00283295472
+210	38	0.000070849317	300.00283397268
+210	38	0.000070873505	300.0028349402
+210	38	0.00007090174	300.0028360696
+210	38	0.000070930247	300.00283720988
+210	38	0.00007095712	300.0028382848
+210	38	0.000070981325	300.002839253
+210	39	0.000071007295	300.0028402918
+210	39	0.000071052821	300.00284211284
+210	39	0.000071094128	300.00284376512
+210	39	0.000071137322	300.00284549288
+210	39	0.000071176967	300.00284707868
+210	39	0.000071217464	300.00284869856
+210	39	0.000071255548	300.00285022192
+210	39	0.000071293105	300.0028517242
+210	39	0.000071332912	300.00285331648
+210	39	0.000071369847	300.00285479388
+210	39	0.000071409431	300.00285637724
+210	39	0.000071452532	300.00285810128
+210	39	0.000071492849	300.00285971396
+210	39	0.000071530671	300.00286122684
+210	41	0.000071571342	300.00286285368
+210	41	0.000074808836	300.00299235344
+210	41	0.000078235363	300.00312941452
+210	43	0.000124	300.00496
+210	58	0.000135537652	300.00542150608
+210	61	0.000158205291	300.00632821164
+210	70	0.000171075303	300.00684301212
+210	75	0.000320139003	300.0128055601
+210	78	0.00035301704	300.01412068158
+210	91	0.000375139695	300.01500558777
+210	95	0.000384740368	300.01538961469
+210	107	0.000420278011	300.0168111204
+210	108	0.000423702689	300.01694810752
+210	112	0.000508740368	300.02034961466
+210	112	0.000509128979	300.0203651591
+210	121	0.000564278008	300.02257112023
+210	132	0.000574278008	300.02297112023
+210	135	0.000583148992	300.02332595959
+210	139	0.000608278008	300.02433112021
+210	149	0.000939815646	300.03759262545
+210	156	0.000959815679	300.03839262674
+210	161	0.000994242246	300.03976968937
+210	165	0.000995353273	300.03981413045
+210	171	0.001015353361	300.04061413394
+210	174	0.001066614061	300.04266456186
+210	179	0.001447815679	300.05791262572
+210	179	0.001448188985	300.05792755796
+210	182	0.001498381021	300.05993523925
+210	188	0.001503353375	300.06013413339
+210	198	0.001513353375	300.06053413336
+210	205	0.001547353375	300.06189413324
+210	211	0.001582901036	300.06331603956
+210	215	0.001658890986	300.06635563728
+210	215	0.001659282238	300.06637128735
+210	222	0.001698891073	300.0679556406
+210	230	0.00171432757	300.06857310041
+210	231	0.001714428592	300.06857714129
+210	234	0.001848520442	300.07394081469
+210	239	0.001854428777	300.07417714806
+210	245	0.002206891073	300.08827563782
+210	248	0.002245952228	300.08983808375
+210	252	0.002306890986	300.09227563362
+210	266	0.002362428791	300.09449714539
+210	267	0.002380899427	300.09523597068
+210	275	0.002634891073	300.10539563425
+210	275	0.002635271418	300.10541084804
+210	278	0.002692032465	300.10768128935
+210	284	0.002790428804	300.11161714186
+210	294	0.002800428804	300.11201714175
+210	301	0.002834428804	300.11337714136
+210	307	0.002862173165	300.11448691548
+210	311	0.002944428804	300.11777714006
+210	311	0.002945041828	300.11780166101
+210	314	0.003033426448	300.12133704469
+210	316	0.003130428804	300.12521713762
+211	0	0	0
+211	35	0.00007	0
+211	38	0.000070012398	0
+211	38	0.000070071618	0
+211	38	0.00007009618	0
+211	38	0.000070123176	0
+211	38	0.000070147081	0
+211	38	0.000070171615	0
+211	38	0.000070198569	0
+211	38	0.000070222358	0
+211	38	0.000070247438	0
+211	38	0.000070273876	0
+211	38	0.000070298322	0
+211	38	0.000070323571	0
+211	38	0.000070348513	0
+211	38	0.000070373733	0
+211	38	0.000070397225	0
+211	38	0.000070420937	0
+211	38	0.000070446397	0
+211	38	0.00007047319	0
+211	38	0.00007049771	0
+211	38	0.000070522795	0
+211	38	0.000070549587	0
+211	38	0.000070576099	0
+211	38	0.000070601624	0
+211	38	0.00007062662	0
+211	38	0.000070652144	0
+211	38	0.00007067797	0
+211	38	0.000070703862	0
+211	38	0.000070731297	0
+211	38	0.000070761744	0
+211	38	0.00007079585	0
+211	38	0.000070823868	0
+211	38	0.000070849317	0
+211	38	0.000070873505	0
+211	38	0.00007090174	0
+211	38	0.000070930247	0
+211	38	0.00007095712	0
+211	38	0.000070981325	0
+211	39	0.000071007295	0
+211	39	0.000071052821	0
+211	39	0.000071094128	0
+211	39	0.000071137322	0
+211	39	0.000071176967	0
+211	39	0.000071217464	0
+211	39	0.000071255548	0
+211	39	0.000071293105	0
+211	39	0.000071332912	0
+211	39	0.000071369847	0
+211	39	0.000071409431	0
+211	39	0.000071452532	0
+211	39	0.000071492849	0
+211	39	0.000071530671	0
+211	41	0.000071571342	0
+211	41	0.000074808836	0
+211	41	0.000078235363	0
+211	43	0.000124	0
+211	58	0.000135537652	0
+211	61	0.000158205291	0
+211	70	0.000171075303	0
+211	75	0.000320139003	0
+211	78	0.00035301704	0
+211	91	0.000375139695	0
+211	95	0.000384740368	0
+211	107	0.000420278011	0
+211	108	0.000423702689	0
+211	112	0.000508740368	0
+211	112	0.000509128979	0
+211	121	0.000564278008	0
+211	132	0.000574278008	0
+211	135	0.000583148992	0
+211	139	0.000608278008	0
+211	149	0.000939815646	0
+211	156	0.000959815679	0
+211	161	0.000994242246	0
+211	165	0.000995353273	0
+211	171	0.001015353361	0
+211	174	0.001066614061	0
+211	179	0.001447815679	0
+211	179	0.001448188985	0
+211	182	0.001498381021	0
+211	188	0.001503353375	0
+211	198	0.001513353375	0
+211	205	0.001547353375	0
+211	211	0.001582901036	0
+211	215	0.001658890986	0
+211	215	0.001659282238	0
+211	222	0.001698891073	0
+211	230	0.00171432757	0
+211	231	0.001714428592	0
+211	234	0.001848520442	0
+211	239	0.001854428777	0
+211	245	0.002206891073	0
+211	248	0.002245952228	0
+211	252	0.002306890986	0
+211	266	0.002362428791	0
+211	267	0.002380899427	0
+211	275	0.002634891073	0
+211	275	0.002635271418	0
+211	278	0.002692032465	0
+211	284	0.002790428804	0
+211	294	0.002800428804	0
+211	301	0.002834428804	0
+211	307	0.002862173165	0
+211	311	0.002944428804	0
+211	311	0.002945041828	0
+211	314	0.003033426448	0
+211	316	0.003130428804	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+216	34	0	1
+216	73	0.000320139003	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+217	34	0	640
+217	73	0.000320139003	0
+218	73	0.000320139003	0.000320139003
+219	34	0	640
+221	73	0.000320139003	640
+227	105	0.000419341738	9.9202735e-05
+228	0	0	0
+228	0	0	0
+228	73	0.000320139003	1
+228	105	0.000419341738	0
+229	34	0	6
+230	0	0	0
+230	0	0	0
+230	34	0	1
+230	39	0.000071000692	0
+230	44	0.000125000692	1
+230	45	0.000125000692	0
+230	67	0.000170139003	1
+230	72	0.000320139003	0
+231	0	0	0
+231	0	0	0
+231	34	0	0
+231	34	0	2
+231	39	0.000071000692	2
+231	39	0.000071000692	1
+231	44	0.000125000692	1
+231	44	0.000125000692	2
+231	45	0.000125000692	2
+231	45	0.000125000692	1
+231	67	0.000170139003	1
+231	67	0.000170139003	2
+231	72	0.000320139003	2
+231	72	0.000320139003	0
+231	74	0.000320139003	0
+231	74	0.000320139003	0
+231	104	0.000419341738	0
+231	104	0.000419341738	0
+231	113	0.000509341747	0
+231	113	0.000509341747	0
+231	118	0.000563341747	0
+231	118	0.000563341747	0
+231	119	0.000563341747	0
+231	119	0.000563341747	0
+231	140	0.0006092787	0
+231	140	0.0006092787	0
+231	150	0.000940417057	0
+231	150	0.000940417057	0
+231	163	0.000994417057	0
+231	163	0.000994417057	0
+231	169	0.001014416949	0
+231	169	0.001014416949	0
+231	180	0.001448416913	0
+231	180	0.001448416913	0
+231	185	0.001502416913	0
+231	185	0.001502416913	0
+231	186	0.001502416913	0
+231	186	0.001502416913	0
+231	206	0.001548354067	0
+231	206	0.001548354067	0
+231	216	0.00165949245	0
+231	216	0.00165949245	0
+231	229	0.00171349245	0
+231	229	0.00171349245	0
+231	237	0.001853492289	0
+231	237	0.001853492289	0
+231	246	0.002207492251	0
+231	246	0.002207492251	0
+231	261	0.002361492251	0
+231	261	0.002361492251	0
+231	262	0.002361492498	0
+231	262	0.002361492498	0
+231	276	0.002635492219	0
+231	276	0.002635492219	0
+231	281	0.002789492219	0
+231	281	0.002789492219	0
+231	282	0.002789492219	0
+231	282	0.002789492219	0
+231	302	0.002835429496	0
+231	302	0.002835429496	0
+231	312	0.002945429496	0
+231	312	0.002945429496	0
+231	317	0.003131429496	0
+231	317	0.003131429496	0
+231	318	0.003131429496	0
+231	318	0.003131429496	0
+233	0	0	31
+234	79	0.000374139003	80
+235	79	0.000374139003	80
+239	79	0.000374139003	80
+240	105	0.000419341738	14
+241	105	0.000419341738	14
+245	105	0.000419341738	14
+246	45	0.000125000692	80
+246	68	0.000170139003	14
+246	119	0.000563341747	80
+246	141	0.0006092787	14
+246	186	0.001502416913	80
+246	207	0.001548354067	14
+246	282	0.002789492219	375
+246	303	0.002835429496	14
+246	318	0.003131429496	468
+247	45	0.000125000692	80
+247	68	0.000170139003	14
+247	119	0.000563341747	80
+247	141	0.0006092787	14
+247	186	0.001502416913	80
+247	207	0.001548354067	14
+247	282	0.002789492219	375
+247	303	0.002835429496	14
+247	318	0.003131429496	468
+250	0	0	0
+250	0	0	0
+250	73	0.000320139003	1
+250	105	0.000419341738	0
+251	73	0.000320139003	24000000
+252	45	0.000125000692	0
+252	45	0.000125000692	4.4e-05
+252	63	0.000169000692	0
+252	79	0.000374139003	0
+252	79	0.000374139003	4.4e-05
+252	99	0.000418139003	0
+252	119	0.000563341747	0
+252	119	0.000563341747	4.4e-05
+252	137	0.000607341747	0
+252	186	0.001502416913	0
+252	186	0.001502416913	4.4e-05
+252	203	0.001546416913	0
+252	282	0.002789492219	0
+252	282	0.002789492219	4.4e-05
+252	299	0.002833492219	0
+252	318	0.003131429496	0
+252	318	0.003131429496	4.4e-05
+254	73	0.000320139003	80
+255	34	0	52
+256	45	0.000125000692	80
+256	68	0.000170139003	14
+256	105	0.000419341738	14
+256	119	0.000563341747	80
+256	141	0.0006092787	14
+256	163	0.000994417057	80
+256	186	0.001502416913	80
+256	207	0.001548354067	14
+256	229	0.00171349245	80
+256	261	0.002361492251	375
+256	282	0.002789492219	375
+256	303	0.002835429496	14
+256	318	0.003131429496	468
+257	45	0.000125000692	80
+257	68	0.000170139003	14
+257	119	0.000563341747	80
+257	141	0.0006092787	14
+257	163	0.000994417057	80
+257	186	0.001502416913	80
+257	207	0.001548354067	14
+257	229	0.00171349245	80
+257	261	0.002361492251	375
+257	282	0.002789492219	375
+257	303	0.002835429496	14
+257	318	0.003131429496	468
+258	163	0.000994417057	80
+258	229	0.00171349245	80
+258	261	0.002361492251	375
+259	45	0.000125000692	80
+259	68	0.000170139003	14
+259	119	0.000563341747	80
+259	141	0.0006092787	14
+259	186	0.001502416913	80
+259	207	0.001548354067	14
+259	282	0.002789492219	375
+259	303	0.002835429496	14
+259	318	0.003131429496	468
+264	0	0	0
+264	0	0	0
+264	0	0	2
+264	74	0.000320139003	3
+264	80	0.000374139003	2
+265	0	0	1
+265	39	0.000071000692	3
+265	44	0.000125000692	1
+265	59	0.000136139003	3
+265	67	0.000170139003	1
+265	74	0.000320139003	0
+265	80	0.000374139003	1
+265	96	0.000385341738	3
+265	104	0.000419341738	1
+265	113	0.000509341747	3
+265	118	0.000563341747	1
+265	133	0.0005752787	3
+265	140	0.0006092787	1
+265	150	0.000940417057	3
+265	162	0.000994417057	2
+265	169	0.001014416949	1
+265	180	0.001448416913	3
+265	185	0.001502416913	1
+265	199	0.001514354067	3
+265	206	0.001548354067	1
+265	216	0.00165949245	3
+265	228	0.00171349245	2
+265	237	0.001853492289	1
+265	246	0.002207492251	3
+265	260	0.002361492251	2
+265	262	0.002361492498	1
+265	276	0.002635492219	3
+265	281	0.002789492219	1
+265	295	0.002801429496	3
+265	302	0.002835429496	1
+265	312	0.002945429496	3
+265	317	0.003131429496	1
+266	74	0.000320139003	1
+266	75	0.000320139003	2
+266	79	0.000374139003	1
+266	80	0.000374139003	0
+267	0	0	0
+278	0	0	0
+279	0	0	0
+280	0	0	0
+289	0	0	0
+289	0	0	0
+294	0	0	0
+294	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+313	0	0	0
+313	0	0	0
+320	0	0	1504
+330	0	0	450
+330	35	0.00007	450.00000002613
+330	38	0.000070012398	450.00000002614
+330	38	0.000070071618	450.00000002619
+330	38	0.00007009618	450.00000002621
+330	38	0.000070123176	450.00000002623
+330	38	0.000070147081	450.00000002624
+330	38	0.000070171615	450.00000002626
+330	38	0.000070198569	450.00000002628
+330	38	0.000070222358	450.0000000263
+330	38	0.000070247438	450.00000002632
+330	38	0.000070273876	450.00000002634
+330	38	0.000070298322	450.00000002636
+330	38	0.000070323571	450.00000002638
+330	38	0.000070348513	450.00000002639
+330	38	0.000070373733	450.00000002641
+330	38	0.000070397225	450.00000002643
+330	38	0.000070420937	450.00000002645
+330	38	0.000070446397	450.00000002647
+330	38	0.00007047319	450.00000002649
+330	38	0.00007049771	450.00000002651
+330	38	0.000070522795	450.00000002653
+330	38	0.000070549587	450.00000002655
+330	38	0.000070576099	450.00000002657
+330	38	0.000070601624	450.00000002658
+330	38	0.00007062662	450.0000000266
+330	38	0.000070652144	450.00000002662
+330	38	0.00007067797	450.00000002664
+330	38	0.000070703862	450.00000002666
+330	38	0.000070731297	450.00000002668
+330	38	0.000070761744	450.00000002671
+330	38	0.00007079585	450.00000002673
+330	38	0.000070823868	450.00000002675
+330	38	0.000070849317	450.00000002677
+330	38	0.000070873505	450.00000002679
+330	38	0.00007090174	450.00000002681
+330	38	0.000070930247	450.00000002683
+330	38	0.00007095712	450.00000002685
+330	38	0.000070981325	450.00000002687
+330	39	0.000071007295	450.00000002689
+330	39	0.000071052821	450.00000002693
+330	39	0.000071094128	450.00000002696
+330	39	0.000071137322	450.00000002699
+330	39	0.000071176967	450.00000002702
+330	39	0.000071217464	450.00000002705
+330	39	0.000071255548	450.00000002708
+330	39	0.000071293105	450.00000002711
+330	39	0.000071332912	450.00000002714
+330	39	0.000071369847	450.00000002717
+330	39	0.000071409431	450.0000000272
+330	39	0.000071452532	450.00000002723
+330	39	0.000071492849	450.00000002726
+330	39	0.000071530671	450.00000002729
+330	41	0.000071571342	450.00000002732
+330	41	0.000074808836	450.00000002985
+330	41	0.000078235363	450.00000003264
+330	44	0.000125000692	450.00000008333
+330	58	0.000135537652	450.00000009798
+330	61	0.000158205291	450.00000013349
+330	67	0.000170139003	450.00000015439
+330	75	0.000320139003	450.00000054661
+330	78	0.00035301704	450.00000066465
+330	80	0.000374139003	450.00000074656
+330	95	0.000384740368	450.00000078947
+330	104	0.000419341738	450.00000093785
+330	108	0.000423702689	450.00000095746
+330	112	0.000508740368	450.00000138036
+330	112	0.000509128979	450.00000138247
+330	118	0.000563341747	450.00000169255
+330	132	0.000574278008	450.00000175891
+330	135	0.000583148992	450.00000181367
+330	140	0.0006092787	450.00000197984
+330	149	0.000939815646	450.00000471069
+330	156	0.000959815679	450.00000491331
+330	161	0.000994242246	450.00000527209
+330	162	0.000994417057	450.00000527395
+330	169	0.001014416949	450.00000548822
+330	174	0.001066614061	450.00000606755
+330	179	0.001447815679	450.00001117957
+330	179	0.001448188985	450.00001118534
+330	182	0.001498381021	450.00001197411
+330	185	0.001502416913	450.0000120387
+330	198	0.001513353375	450.0000122146
+330	206	0.001548354067	450.00001278613
+330	211	0.001582901036	450.00001336307
+330	215	0.001658890986	450.0000146769
+330	215	0.001659282238	450.00001468383
+330	222	0.001698891073	450.00001539323
+330	228	0.00171349245	450.00001565897
+330	230	0.00171432757	450.00001567423
+330	234	0.001848520442	450.00001822415
+330	237	0.001853492289	450.00001832231
+330	245	0.002206891073	450.0000259753
+330	248	0.002245952228	450.00002690294
+330	252	0.002306890986	450.00002838264
+330	260	0.002361492251	450.00002974211
+330	262	0.002361492498	450.00002974212
+330	267	0.002380899427	450.00003023297
+330	275	0.002634891073	450.00003702747
+330	275	0.002635271418	450.00003703816
+330	278	0.002692032465	450.00003865087
+330	281	0.002789492219	450.00004150009
+330	294	0.002800428804	450.00004182614
+330	302	0.002835429496	450.00004287819
+330	307	0.002862173165	450.00004369085
+330	311	0.002944428804	450.00004623819
+330	311	0.002945041828	450.00004625744
+330	314	0.003033426448	450.0000490756
+330	317	0.003131429496	450.00005229787
+331	0	0	300
+331	35	0.00007	299.9972
+331	38	0.000070012398	299.99719950408
+331	38	0.000070071618	299.99719713528
+331	38	0.00007009618	299.9971961528
+331	38	0.000070123176	299.99719507296
+331	38	0.000070147081	299.99719411676
+331	38	0.000070171615	299.9971931354
+331	38	0.000070198569	299.99719205724
+331	38	0.000070222358	299.99719110568
+331	38	0.000070247438	299.99719010248
+331	38	0.000070273876	299.99718904496
+331	38	0.000070298322	299.99718806712
+331	38	0.000070323571	299.99718705716
+331	38	0.000070348513	299.99718605948
+331	38	0.000070373733	299.99718505068
+331	38	0.000070397225	299.997184111
+331	38	0.000070420937	299.99718316252
+331	38	0.000070446397	299.99718214412
+331	38	0.00007047319	299.9971810724
+331	38	0.00007049771	299.9971800916
+331	38	0.000070522795	299.9971790882
+331	38	0.000070549587	299.99717801652
+331	38	0.000070576099	299.99717695604
+331	38	0.000070601624	299.99717593504
+331	38	0.00007062662	299.9971749352
+331	38	0.000070652144	299.99717391424
+331	38	0.00007067797	299.9971728812
+331	38	0.000070703862	299.99717184552
+331	38	0.000070731297	299.99717074812
+331	38	0.000070761744	299.99716953024
+331	38	0.00007079585	299.997168166
+331	38	0.000070823868	299.99716704528
+331	38	0.000070849317	299.99716602732
+331	38	0.000070873505	299.9971650598
+331	38	0.00007090174	299.9971639304
+331	38	0.000070930247	299.99716279012
+331	38	0.00007095712	299.9971617152
+331	38	0.000070981325	299.997160747
+331	39	0.000071007295	299.9971597082
+331	39	0.000071052821	299.99715788716
+331	39	0.000071094128	299.99715623488
+331	39	0.000071137322	299.99715450712
+331	39	0.000071176967	299.99715292132
+331	39	0.000071217464	299.99715130144
+331	39	0.000071255548	299.99714977808
+331	39	0.000071293105	299.9971482758
+331	39	0.000071332912	299.99714668352
+331	39	0.000071369847	299.99714520612
+331	39	0.000071409431	299.99714362276
+331	39	0.000071452532	299.99714189872
+331	39	0.000071492849	299.99714028604
+331	39	0.000071530671	299.99713877316
+331	41	0.000071571342	299.99713714632
+331	41	0.000074808836	299.99700764656
+331	41	0.000078235363	299.99687058548
+331	44	0.000125000692	299.99499997232
+331	58	0.000135537652	299.99457849392
+331	61	0.000158205291	299.99367178836
+331	67	0.000170139003	299.99319443988
+331	75	0.000320139003	299.9871944399
+331	78	0.00035301704	299.98587931842
+331	80	0.000374139003	299.9850344399
+331	95	0.000384740368	299.98461038531
+331	104	0.000419341738	299.98322633051
+331	108	0.000423702689	299.98305189248
+331	112	0.000508740368	299.97965038534
+331	112	0.000509128979	299.9796348409
+331	118	0.000563341747	299.9774663302
+331	132	0.000574278008	299.97702887977
+331	135	0.000583148992	299.97667404041
+331	140	0.0006092787	299.97562885211
+331	149	0.000939815646	299.96240737455
+331	156	0.000959815679	299.96160737326
+331	161	0.000994242246	299.96023031063
+331	162	0.000994417057	299.96022331819
+331	169	0.001014416949	299.95942332253
+331	174	0.001066614061	299.95733543814
+331	179	0.001447815679	299.94208737428
+331	179	0.001448188985	299.94207244204
+331	182	0.001498381021	299.94006476075
+331	185	0.001502416913	299.93990332509
+331	198	0.001513353375	299.93946586664
+331	206	0.001548354067	299.93806583908
+331	211	0.001582901036	299.93668396044
+331	215	0.001658890986	299.93364436272
+331	215	0.001659282238	299.93362871265
+331	222	0.001698891073	299.9320443594
+331	228	0.00171349245	299.93146030439
+331	230	0.00171432757	299.93142689959
+331	234	0.001848520442	299.92605918531
+331	237	0.001853492289	299.92586031146
+331	245	0.002206891073	299.91172436218
+331	248	0.002245952228	299.91016191625
+331	252	0.002306890986	299.90772436638
+331	260	0.002361492251	299.9055403162
+331	262	0.002361492498	299.90554030632
+331	267	0.002380899427	299.90476402932
+331	275	0.002634891073	299.89460436575
+331	275	0.002635271418	299.89458915196
+331	278	0.002692032465	299.89231871065
+331	281	0.002789492219	299.88842032153
+331	294	0.002800428804	299.88798285825
+331	302	0.002835429496	299.88658283097
+331	307	0.002862173165	299.88551308452
+331	311	0.002944428804	299.88222285994
+331	311	0.002945041828	299.88219833899
+331	314	0.003033426448	299.87866295531
+331	317	0.003131429496	299.87474283472
+332	0	0	0
+332	35	0.00007	0
+332	38	0.000070012398	0
+332	38	0.000070071618	0
+332	38	0.00007009618	0
+332	38	0.000070123176	0
+332	38	0.000070147081	0
+332	38	0.000070171615	0
+332	38	0.000070198569	0
+332	38	0.000070222358	0
+332	38	0.000070247438	0
+332	38	0.000070273876	0
+332	38	0.000070298322	0
+332	38	0.000070323571	0
+332	38	0.000070348513	0
+332	38	0.000070373733	0
+332	38	0.000070397225	0
+332	38	0.000070420937	0
+332	38	0.000070446397	0
+332	38	0.00007047319	0
+332	38	0.00007049771	0
+332	38	0.000070522795	0
+332	38	0.000070549587	0
+332	38	0.000070576099	0
+332	38	0.000070601624	0
+332	38	0.00007062662	0
+332	38	0.000070652144	0
+332	38	0.00007067797	0
+332	38	0.000070703862	0
+332	38	0.000070731297	0
+332	38	0.000070761744	0
+332	38	0.00007079585	0
+332	38	0.000070823868	0
+332	38	0.000070849317	0
+332	38	0.000070873505	0
+332	38	0.00007090174	0
+332	38	0.000070930247	0
+332	38	0.00007095712	0
+332	38	0.000070981325	0
+332	39	0.000071007295	0
+332	39	0.000071052821	0
+332	39	0.000071094128	0
+332	39	0.000071137322	0
+332	39	0.000071176967	0
+332	39	0.000071217464	0
+332	39	0.000071255548	0
+332	39	0.000071293105	0
+332	39	0.000071332912	0
+332	39	0.000071369847	0
+332	39	0.000071409431	0
+332	39	0.000071452532	0
+332	39	0.000071492849	0
+332	39	0.000071530671	0
+332	41	0.000071571342	0
+332	41	0.000074808836	0
+332	41	0.000078235363	0
+332	44	0.000125000692	0
+332	58	0.000135537652	0
+332	61	0.000158205291	0
+332	67	0.000170139003	0
+332	75	0.000320139003	0
+332	78	0.00035301704	0
+332	80	0.000374139003	0
+332	95	0.000384740368	0
+332	104	0.000419341738	0
+332	108	0.000423702689	0
+332	112	0.000508740368	0
+332	112	0.000509128979	0
+332	118	0.000563341747	0
+332	132	0.000574278008	0
+332	135	0.000583148992	0
+332	140	0.0006092787	0
+332	149	0.000939815646	0
+332	156	0.000959815679	0
+332	161	0.000994242246	0
+332	162	0.000994417057	0
+332	169	0.001014416949	0
+332	174	0.001066614061	0
+332	179	0.001447815679	0
+332	179	0.001448188985	0
+332	182	0.001498381021	0
+332	185	0.001502416913	0
+332	198	0.001513353375	0
+332	206	0.001548354067	0
+332	211	0.001582901036	0
+332	215	0.001658890986	0
+332	215	0.001659282238	0
+332	222	0.001698891073	0
+332	228	0.00171349245	0
+332	230	0.00171432757	0
+332	234	0.001848520442	0
+332	237	0.001853492289	0
+332	245	0.002206891073	0
+332	248	0.002245952228	0
+332	252	0.002306890986	0
+332	260	0.002361492251	0
+332	262	0.002361492498	0
+332	267	0.002380899427	0
+332	275	0.002634891073	0
+332	275	0.002635271418	0
+332	278	0.002692032465	0
+332	281	0.002789492219	0
+332	294	0.002800428804	0
+332	302	0.002835429496	0
+332	307	0.002862173165	0
+332	311	0.002944428804	0
+332	311	0.002945041828	0
+332	314	0.003033426448	0
+332	317	0.003131429496	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	53	0.000125537652	1
+337	90	0.000374740368	2
+337	110	0.000508740368	1
+337	110	0.000508740368	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	53	0.000125537652	640
+338	90	0.000374740368	1280
+338	110	0.000508740368	640
+338	110	0.000508740368	0
+339	110	0.000508740368	0.000383202716
+339	110	0.000508740368	0.000134
+340	53	0.000125537652	640
+340	90	0.000374740368	640
+342	110	0.000508740368	640
+342	110	0.000508740368	640
+348	143	0.000609815646	0.000101075278
+349	0	0	0
+349	0	0	0
+349	110	0.000508740368	1
+349	110	0.000508740368	2
+349	143	0.000609815646	1
+350	53	0.000125537652	7
+350	143	0.000609815646	14
+350	173	0.001048815646	24
+350	234	0.001767890986	25
+350	270	0.002415890986	72
+351	0	0	0
+351	0	0	0
+351	53	0.000125537652	1
+351	57	0.000135537652	0
+351	65	0.000169537652	1
+351	77	0.000320740368	0
+351	83	0.000374740368	1
+351	94	0.000384740368	0
+351	102	0.000418740368	1
+351	109	0.000508740368	0
+351	143	0.000609815646	1
+351	146	0.000939815646	0
+351	173	0.001048815646	1
+351	200	0.001514890986	0
+351	208	0.001548890986	1
+351	212	0.001658890986	0
+351	234	0.001767890986	1
+351	249	0.002306890986	0
+351	270	0.002415890986	1
+351	296	0.002801966377	0
+351	304	0.002835966377	1
+351	313	0.002945966373	0
+351	319	0.003131966373	1
+352	0	0	0
+352	0	0	0
+352	40	0.000071537652	0
+352	40	0.000071537652	0
+352	46	0.000125537652	0
+352	46	0.000125537652	0
+352	53	0.000125537652	0
+352	53	0.000125537652	2
+352	57	0.000135537652	2
+352	57	0.000135537652	1
+352	65	0.000169537652	1
+352	65	0.000169537652	2
+352	77	0.000320740368	2
+352	77	0.000320740368	1
+352	83	0.000374740368	1
+352	83	0.000374740368	2
+352	94	0.000384740368	2
+352	94	0.000384740368	1
+352	102	0.000418740368	1
+352	102	0.000418740368	2
+352	109	0.000508740368	2
+352	109	0.000508740368	0
+352	111	0.000508740368	0
+352	111	0.000508740368	0
+352	142	0.000609815646	0
+352	142	0.000609815646	0
+352	143	0.000609815646	0
+352	143	0.000609815646	2
+352	146	0.000939815646	2
+352	146	0.000939815646	0
+352	148	0.000939815646	0
+352	148	0.000939815646	0
+352	172	0.001037815646	0
+352	172	0.001037815646	0
+352	173	0.001048815646	0
+352	173	0.001048815646	2
+352	200	0.001514890986	2
+352	200	0.001514890986	1
+352	208	0.001548890986	1
+352	208	0.001548890986	2
+352	212	0.001658890986	2
+352	212	0.001658890986	0
+352	214	0.001658890986	0
+352	214	0.001658890986	0
+352	233	0.001756890986	0
+352	233	0.001756890986	0
+352	234	0.001767890986	0
+352	234	0.001767890986	2
+352	249	0.002306890986	2
+352	249	0.002306890986	0
+352	251	0.002306890986	0
+352	251	0.002306890986	0
+352	268	0.002404890986	0
+352	268	0.002404890986	0
+352	270	0.002415890986	0
+352	270	0.002415890986	2
+352	296	0.002801966377	2
+352	296	0.002801966377	1
+352	304	0.002835966377	1
+352	304	0.002835966377	2
+352	313	0.002945966373	2
+352	313	0.002945966373	1
+352	319	0.003131966373	1
+352	319	0.003131966373	2
+354	0	0	31
+354	173	0.001048815646	63
+354	234	0.001767890986	127
+354	270	0.002415890986	255
+355	64	0.000169537652	14
+355	101	0.000418740368	14
+355	116	0.000562740368	80
+355	160	0.000993815646	80
+355	226	0.001712890986	80
+355	256	0.002360890986	80
+356	64	0.000169537652	14
+356	101	0.000418740368	14
+356	116	0.000562740368	80
+356	160	0.000993815646	80
+356	226	0.001712890986	80
+356	256	0.002360890986	80
+359	226	0.001712890986	80
+359	256	0.002360890986	80
+360	64	0.000169537652	14
+360	101	0.000418740368	14
+360	116	0.000562740368	80
+360	160	0.000993815646	80
+361	47	0.000125537652	80
+361	84	0.000374740368	80
+361	143	0.000609815646	14
+361	320	0.003131966373	468
+362	47	0.000125537652	80
+362	84	0.000374740368	80
+362	143	0.000609815646	14
+362	320	0.003131966373	468
+366	47	0.000125537652	80
+366	84	0.000374740368	80
+366	143	0.000609815646	14
+366	320	0.003131966373	468
+367	209	0.001548890986	14
+367	305	0.002835966377	14
+368	209	0.001548890986	14
+368	305	0.002835966377	14
+371	0	0	0
+371	0	0	0
+371	110	0.000508740368	1
+371	143	0.000609815646	0
+371	147	0.000939815646	1
+371	173	0.001048815646	0
+371	213	0.001658890986	1
+371	234	0.001767890986	0
+371	250	0.002306890986	1
+371	270	0.002415890986	0
+372	47	0.000125537652	24000000
+372	84	0.000374740368	24000000
+372	110	0.000508740368	24000000
+372	147	0.000939815646	24000000
+372	213	0.001658890986	24000000
+372	250	0.002306890986	24000000
+372	320	0.003131966373	24000000
+373	116	0.000562740368	0
+373	116	0.000562740368	4.4e-05
+373	136	0.000606740368	0
+373	160	0.000993815646	0
+373	160	0.000993815646	4.4e-05
+373	172	0.001037815646	0
+373	226	0.001712890986	0
+373	226	0.001712890986	4.4e-05
+373	233	0.001756890986	0
+373	256	0.002360890986	0
+373	256	0.002360890986	4.4e-05
+373	268	0.002404890986	0
+374	47	0.000125537652	52
+374	84	0.000374740368	52
+374	320	0.003131966373	440
+375	56	0.000135537652	14
+375	93	0.000384740368	14
+375	110	0.000508740368	80
+375	147	0.000939815646	80
+375	213	0.001658890986	80
+375	250	0.002306890986	80
+376	53	0.000125537652	52
+376	90	0.000374740368	52
+377	47	0.000125537652	80
+377	84	0.000374740368	80
+377	143	0.000609815646	14
+377	209	0.001548890986	14
+377	305	0.002835966377	14
+377	320	0.003131966373	468
+378	209	0.001548890986	14
+378	305	0.002835966377	14
+380	209	0.001548890986	14
+380	305	0.002835966377	14
+385	0	0	0
+385	0	0	0
+385	0	0	2
+385	57	0.000135537652	3
+385	65	0.000169537652	2
+385	94	0.000384740368	3
+385	102	0.000418740368	2
+385	111	0.000508740368	3
+385	117	0.000562740368	2
+385	148	0.000939815646	3
+385	161	0.000993815646	2
+385	214	0.001658890986	3
+385	227	0.001712890986	2
+385	251	0.002306890986	3
+385	257	0.002360890986	2
+386	0	0	1
+386	40	0.000071537652	3
+386	46	0.000125537652	1
+386	57	0.000135537652	0
+386	65	0.000169537652	1
+386	77	0.000320740368	3
+386	83	0.000374740368	1
+386	94	0.000384740368	0
+386	102	0.000418740368	1
+386	111	0.000508740368	0
+386	117	0.000562740368	1
+386	134	0.000575815646	3
+386	142	0.000609815646	1
+386	148	0.000939815646	0
+386	161	0.000993815646	1
+386	200	0.001514890986	3
+386	208	0.001548890986	1
+386	214	0.001658890986	0
+386	227	0.001712890986	1
+386	251	0.002306890986	0
+386	257	0.002360890986	1
+386	296	0.002801966377	3
+386	304	0.002835966377	1
+386	313	0.002945966373	3
+386	319	0.003131966373	1
+387	57	0.000135537652	1
+387	58	0.000135537652	2
+387	64	0.000169537652	1
+387	65	0.000169537652	0
+387	94	0.000384740368	1
+387	95	0.000384740368	2
+387	101	0.000418740368	1
+387	102	0.000418740368	0
+387	111	0.000508740368	1
+387	112	0.000508740368	2
+387	116	0.000562740368	1
+387	117	0.000562740368	0
+387	148	0.000939815646	1
+387	149	0.000939815646	2
+387	160	0.000993815646	1
+387	161	0.000993815646	0
+387	214	0.001658890986	1
+387	215	0.001658890986	2
+387	226	0.001712890986	1
+387	227	0.001712890986	0
+387	251	0.002306890986	1
+387	252	0.002306890986	2
+387	256	0.002360890986	1
+387	257	0.002360890986	0
+388	0	0	0
+399	0	0	0
+400	0	0	0
+401	0	0	0
+410	0	0	0
+410	0	0	0
+415	0	0	0
+415	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+434	0	0	0
+434	0	0	0
+453	0	0	0
+454	0	0	0
+455	0	0	0
+462	192	0.001503353375	0
+463	192	0.001503353375	0
+474	192	0.001503353375	0
+520	50	0.000125537652	0
+520	87	0.000374740368	0
+521	50	0.000125537652	0
+521	87	0.000374740368	0
+532	50	0.000125537652	0
+532	87	0.000374740368	0
+545	16	0	7504
+546	16	0	7504
+548	16	0	0
+559	16	0	0
+573	125	0.000564278008	7504
+574	19	0	7504
+574	125	0.000564278008	7504
+575	19	0	7504
+575	125	0.000564278008	7536
+575	125	0.000564278008	7536
+576	125	0.000564278008	1
+577	19	0	0
+577	125	0.000564278008	32
+578	125	0.000564278008	31
+579	125	0.000564278008	1
+580	125	0.000564278008	392
+588	19	0	0
+588	125	0.000564278008	0
+590	125	0.000564278008	0
+603	21	0	7504
+604	21	0	7504
+606	21	0	0
+617	21	0	0
+631	50	0.000125537652	7504
+631	323	0.003131966373	7504
+632	50	0.000125537652	7504
+632	323	0.003131966373	7112
+633	50	0.000125537652	7505
+633	50	0.000125537652	7505
+633	323	0.003131966373	7505
+635	50	0.000125537652	1
+635	323	0.003131966373	393
+636	323	0.003131966373	1
+637	323	0.003131966373	32
+638	323	0.003131966373	0
+639	323	0.003131966373	0
+646	50	0.000125537652	0
+646	323	0.003131966373	0
+646	323	0.003131966373	392
+648	323	0.003131966373	392
+649	323	0.003131966373	1072
+650	323	0.003131966373	4294967295
+660	87	0.000374740368	7504
+661	87	0.000374740368	7504
+662	87	0.000374740368	7505
+662	87	0.000374740368	7505
+664	87	0.000374740368	1
+675	87	0.000374740368	0
+689	192	0.001503353375	7504
+690	192	0.001503353375	7504
+691	192	0.001503353375	7505
+691	192	0.001503353375	7505
+693	192	0.001503353375	1
+704	192	0.001503353375	0
 

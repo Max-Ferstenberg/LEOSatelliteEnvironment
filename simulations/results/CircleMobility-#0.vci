@@ -1,62 +1,24 @@
-file 336484 1737395524                                          
+file 210760 1737059180                                          
 version 3
-run General-0-20250120-17:40:49-27704
-attr configname General
-attr datetime 20250120-17:40:49
-attr datetimef 20250120-174049
-attr experiment General
+run CircleMobility-0-20250116-20:26:04-4792
+attr configname CircleMobility
+attr datetime 20250116-20:26:04
+attr datetimef 20250116-202604
+attr experiment CircleMobility
 attr inifile SatelliteEnvironment.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network leosatelliteenvironment.SatelliteNetwork
-attr processid 27704
+attr processid 4792
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
-config network leosatelliteenvironment.SatelliteNetwork
-config *.*.ipv4.arp.typename GlobalArp
-config *.satellite1.typename SatelliteNode
-config *.satellite2.typename SatelliteNode
-config *.userTerminal.typename UserTerminal
-config *.groundStation.typename GroundStation
-config **.routingTable.debug true
-config *.configurator.optimizeRoutes false
-config *.satellite2.wlan[0].typename Ieee80211Interface
-config *.satellite1.wlan[0].typename Ieee80211Interface
-config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
-config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
-config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
-config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
-config *.userTerminal.wlan[0].radio.maxTransmissionPower 25W
-config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
-config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
-config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
-config *.groundStation.wlan[0].radio.antenna.minGain -10dB
-config *.groundStation.wlan[0].radio.transmitter.power 25mW
-config **.wlan[*].typename Ieee80211Interface
-config **.wlan[*].dataRate 10Mbps
-config *.visualizer.*.radioVisualizer.displayRadios true
-config *.visualizer.*.radioVisualizer.dislayAntennaLobes true
-config *.visualizer.*.dataLinkVisualizer.displayLinks true
-config *.visualizer.*.transportConnectionVisualizer.displayConnections true
-config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.mediumLimitCache.maxTransmissionPower "50 W"
-config *.radioMedium.mediumLimitCache.maxCommunicationRange "175 m"
-config **.debug true
-config **.wlan[*].radio.transmitter.debug true
-config **.wlan[*].radio.receiver.debug true
-config **.constraintAreaMinX 0m
-config **.constraintAreaMinY 0m
-config **.constraintAreaMinZ 0m
-config **.constraintAreaMaxX 1000m
-config **.constraintAreaMaxY 600m
-config **.constraintAreaMaxZ 0m
-config **.updateInterval 0.1s
+config extends "SatelliteNetwork, Area, Update"
 config *.satellite1.mobility.typename CircleMobility
 config *.satellite1.mobility.cx 600m
 config *.satellite1.mobility.cy 300m
@@ -69,6 +31,21 @@ config *.satellite2.mobility.cy 300m
 config *.satellite2.mobility.r 150m
 config *.satellite2.mobility.startAngle 180deg
 config *.satellite2.mobility.speed 40mps
+config *.visualizer.*.mobilityVisualizer.displayMobilityTrajectories true
+config *.visualizer.*.mobilityVisualizer.trajectoryLineColor "\"blue\""
+config *.visualizer.*.mobilityVisualizer.trajectoryLineWidth 2
+config *.*.ipv4.arp.typename GlobalArp
+config *.userTerminal.ipv4.address "\"192.168.1.1\""
+config *.userTerminal.ipv4.netmask "\"255.255.255.248\""
+config *.satellite1.ipv4.address "\"192.168.1.2\""
+config *.satellite1.ipv4.netmask "\"255.255.255.248\""
+config *.satellite2.ipv4.address "\"192.168.1.4\""
+config *.satellite2.ipv4.netmask "\"255.255.255.248\""
+config *.groundStation.ipv4.address "\"192.168.1.3\""
+config *.groundStation.ipv4.netmask "\"255.255.255.248\""
+config *.configurator.config "xmldoc(\"SatelliteRoutingTable.xml\")"
+config **.routingTable.debug true
+config *.configurator.optimizeRoutes false
 config *.userTerminal.numApps 2
 config *.userTerminal.app[0].typename TcpClientApp
 config *.userTerminal.app[0].io.connectAddress "\"192.168.1.2\""
@@ -133,6 +110,38 @@ config *.satellite2.app[1].sink.tokenGenerator[0].numTokensPerPacket "intuniform
 config *.satellite2.app[1].sink.tokenGenerator[1].numTokensPerPacket "intuniform(5, 10)"
 config *.satellite2.app[1].source.provider[0].packetLength "intuniform(100B, 1000B)"
 config *.satellite2.app[1].source.provider[0].providingInterval "uniform(0s, 0.2s)"
+config *.satellite2.wlan[0].typename Ieee80211Interface
+config *.satellite1.wlan[0].typename Ieee80211Interface
+config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
+config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
+config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
+config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
+config *.userTerminal.wlan[0].radio.transmitter.power 25mW
+config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
+config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
+config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
+config *.groundStation.wlan[0].radio.antenna.minGain -10dB
+config *.groundStation.wlan[0].radio.transmitter.power 25mW
+config *.radioMedium.transmissionPathFilter "\"*.userTerminal wlan[0] <-> *.satellite1 wlan[0]; *.satellite1 wlan[0] <-> *.groundStation wlan[0]; *.satellite1 wlan[0] <-> *.satellite2 wlan[0]\""
+config **.wlan[*].typename Ieee80211Interface
+config **.wlan[*].dataRate 10Mbps
+config *.visualizer.*.radioVisualizer.displayRadios true
+config *.visualizer.*.radioVisualizer.displayAntennaLobes true
+config *.visualizer.*.dataLinkVisualizer.displayLinks true
+config *.visualizer.*.transportConnectionVisualizer.displayConnections true
+config *.radioMedium.typename Ieee80211ScalarRadioMedium
+config *.radioMedium.datapath "\"default\""
+config **.debug true
+config **.wlan[*].radio.transmitter.debug true
+config **.wlan[*].radio.receiver.debug true
+config **.constraintAreaMinX 0m
+config **.constraintAreaMinY 0m
+config **.constraintAreaMinZ 0m
+config **.constraintAreaMaxX 1000m
+config **.constraintAreaMaxY 600m
+config **.constraintAreaMaxZ 0m
+config **.updateInterval 0.1s
+config network leosatelliteenvironment.SatelliteNetwork
 
 vector 0 SatelliteNetwork.userTerminal.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
 attr interpolationmode none
@@ -3121,105 +3130,485 @@ attr recordingmode vector
 vector 629 SatelliteNetwork.satellite2.tcp.conn-9 markingProb:vector ETV
 attr interpolationmode sample-hold
 attr recordingmode vector
-559	148113 67 16 1851 0 45 5 0 0 0 0
-548	148180 67 16 1851 0 45 5 0 0 0 0
-546	148247 82 16 1851 0 45 5 7504 7504 37520 281550080
-545	148329 82 16 1851 0 45 5 7504 7504 37520 281550080
-588	148411 67 19 1852 0 45 5 0 0 0 0
-577	148478 67 19 1852 0 45 5 0 0 0 0
-575	148545 82 19 1852 0 45 5 7504 7504 37520 281550080
-574	148627 82 19 1852 0 45 5 7504 7504 37520 281550080
-617	148709 67 21 1853 0 45 5 0 0 0 0
-606	148776 67 21 1853 0 45 5 0 0 0 0
-604	148843 82 21 1853 0 45 5 7504 7504 37520 281550080
-603	148925 82 21 1853 0 45 5 7504 7504 37520 281550080
-4	149007 45 0 0 0 0 5 0 0 0 0
-5	149052 45 0 0 0 0 5 0 0 0 0
-16	149097 20 0 0 0 0 2 0 0 0 0
-18	149117 20 0 0 0 0 2 0 0 0 0
-19	149137 20 0 0 0 0 2 0 0 0 0
-21	149157 11 0 0 0 0 1 31 31 31 961
-38	149168 20 0 0 0 0 2 0 0 0 0
-52	149188 30 0 0 0 0 3 0 2 2 4
-53	149218 10 0 0 0 0 1 1 1 1 1
-55	149228 10 0 0 0 0 1 0 0 0 0
-62	149238 2953 23 3088 0 75.113567281742 107 44 528 35305 13412871
-64	152191 2886 18 3087 0 75.113567281742 102 112 508 33045 12040591
-66	155077 10 0 0 0 0 1 0 0 0 0
-67	155087 10 0 0 0 0 1 0 0 0 0
-68	155097 10 0 0 0 0 1 0 0 0 0
-69	155107 3063 0 3091 0 75.179884089623 105 800 3976 257048 725385664
-70	158170 11926 55 3091 0.1 75.1 751 0 39760 2548560 72058080000
-79	170096 2984 0 3085 0 75.113567281742 102 832 4000 257832 737177536
-80	173080 11922 49 3085 0.1 75.1 751 0 40000 2560400 73396627200
-89	185002 2885 2 3086 0 75.113567281742 102 104 500 32229 11518399
-95	187887 50 0 0 0 0 5 0 0 0 0
-96	187937 50 0 0 0 0 5 0 0 0 0
-107	187987 22 0 0 0 0 2 0 0 0 0
-109	188009 22 0 0 0 0 2 0 0 0 0
-110	188031 22 0 0 0 0 2 0 0 0 0
-112	188053 12 0 0 0 0 1 31 31 31 961
-129	188065 22 0 0 0 0 2 0 0 0 0
-143	188087 33 0 0 0 0 3 0 2 2 4
-144	188120 11 0 0 0 0 1 1 1 1 1
-146	188131 11 0 0 0 0 1 0 0 0 0
-153	188142 72 25 1857 0 45 5 44 44 220 9680
-157	188214 11 0 0 0 0 1 0 0 0 0
-158	188225 11 0 0 0 0 1 0 0 0 0
-159	188236 11 0 0 0 0 1 0 0 0 0
-168	188247 22 0 0 0 0 2 0 0 0 0
-173	188269 22 0 0 0 0 2 0 0 0 0
-177	188291 55 0 0 0 0 5 0 0 0 0
-178	188346 55 0 0 0 0 5 0 0 0 0
-192	188401 22 0 0 0 0 2 0 0 0 0
-199	188423 3058 0 3043 0 74.237017576465 101 896 3952 248728 700370368
-200	191481 12522 44 3043 0.1 74.2 742 0 39520 2478320 69956755200
-209	204003 22780 0 3083 0 75.1 754 450.0001260881 750 457992.91568006 286806009.13389
-210	226783 22793 0 3083 0 75.1 754 150.00011539538 449.9995172701 229792.17031255 78325791.869714
-211	249576 12322 0 3083 0 75.1 754 0 0 0 0
-216	261898 55 0 0 0 0 5 0 0 0 0
-217	261953 55 0 0 0 0 5 0 0 0 0
-228	262008 22 0 0 0 0 2 0 0 0 0
-230	262030 22 0 0 0 0 2 0 0 0 0
-231	262052 22 0 0 0 0 2 0 0 0 0
-233	262074 12 0 0 0 0 1 31 31 31 961
-250	262086 22 0 0 0 0 2 0 0 0 0
-264	262108 33 0 0 0 0 3 0 2 2 4
-265	262141 11 0 0 0 0 1 1 1 1 1
-267	262152 11 0 0 0 0 1 0 0 0 0
-274	262163 72 26 1858 0 45 5 44 44 220 9680
-278	262235 11 0 0 0 0 1 0 0 0 0
-279	262246 11 0 0 0 0 1 0 0 0 0
-280	262257 11 0 0 0 0 1 0 0 0 0
-289	262268 22 0 0 0 0 2 0 0 0 0
-294	262290 22 0 0 0 0 2 0 0 0 0
-298	262312 55 0 0 0 0 5 0 0 0 0
-299	262367 55 0 0 0 0 5 0 0 0 0
-313	262422 22 0 0 0 0 2 0 0 0 0
-320	262444 3024 0 3067 0 74.857150756171 100 816 3976 242848 675265536
-321	265468 12613 62 3067 0.1 74.8 748 0 39760 2411280 67230713600
-330	278081 22780 0 3084 0 75.1 754 450 749.9998739119 446807.08431994 273383011.50175
-331	300861 22792 0 3084 0 75.1 754 150.0004827299 449.99988460462 222607.82968745 74015187.494651
-332	323653 12322 0 3084 0 75.1 754 0 0 0 0
-337	335975 55 0 0 0 0 5 0 0 0 0
-338	336030 55 0 0 0 0 5 0 0 0 0
-349	336085 22 0 0 0 0 2 0 0 0 0
-351	336107 22 0 0 0 0 2 0 0 0 0
-352	336129 22 0 0 0 0 2 0 0 0 0
-354	336151 12 0 0 0 0 1 31 31 31 961
-371	336163 22 0 0 0 0 2 0 0 0 0
-385	336185 33 0 0 0 0 3 0 2 2 4
-386	336218 11 0 0 0 0 1 1 1 1 1
-388	336229 11 0 0 0 0 1 0 0 0 0
-399	336240 11 0 0 0 0 1 0 0 0 0
-400	336251 11 0 0 0 0 1 0 0 0 0
-401	336262 11 0 0 0 0 1 0 0 0 0
-410	336273 22 0 0 0 0 2 0 0 0 0
-415	336295 22 0 0 0 0 2 0 0 0 0
-419	336317 55 0 0 0 0 5 0 0 0 0
-420	336372 55 0 0 0 0 5 0 0 0 0
-434	336427 22 0 0 0 0 2 0 0 0 0
-453	336449 11 0 0 0 0 1 0 0 0 0
-454	336460 11 0 0 0 0 1 0 0 0 0
-455	336471 11 0 0 0 0 1 0 0 0 0
+vector 630 SatelliteNetwork.groundStation.tcp.conn-10 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 631 SatelliteNetwork.groundStation.tcp.conn-10 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 632 SatelliteNetwork.groundStation.tcp.conn-10 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 633 SatelliteNetwork.groundStation.tcp.conn-10 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 634 SatelliteNetwork.groundStation.tcp.conn-10 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 635 SatelliteNetwork.groundStation.tcp.conn-10 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 636 SatelliteNetwork.groundStation.tcp.conn-10 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 637 SatelliteNetwork.groundStation.tcp.conn-10 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 638 SatelliteNetwork.groundStation.tcp.conn-10 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 639 SatelliteNetwork.groundStation.tcp.conn-10 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 640 SatelliteNetwork.groundStation.tcp.conn-10 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 641 SatelliteNetwork.groundStation.tcp.conn-10 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 642 SatelliteNetwork.groundStation.tcp.conn-10 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 643 SatelliteNetwork.groundStation.tcp.conn-10 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 644 SatelliteNetwork.groundStation.tcp.conn-10 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 645 SatelliteNetwork.groundStation.tcp.conn-10 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 646 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 647 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 648 SatelliteNetwork.groundStation.tcp.conn-10 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 649 SatelliteNetwork.groundStation.tcp.conn-10 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 650 SatelliteNetwork.groundStation.tcp.conn-10 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 651 SatelliteNetwork.groundStation.tcp.conn-10 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 652 SatelliteNetwork.groundStation.tcp.conn-10 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 653 SatelliteNetwork.groundStation.tcp.conn-10 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 654 SatelliteNetwork.groundStation.tcp.conn-10 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 655 SatelliteNetwork.groundStation.tcp.conn-10 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 656 SatelliteNetwork.groundStation.tcp.conn-10 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 657 SatelliteNetwork.groundStation.tcp.conn-10 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 658 SatelliteNetwork.groundStation.tcp.conn-10 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 659 SatelliteNetwork.groundStation.tcp.conn-11 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 660 SatelliteNetwork.groundStation.tcp.conn-11 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 661 SatelliteNetwork.groundStation.tcp.conn-11 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 662 SatelliteNetwork.groundStation.tcp.conn-11 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 663 SatelliteNetwork.groundStation.tcp.conn-11 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 664 SatelliteNetwork.groundStation.tcp.conn-11 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 665 SatelliteNetwork.groundStation.tcp.conn-11 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 666 SatelliteNetwork.groundStation.tcp.conn-11 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 667 SatelliteNetwork.groundStation.tcp.conn-11 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 668 SatelliteNetwork.groundStation.tcp.conn-11 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 669 SatelliteNetwork.groundStation.tcp.conn-11 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 670 SatelliteNetwork.groundStation.tcp.conn-11 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 671 SatelliteNetwork.groundStation.tcp.conn-11 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 672 SatelliteNetwork.groundStation.tcp.conn-11 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 673 SatelliteNetwork.groundStation.tcp.conn-11 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 674 SatelliteNetwork.groundStation.tcp.conn-11 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 675 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 676 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 677 SatelliteNetwork.groundStation.tcp.conn-11 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 678 SatelliteNetwork.groundStation.tcp.conn-11 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 679 SatelliteNetwork.groundStation.tcp.conn-11 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 680 SatelliteNetwork.groundStation.tcp.conn-11 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 681 SatelliteNetwork.groundStation.tcp.conn-11 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 682 SatelliteNetwork.groundStation.tcp.conn-11 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 683 SatelliteNetwork.groundStation.tcp.conn-11 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 684 SatelliteNetwork.groundStation.tcp.conn-11 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 685 SatelliteNetwork.groundStation.tcp.conn-11 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 686 SatelliteNetwork.groundStation.tcp.conn-11 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 687 SatelliteNetwork.groundStation.tcp.conn-11 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 688 SatelliteNetwork.satellite1.tcp.conn-12 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 689 SatelliteNetwork.satellite1.tcp.conn-12 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 690 SatelliteNetwork.satellite1.tcp.conn-12 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 691 SatelliteNetwork.satellite1.tcp.conn-12 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 692 SatelliteNetwork.satellite1.tcp.conn-12 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 693 SatelliteNetwork.satellite1.tcp.conn-12 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 694 SatelliteNetwork.satellite1.tcp.conn-12 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 695 SatelliteNetwork.satellite1.tcp.conn-12 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 696 SatelliteNetwork.satellite1.tcp.conn-12 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 697 SatelliteNetwork.satellite1.tcp.conn-12 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 698 SatelliteNetwork.satellite1.tcp.conn-12 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 699 SatelliteNetwork.satellite1.tcp.conn-12 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 700 SatelliteNetwork.satellite1.tcp.conn-12 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 701 SatelliteNetwork.satellite1.tcp.conn-12 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 702 SatelliteNetwork.satellite1.tcp.conn-12 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 703 SatelliteNetwork.satellite1.tcp.conn-12 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 704 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 705 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 706 SatelliteNetwork.satellite1.tcp.conn-12 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 707 SatelliteNetwork.satellite1.tcp.conn-12 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 708 SatelliteNetwork.satellite1.tcp.conn-12 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 709 SatelliteNetwork.satellite1.tcp.conn-12 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 710 SatelliteNetwork.satellite1.tcp.conn-12 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 711 SatelliteNetwork.satellite1.tcp.conn-12 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 712 SatelliteNetwork.satellite1.tcp.conn-12 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 713 SatelliteNetwork.satellite1.tcp.conn-12 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 714 SatelliteNetwork.satellite1.tcp.conn-12 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 715 SatelliteNetwork.satellite1.tcp.conn-12 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 716 SatelliteNetwork.satellite1.tcp.conn-12 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+4	160703 113 0 154 0 0.000959815679 9 0 2 4 6
+5	160816 121 0 154 0 0.000959815679 9 0 3640 7280 22659200
+6	160937 74 154 154 0.000959815679 0.000959815679 2 0.000959815679 0.000959815679 0.001919631358 1.8424922753085e-06
+7	161011 25 31 32 0 0 2 640 3000 3640 9409600
+9	161036 53 154 154 0.000959815679 0.000959815679 2 640 3000 3640 9409600
+15	161089 75 211 307 0.001548891073 0.002835966539 2 0.000589075394 0.00187615086 0.002465226254 3.866951869295e-06
+16	161164 120 0 307 0 0.002835966539 6 0 2 4 6
+17	161284 114 31 271 0 0.002415891073 5 5 26 70 1240
+18	161398 499 0 272 0 0.002634891073 22 0 1 10 10
+19	161897 1528 0 314 0 0.002945966544 64 0 2 50 90
+21	163425 142 0 307 0 0.002835966539 6 31 127 346 26950
+22	163567 133 167 279 0.001013815679 0.002788891073 5 80 375 1285 434675
+23	163700 133 167 279 0.001013815679 0.002788891073 5 80 375 1285 434675
+26	163833 80 183 279 0.001501815679 0.002788891073 3 80 375 830 287650
+27	163913 53 167 235 0.001013815679 0.001852891073 2 80 375 455 147025
+28	163966 52 211 307 0.001548891073 0.002835966539 2 14 14 28 392
+29	164018 52 211 307 0.001548891073 0.002835966539 2 14 14 28 392
+33	164070 52 211 307 0.001548891073 0.002835966539 2 14 14 28 392
+34	164122 76 55 145 0.000125537657 0.000609815679 3 14 80 174 12996
+35	164198 76 55 145 0.000125537657 0.000609815679 3 14 80 174 12996
+38	164274 270 0 307 0 0.002835966539 12 0 1 5 5
+39	164544 160 154 273 0.000959815679 0.002634891073 5 24000000 24000000 120000000 2.88e+15
+40	164704 562 55 298 0.000125537657 0.002832891073 21 0 4.4e-05 0.000308 1.3552e-08
+42	165266 133 154 273 0.000959815679 0.002634891073 5 80 375 1285 434675
+43	165399 25 31 32 0 0 2 52 347 399 123113
+44	165424 128 55 307 0.000125537657 0.002835966539 5 14 80 202 13388
+45	165552 76 55 145 0.000125537657 0.000609815679 3 14 80 174 12996
+47	165628 76 55 145 0.000125537657 0.000609815679 3 14 80 174 12996
+52	165704 280 0 280 0 0.002788891073 13 0 3 27 69
+53	165984 531 0 314 0 0.002945966544 22 0 3 29 65
+54	166515 500 155 280 0.000959815679 0.002788891073 20 0 2 20 30
+55	167015 10 0 0 0 0 1 0 0 0 0
+64	167025 13 18 18 0 0 1 319 319 319 101761
+66	167038 10 0 0 0 0 1 0 0 0 0
+67	167048 10 0 0 0 0 1 0 0 0 0
+68	167058 10 0 0 0 0 1 0 0 0 0
+69	167068 13 0 0 0 0 1 3672 3672 3672 13483584
+79	167081 13 0 0 0 0 1 2488 2488 2488 6190144
+89	167094 12 2 2 0 0 1 311 311 311 96721
+95	167106 203 0 309 0 0.002944428804 12 0 3 10 20
+96	167309 219 0 309 0 0.002944428804 12 0 5120 16000 62296064
+97	167528 97 36 309 0.00007 0.002944428804 3 7e-05 0.002380150796 0.003891226225 7.746716203767e-06
+98	167625 95 33 291 0 0.002790428804 4 640 3744 5760 15378432
+100	167720 77 36 309 0.00007 0.002944428804 3 640 3744 5024 14836736
+106	167797 38 71 71 0.000171075303 0.000171075303 1 0.000101075303 0.000101075303 0.000101075303 1.0216216876542e-08
+107	167835 117 0 309 0 0.002944428804 6 0 2 4 6
+108	167952 39 33 129 0 0.000564278008 2 1 23 24 530
+109	167991 572 0 308 0 0.002944428804 24 0 1 11 11
+110	168563 1618 0 310 0 0.002944428804 66 0 2 64 108
+112	170181 12 0 0 0 0 1 31 31 31 961
+113	170193 129 42 315 0.000124 0.003130428804 5 14 468 590 226012
+114	170322 129 42 315 0.000124 0.003130428804 5 14 468 590 226012
+118	170451 129 42 315 0.000124 0.003130428804 5 14 468 590 226012
+119	170580 108 71 285 0.000171075303 0.002790428804 4 14 375 549 153621
+120	170688 108 71 285 0.000171075303 0.002790428804 4 14 375 549 153621
+123	170796 55 189 285 0.001503353375 0.002790428804 2 80 375 455 147025
+124	170851 53 71 122 0.000171075303 0.000564278008 2 14 80 94 6596
+125	170904 53 92 108 0.000375139695 0.000420278011 2 14 80 94 6596
+126	170957 53 92 108 0.000375139695 0.000420278011 2 14 80 94 6596
+129	171010 91 0 309 0 0.002944428804 5 0 1 2 2
+130	171101 157 36 309 0.00007 0.002944428804 5 24000000 24000000 120000000 2.88e+15
+131	171258 203 42 315 0.000124 0.003130428804 8 0 4.4e-05 0.000132 5.808e-09
+132	171461 82 122 285 0.000564278008 0.002790428804 3 52 347 451 125817
+133	171543 128 36 309 0.00007 0.002944428804 5 14 468 590 226012
+134	171671 95 33 291 0 0.002790428804 4 52 440 608 203104
+135	171766 243 71 285 0.000171075303 0.002790428804 9 14 375 1178 313642
+136	172009 135 92 267 0.000375139695 0.002362428791 5 14 375 629 160021
+137	172144 82 166 267 0.000995353273 0.002362428791 3 80 375 535 153425
+138	172226 53 92 108 0.000375139695 0.000420278011 2 14 80 94 6596
+143	172279 278 0 316 0 0.003130428804 13 0 3 27 69
+144	172557 771 0 316 0 0.003130428804 31 0 3 46 104
+145	173328 490 37 316 0.00007 0.003130428804 20 0 2 20 30
+146	173818 11 0 0 0 0 1 0 0 0 0
+156	173829 28 288 288 0.002790428804 0.002790428804 1 319 319 319 101761
+157	173857 11 0 0 0 0 1 0 0 0 0
+158	173868 37 0 288 0 0.002790428804 2 0 1 1 1
+159	173905 11 0 0 0 0 1 0 0 0 0
+168	173916 22 0 0 0 0 2 0 0 0 0
+173	173938 22 0 0 0 0 2 0 0 0 0
+177	173960 55 0 0 0 0 5 0 0 0 0
+178	174015 55 0 0 0 0 5 0 0 0 0
+192	174070 22 0 0 0 0 2 0 0 0 0
+199	174092 14 0 0 0 0 1 3136 3136 3136 9834496
+209	174106 4199 0 316 0 0.003130428804 108 749.99994773555 750 80999.999136537 60749998.704805
+210	178305 4172 0 316 0 0.003130428804 108 300 300.12521713762 32403.263285425 9721958.2302938
+211	182477 2707 0 316 0 0.003130428804 108 0 0 0 0
+216	185184 92 0 73 0 0.000320139003 7 0 1 1 1
+217	185276 94 0 73 0 0.000320139003 7 0 640 640 409600
+218	185370 38 73 73 0.000320139003 0.000320139003 1 0.000320139003 0.000320139003 0.000320139003 1.0248898124183e-07
+219	185408 14 34 34 0 0 1 640 640 640 409600
+221	185422 27 73 73 0.000320139003 0.000320139003 1 640 640 640 409600
+227	185449 38 105 105 0.000419341738 0.000419341738 1 9.9202735e-05 9.9202735e-05 9.9202735e-05 9.8411826314802e-09
+228	185487 73 0 105 0 0.000419341738 4 0 1 1 1
+229	185560 12 34 34 0 0 1 6 6 6 36
+230	185572 159 0 72 0 0.000320139003 8 0 1 3 3
+231	185731 1638 0 318 0 0.003131429496 66 0 2 16 28
+233	187369 12 0 0 0 0 1 31 31 31 961
+234	187381 26 79 79 0.000374139003 0.000374139003 1 80 80 80 6400
+235	187407 26 79 79 0.000374139003 0.000374139003 1 80 80 80 6400
+239	187433 26 79 79 0.000374139003 0.000374139003 1 80 80 80 6400
+240	187459 27 105 105 0.000419341738 0.000419341738 1 14 14 14 196
+241	187486 27 105 105 0.000419341738 0.000419341738 1 14 14 14 196
+245	187513 27 105 105 0.000419341738 0.000419341738 1 14 14 14 196
+246	187540 241 45 318 0.000125000692 0.003131429496 9 14 468 1139 379633
+247	187781 241 45 318 0.000125000692 0.003131429496 9 14 468 1139 379633
+250	188022 73 0 105 0 0.000419341738 4 0 1 1 1
+251	188095 32 73 73 0.000320139003 0.000320139003 1 24000000 24000000 24000000 5.76e+14
+252	188127 472 45 318 0.000125000692 0.003131429496 17 0 4.4e-05 0.000264 1.1616e-08
+254	188599 26 73 73 0.000320139003 0.000320139003 1 80 80 80 6400
+255	188625 13 34 34 0 0 1 52 52 52 2704
+256	188638 349 45 318 0.000125000692 0.003131429496 13 14 468 1688 533254
+257	188987 322 45 318 0.000125000692 0.003131429496 12 14 468 1674 533058
+258	189309 81 163 261 0.000994417057 0.002361492251 3 80 375 535 153425
+259	189390 241 45 318 0.000125000692 0.003131429496 9 14 468 1139 379633
+264	189631 83 0 80 0 0.000374139003 5 0 3 7 17
+265	189714 804 0 317 0 0.003131429496 32 0 3 60 144
+266	190518 100 74 80 0.000320139003 0.000374139003 4 0 2 4 6
+267	190618 11 0 0 0 0 1 0 0 0 0
+278	190629 11 0 0 0 0 1 0 0 0 0
+279	190640 11 0 0 0 0 1 0 0 0 0
+280	190651 11 0 0 0 0 1 0 0 0 0
+289	190662 22 0 0 0 0 2 0 0 0 0
+294	190684 22 0 0 0 0 2 0 0 0 0
+298	190706 55 0 0 0 0 5 0 0 0 0
+299	190761 55 0 0 0 0 5 0 0 0 0
+313	190816 22 0 0 0 0 2 0 0 0 0
+320	190838 14 0 0 0 0 1 1504 1504 1504 2262016
+330	190852 4242 0 317 0 0.003131429496 109 450 450.00005229787 49050.000893156 22072500.80384
+331	195094 4219 0 317 0 0.003131429496 109 299.87474283472 300 32696.642469318 9807985.7495375
+332	199313 2736 0 317 0 0.003131429496 109 0 0 0 0
+337	202049 157 0 110 0 0.000508740368 9 0 2 4 6
+338	202206 164 0 110 0 0.000508740368 9 0 1280 2560 2457600
+339	202370 72 110 110 0.000508740368 0.000508740368 2 0.000134 0.000383202716 0.000517202716 1.6480032154978e-07
+340	202442 54 53 90 0.000125537652 0.000374740368 2 640 640 1280 819200
+342	202496 56 110 110 0.000508740368 0.000508740368 2 640 640 1280 819200
+348	202552 39 143 143 0.000609815646 0.000609815646 1 0.000101075278 0.000101075278 0.000101075278 1.0216211822777e-08
+349	202591 100 0 143 0 0.000609815646 5 0 2 4 6
+350	202691 133 53 270 0.000125537652 0.002415890986 5 7 72 142 6630
+351	202824 562 0 319 0 0.003131966373 23 0 1 11 11
+352	203386 1618 0 319 0 0.003131966373 64 0 2 54 96
+354	205004 95 0 270 0 0.002415890986 4 31 255 476 86084
+355	205099 161 64 256 0.000169537652 0.002360890986 6 14 80 348 25992
+356	205260 161 64 256 0.000169537652 0.002360890986 6 14 80 348 25992
+359	205421 54 226 256 0.001712890986 0.002360890986 2 80 80 160 12800
+360	205475 107 64 160 0.000169537652 0.000993815646 4 14 80 188 13192
+361	205582 107 47 320 0.000125537652 0.003131966373 4 14 468 642 232020
+362	205689 107 47 320 0.000125537652 0.003131966373 4 14 468 642 232020
+366	205796 107 47 320 0.000125537652 0.003131966373 4 14 468 642 232020
+367	205903 54 209 305 0.001548890986 0.002835966377 2 14 14 28 392
+368	205957 54 209 305 0.001548890986 0.002835966377 2 14 14 28 392
+371	206011 230 0 270 0 0.002415890986 10 0 1 4 4
+372	206241 229 47 320 0.000125537652 0.003131966373 7 24000000 24000000 168000000 4.032e+15
+373	206470 336 116 268 0.000562740368 0.002404890986 12 0 4.4e-05 0.000176 7.744e-09
+374	206806 80 47 320 0.000125537652 0.003131966373 3 52 440 544 199008
+375	206886 160 56 250 0.000135537652 0.002306890986 6 14 80 348 25992
+376	207046 52 53 90 0.000125537652 0.000374740368 2 52 52 104 5408
+377	207098 161 47 320 0.000125537652 0.003131966373 6 14 468 670 232412
+378	207259 54 209 305 0.001548890986 0.002835966377 2 14 14 28 392
+380	207313 54 209 305 0.001548890986 0.002835966377 2 14 14 28 392
+385	207367 342 0 257 0 0.002360890986 15 0 3 32 82
+386	207709 628 0 319 0 0.003131966373 25 0 3 31 67
+387	208337 618 57 257 0.000135537652 0.002360890986 24 0 2 24 36
+388	208955 11 0 0 0 0 1 0 0 0 0
+399	208966 11 0 0 0 0 1 0 0 0 0
+400	208977 11 0 0 0 0 1 0 0 0 0
+401	208988 11 0 0 0 0 1 0 0 0 0
+410	208999 22 0 0 0 0 2 0 0 0 0
+415	209021 22 0 0 0 0 2 0 0 0 0
+419	209043 55 0 0 0 0 5 0 0 0 0
+420	209098 55 0 0 0 0 5 0 0 0 0
+434	209153 22 0 0 0 0 2 0 0 0 0
+453	209175 11 0 0 0 0 1 0 0 0 0
+454	209186 11 0 0 0 0 1 0 0 0 0
+455	209197 11 0 0 0 0 1 0 0 0 0
+462	209208 26 192 192 0.001503353375 0.001503353375 1 0 0 0 0
+463	209234 26 192 192 0.001503353375 0.001503353375 1 0 0 0 0
+474	209260 26 192 192 0.001503353375 0.001503353375 1 0 0 0 0
+520	209286 50 50 87 0.000125537652 0.000374740368 2 0 0 0 0
+521	209336 50 50 87 0.000125537652 0.000374740368 2 0 0 0 0
+532	209386 50 50 87 0.000125537652 0.000374740368 2 0 0 0 0
+545	209436 15 16 16 0 0 1 7504 7504 7504 56310016
+546	209451 15 16 16 0 0 1 7504 7504 7504 56310016
+548	209466 12 16 16 0 0 1 0 0 0 0
+559	209478 12 16 16 0 0 1 0 0 0 0
+573	209490 29 125 125 0.000564278008 0.000564278008 1 7504 7504 7504 56310016
+574	209519 44 19 125 0 0.000564278008 2 7504 7504 15008 112620032
+575	209563 73 19 125 0 0.000564278008 3 7504 7536 22576 169892608
+576	209636 26 125 125 0.000564278008 0.000564278008 1 1 1 1 1
+577	209662 39 19 125 0 0.000564278008 2 0 32 32 1024
+578	209701 27 125 125 0.000564278008 0.000564278008 1 31 31 31 961
+579	209728 26 125 125 0.000564278008 0.000564278008 1 1 1 1 1
+580	209754 28 125 125 0.000564278008 0.000564278008 1 392 392 392 153664
+588	209782 38 19 125 0 0.000564278008 2 0 0 0 0
+590	209820 26 125 125 0.000564278008 0.000564278008 1 0 0 0 0
+603	209846 15 21 21 0 0 1 7504 7504 7504 56310016
+604	209861 15 21 21 0 0 1 7504 7504 7504 56310016
+606	209876 12 21 21 0 0 1 0 0 0 0
+617	209888 12 21 21 0 0 1 0 0 0 0
+631	209900 57 50 323 0.000125537652 0.003131966373 2 7504 7504 15008 112620032
+632	209957 57 50 323 0.000125537652 0.003131966373 2 7112 7504 14616 106890560
+633	210014 85 50 323 0.000125537652 0.003131966373 3 7505 7505 22515 168975075
+635	210099 53 50 323 0.000125537652 0.003131966373 2 1 393 394 154450
+636	210152 26 323 323 0.003131966373 0.003131966373 1 1 1 1 1
+637	210178 27 323 323 0.003131966373 0.003131966373 1 32 32 32 1024
+638	210205 26 323 323 0.003131966373 0.003131966373 1 0 0 0 0
+639	210231 26 323 323 0.003131966373 0.003131966373 1 0 0 0 0
+646	210257 79 50 323 0.000125537652 0.003131966373 3 0 392 392 153664
+648	210336 28 323 323 0.003131966373 0.003131966373 1 392 392 392 153664
+649	210364 29 323 323 0.003131966373 0.003131966373 1 1072 1072 1072 1149184
+650	210393 35 323 323 0.003131966373 0.003131966373 1 4294967295 4294967295 4294967295 1.844674406512e+19
+660	210428 28 87 87 0.000374740368 0.000374740368 1 7504 7504 7504 56310016
+661	210456 28 87 87 0.000374740368 0.000374740368 1 7504 7504 7504 56310016
+662	210484 56 87 87 0.000374740368 0.000374740368 2 7505 7505 15010 112650050
+664	210540 25 87 87 0.000374740368 0.000374740368 1 1 1 1 1
+675	210565 25 87 87 0.000374740368 0.000374740368 1 0 0 0 0
+689	210590 29 192 192 0.001503353375 0.001503353375 1 7504 7504 7504 56310016
+690	210619 29 192 192 0.001503353375 0.001503353375 1 7504 7504 7504 56310016
+691	210648 58 192 192 0.001503353375 0.001503353375 2 7505 7505 15010 112650050
+693	210706 26 192 192 0.001503353375 0.001503353375 1 1 1 1 1
+704	210732 26 192 192 0.001503353375 0.001503353375 1 0 0 0 0
 

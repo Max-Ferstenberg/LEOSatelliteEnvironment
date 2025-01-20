@@ -1,74 +1,22 @@
-file 336484 1737395524                                          
 version 3
-run General-0-20250120-17:40:49-27704
-attr configname General
-attr datetime 20250120-17:40:49
-attr datetimef 20250120-174049
-attr experiment General
+run PingTest-0-20250117-12:55:18-30380
+attr configname PingTest
+attr datetime 20250117-12:55:18
+attr datetimef 20250117-125518
+attr experiment PingTest
 attr inifile SatelliteEnvironment.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network leosatelliteenvironment.SatelliteNetwork
-attr processid 27704
+attr processid 30380
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
-config network leosatelliteenvironment.SatelliteNetwork
-config *.*.ipv4.arp.typename GlobalArp
-config *.satellite1.typename SatelliteNode
-config *.satellite2.typename SatelliteNode
-config *.userTerminal.typename UserTerminal
-config *.groundStation.typename GroundStation
-config **.routingTable.debug true
-config *.configurator.optimizeRoutes false
-config *.satellite2.wlan[0].typename Ieee80211Interface
-config *.satellite1.wlan[0].typename Ieee80211Interface
-config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
-config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
-config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
-config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
-config *.userTerminal.wlan[0].radio.maxTransmissionPower 25W
-config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
-config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
-config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
-config *.groundStation.wlan[0].radio.antenna.minGain -10dB
-config *.groundStation.wlan[0].radio.transmitter.power 25mW
-config **.wlan[*].typename Ieee80211Interface
-config **.wlan[*].dataRate 10Mbps
-config *.visualizer.*.radioVisualizer.displayRadios true
-config *.visualizer.*.radioVisualizer.dislayAntennaLobes true
-config *.visualizer.*.dataLinkVisualizer.displayLinks true
-config *.visualizer.*.transportConnectionVisualizer.displayConnections true
-config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.mediumLimitCache.maxTransmissionPower "50 W"
-config *.radioMedium.mediumLimitCache.maxCommunicationRange "175 m"
-config **.debug true
-config **.wlan[*].radio.transmitter.debug true
-config **.wlan[*].radio.receiver.debug true
-config **.constraintAreaMinX 0m
-config **.constraintAreaMinY 0m
-config **.constraintAreaMinZ 0m
-config **.constraintAreaMaxX 1000m
-config **.constraintAreaMaxY 600m
-config **.constraintAreaMaxZ 0m
-config **.updateInterval 0.1s
-config *.satellite1.mobility.typename CircleMobility
-config *.satellite1.mobility.cx 600m
-config *.satellite1.mobility.cy 300m
-config *.satellite1.mobility.r 150m
-config *.satellite1.mobility.startAngle 0deg
-config *.satellite1.mobility.speed 40mps
-config *.satellite2.mobility.typename CircleMobility
-config *.satellite2.mobility.cx 600m
-config *.satellite2.mobility.cy 300m
-config *.satellite2.mobility.r 150m
-config *.satellite2.mobility.startAngle 180deg
-config *.satellite2.mobility.speed 40mps
 config *.userTerminal.numApps 2
 config *.userTerminal.app[0].typename TcpClientApp
 config *.userTerminal.app[0].io.connectAddress "\"192.168.1.2\""
@@ -133,6 +81,67 @@ config *.satellite2.app[1].sink.tokenGenerator[0].numTokensPerPacket "intuniform
 config *.satellite2.app[1].sink.tokenGenerator[1].numTokensPerPacket "intuniform(5, 10)"
 config *.satellite2.app[1].source.provider[0].packetLength "intuniform(100B, 1000B)"
 config *.satellite2.app[1].source.provider[0].providingInterval "uniform(0s, 0.2s)"
+config network leosatelliteenvironment.SatelliteNetwork
+config *.*.ipv4.arp.typename GlobalArp
+config *.userTerminal.ipv4.address "\"192.168.1.1\""
+config *.userTerminal.ipv4.netmask "\"255.255.255.248\""
+config *.satellite1.ipv4.address "\"192.168.1.2\""
+config *.satellite1.ipv4.netmask "\"255.255.255.248\""
+config *.satellite2.ipv4.address "\"192.168.1.4\""
+config *.satellite2.ipv4.netmask "\"255.255.255.248\""
+config *.groundStation.ipv4.address "\"192.168.1.3\""
+config *.groundStation.ipv4.netmask "\"255.255.255.248\""
+config *.satellite1.typename SatelliteNode
+config *.satellite2.typename SatelliteNode
+config *.configurator.config "xmldoc(\"SatelliteRoutingTable.xml\")"
+config **.routingTable.debug true
+config *.configurator.optimizeRoutes false
+config *.satellite2.wlan[0].typename Ieee80211Interface
+config *.satellite1.wlan[0].typename Ieee80211Interface
+config *.userTerminal.wlan[0].radio.antenna.typename CosineAntenna
+config *.userTerminal.wlan[0].radio.antenna.beamWidth 30deg
+config *.userTerminal.wlan[0].radio.antenna.maxGain 10dB
+config *.userTerminal.wlan[0].radio.antenna.minGain -10dB
+config *.userTerminal.wlan[0].radio.maxTransmissionPower 25W
+config *.groundStation.wlan[0].radio.antenna.typename CosineAntenna
+config *.groundStation.wlan[0].radio.antenna.beamWidth 25deg
+config *.groundStation.wlan[0].radio.antenna.maxGain 10dB
+config *.groundStation.wlan[0].radio.antenna.minGain -10dB
+config *.groundStation.wlan[0].radio.transmitter.power 25mW
+config *.radioMedium.transmissionPathFilter "\"*.userTerminal wlan[0] <-> *.satellite1 wlan[0]; *.satellite1 wlan[0] <-> *.groundStation wlan[0]; *.satellite1 wlan[0] <-> *.satellite2 wlan[0]\""
+config **.wlan[*].typename Ieee80211Interface
+config **.wlan[*].dataRate 10Mbps
+config *.visualizer.*.radioVisualizer.displayRadios true
+config *.visualizer.*.radioVisualizer.dislayAntennaLobes true
+config *.visualizer.*.dataLinkVisualizer.displayLinks true
+config *.visualizer.*.transportConnectionVisualizer.displayConnections true
+config *.radioMedium.typename Ieee80211ScalarRadioMedium
+config *.radioMedium.datapath "\"default\""
+config **.debug true
+config **.wlan[*].radio.transmitter.debug true
+config **.wlan[*].radio.receiver.debug true
+config **.constraintAreaMinX 0m
+config **.constraintAreaMinY 0m
+config **.constraintAreaMinZ 0m
+config **.constraintAreaMaxX 1000m
+config **.constraintAreaMaxY 600m
+config **.constraintAreaMaxZ 0m
+config **.updateInterval 0.1s
+config *.satellite1.mobility.typename CircleMobility
+config *.satellite1.mobility.cx 600m
+config *.satellite1.mobility.cy 300m
+config *.satellite1.mobility.r 150m
+config *.satellite1.mobility.startAngle 0deg
+config *.satellite1.mobility.speed 40mps
+config *.satellite2.mobility.typename CircleMobility
+config *.satellite2.mobility.cx 600m
+config *.satellite2.mobility.cy 300m
+config *.satellite2.mobility.r 150m
+config *.satellite2.mobility.startAngle 180deg
+config *.satellite2.mobility.speed 40mps
+config *.visualizer.*.mobilityVisualizer.displayMobilityTrajectories true
+config *.visualizer.*.mobilityVisualizer.trajectoryLineColor "\"blue\""
+config *.visualizer.*.mobilityVisualizer.trajectoryLineWidth 2
 
 vector 0 SatelliteNetwork.userTerminal.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
 attr interpolationmode none
@@ -2599,627 +2608,173 @@ attr interpolationmode none
 attr recordingmode vector(count)
 attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
 attr title "packets dropped (checksum error), count"
-vector 456 SatelliteNetwork.satellite1.tcp.conn-1 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 457 SatelliteNetwork.satellite1.tcp.conn-1 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 458 SatelliteNetwork.satellite1.tcp.conn-1 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 459 SatelliteNetwork.satellite1.tcp.conn-1 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 460 SatelliteNetwork.satellite1.tcp.conn-1 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 461 SatelliteNetwork.satellite1.tcp.conn-1 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 462 SatelliteNetwork.satellite1.tcp.conn-1 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 463 SatelliteNetwork.satellite1.tcp.conn-1 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 464 SatelliteNetwork.satellite1.tcp.conn-1 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 465 SatelliteNetwork.satellite1.tcp.conn-1 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 466 SatelliteNetwork.satellite1.tcp.conn-1 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 467 SatelliteNetwork.satellite1.tcp.conn-1 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 468 SatelliteNetwork.satellite1.tcp.conn-1 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 469 SatelliteNetwork.satellite1.tcp.conn-1 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 470 SatelliteNetwork.satellite1.tcp.conn-1 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 471 SatelliteNetwork.satellite1.tcp.conn-1 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 472 SatelliteNetwork.satellite1.tcp.conn-1 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 473 SatelliteNetwork.satellite1.tcp.conn-1 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 474 SatelliteNetwork.satellite1.tcp.conn-1 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 475 SatelliteNetwork.satellite1.tcp.conn-1 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 476 SatelliteNetwork.satellite1.tcp.conn-1 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 477 SatelliteNetwork.satellite1.tcp.conn-1 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 478 SatelliteNetwork.satellite1.tcp.conn-1 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 479 SatelliteNetwork.satellite1.tcp.conn-1 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 480 SatelliteNetwork.satellite1.tcp.conn-1 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 481 SatelliteNetwork.satellite1.tcp.conn-1 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 482 SatelliteNetwork.satellite1.tcp.conn-1 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 483 SatelliteNetwork.satellite1.tcp.conn-1 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 484 SatelliteNetwork.satellite1.tcp.conn-1 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 485 SatelliteNetwork.satellite2.tcp.conn-3 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 486 SatelliteNetwork.satellite2.tcp.conn-3 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 487 SatelliteNetwork.satellite2.tcp.conn-3 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 488 SatelliteNetwork.satellite2.tcp.conn-3 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 489 SatelliteNetwork.satellite2.tcp.conn-3 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 490 SatelliteNetwork.satellite2.tcp.conn-3 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 491 SatelliteNetwork.satellite2.tcp.conn-3 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 492 SatelliteNetwork.satellite2.tcp.conn-3 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 493 SatelliteNetwork.satellite2.tcp.conn-3 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 494 SatelliteNetwork.satellite2.tcp.conn-3 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 495 SatelliteNetwork.satellite2.tcp.conn-3 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 496 SatelliteNetwork.satellite2.tcp.conn-3 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 497 SatelliteNetwork.satellite2.tcp.conn-3 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 498 SatelliteNetwork.satellite2.tcp.conn-3 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 499 SatelliteNetwork.satellite2.tcp.conn-3 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 500 SatelliteNetwork.satellite2.tcp.conn-3 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 501 SatelliteNetwork.satellite2.tcp.conn-3 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 502 SatelliteNetwork.satellite2.tcp.conn-3 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 503 SatelliteNetwork.satellite2.tcp.conn-3 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 504 SatelliteNetwork.satellite2.tcp.conn-3 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 505 SatelliteNetwork.satellite2.tcp.conn-3 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 506 SatelliteNetwork.satellite2.tcp.conn-3 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 507 SatelliteNetwork.satellite2.tcp.conn-3 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 508 SatelliteNetwork.satellite2.tcp.conn-3 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 509 SatelliteNetwork.satellite2.tcp.conn-3 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 510 SatelliteNetwork.satellite2.tcp.conn-3 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 511 SatelliteNetwork.satellite2.tcp.conn-3 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 512 SatelliteNetwork.satellite2.tcp.conn-3 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 513 SatelliteNetwork.satellite2.tcp.conn-3 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 514 SatelliteNetwork.groundStation.tcp.conn-5 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 515 SatelliteNetwork.groundStation.tcp.conn-5 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 516 SatelliteNetwork.groundStation.tcp.conn-5 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 517 SatelliteNetwork.groundStation.tcp.conn-5 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 518 SatelliteNetwork.groundStation.tcp.conn-5 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 519 SatelliteNetwork.groundStation.tcp.conn-5 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 520 SatelliteNetwork.groundStation.tcp.conn-5 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 521 SatelliteNetwork.groundStation.tcp.conn-5 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 522 SatelliteNetwork.groundStation.tcp.conn-5 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 523 SatelliteNetwork.groundStation.tcp.conn-5 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 524 SatelliteNetwork.groundStation.tcp.conn-5 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 525 SatelliteNetwork.groundStation.tcp.conn-5 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 526 SatelliteNetwork.groundStation.tcp.conn-5 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 527 SatelliteNetwork.groundStation.tcp.conn-5 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 528 SatelliteNetwork.groundStation.tcp.conn-5 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 529 SatelliteNetwork.groundStation.tcp.conn-5 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 530 SatelliteNetwork.groundStation.tcp.conn-5 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 531 SatelliteNetwork.groundStation.tcp.conn-5 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 532 SatelliteNetwork.groundStation.tcp.conn-5 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 533 SatelliteNetwork.groundStation.tcp.conn-5 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 534 SatelliteNetwork.groundStation.tcp.conn-5 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 535 SatelliteNetwork.groundStation.tcp.conn-5 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 536 SatelliteNetwork.groundStation.tcp.conn-5 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 537 SatelliteNetwork.groundStation.tcp.conn-5 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 538 SatelliteNetwork.groundStation.tcp.conn-5 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 539 SatelliteNetwork.groundStation.tcp.conn-5 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 540 SatelliteNetwork.groundStation.tcp.conn-5 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 541 SatelliteNetwork.groundStation.tcp.conn-5 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 542 SatelliteNetwork.groundStation.tcp.conn-5 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 543 SatelliteNetwork.userTerminal.tcp.conn-7 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 544 SatelliteNetwork.userTerminal.tcp.conn-7 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 545 SatelliteNetwork.userTerminal.tcp.conn-7 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 546 SatelliteNetwork.userTerminal.tcp.conn-7 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 547 SatelliteNetwork.userTerminal.tcp.conn-7 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 548 SatelliteNetwork.userTerminal.tcp.conn-7 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 549 SatelliteNetwork.userTerminal.tcp.conn-7 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 550 SatelliteNetwork.userTerminal.tcp.conn-7 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 551 SatelliteNetwork.userTerminal.tcp.conn-7 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 552 SatelliteNetwork.userTerminal.tcp.conn-7 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 553 SatelliteNetwork.userTerminal.tcp.conn-7 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 554 SatelliteNetwork.userTerminal.tcp.conn-7 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 555 SatelliteNetwork.userTerminal.tcp.conn-7 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 556 SatelliteNetwork.userTerminal.tcp.conn-7 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 557 SatelliteNetwork.userTerminal.tcp.conn-7 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 558 SatelliteNetwork.userTerminal.tcp.conn-7 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 559 SatelliteNetwork.userTerminal.tcp.conn-7 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 560 SatelliteNetwork.userTerminal.tcp.conn-7 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 561 SatelliteNetwork.userTerminal.tcp.conn-7 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 562 SatelliteNetwork.userTerminal.tcp.conn-7 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 563 SatelliteNetwork.userTerminal.tcp.conn-7 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 564 SatelliteNetwork.userTerminal.tcp.conn-7 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 565 SatelliteNetwork.userTerminal.tcp.conn-7 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 566 SatelliteNetwork.userTerminal.tcp.conn-7 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 567 SatelliteNetwork.userTerminal.tcp.conn-7 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 568 SatelliteNetwork.userTerminal.tcp.conn-7 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 569 SatelliteNetwork.userTerminal.tcp.conn-7 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 570 SatelliteNetwork.userTerminal.tcp.conn-7 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 571 SatelliteNetwork.userTerminal.tcp.conn-7 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 572 SatelliteNetwork.satellite1.tcp.conn-8 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 573 SatelliteNetwork.satellite1.tcp.conn-8 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 574 SatelliteNetwork.satellite1.tcp.conn-8 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 575 SatelliteNetwork.satellite1.tcp.conn-8 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 576 SatelliteNetwork.satellite1.tcp.conn-8 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 577 SatelliteNetwork.satellite1.tcp.conn-8 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 578 SatelliteNetwork.satellite1.tcp.conn-8 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 579 SatelliteNetwork.satellite1.tcp.conn-8 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 580 SatelliteNetwork.satellite1.tcp.conn-8 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 581 SatelliteNetwork.satellite1.tcp.conn-8 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 582 SatelliteNetwork.satellite1.tcp.conn-8 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 583 SatelliteNetwork.satellite1.tcp.conn-8 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 584 SatelliteNetwork.satellite1.tcp.conn-8 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 585 SatelliteNetwork.satellite1.tcp.conn-8 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 586 SatelliteNetwork.satellite1.tcp.conn-8 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 587 SatelliteNetwork.satellite1.tcp.conn-8 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 588 SatelliteNetwork.satellite1.tcp.conn-8 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 589 SatelliteNetwork.satellite1.tcp.conn-8 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 590 SatelliteNetwork.satellite1.tcp.conn-8 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 591 SatelliteNetwork.satellite1.tcp.conn-8 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 592 SatelliteNetwork.satellite1.tcp.conn-8 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 593 SatelliteNetwork.satellite1.tcp.conn-8 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 594 SatelliteNetwork.satellite1.tcp.conn-8 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 595 SatelliteNetwork.satellite1.tcp.conn-8 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 596 SatelliteNetwork.satellite1.tcp.conn-8 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 597 SatelliteNetwork.satellite1.tcp.conn-8 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 598 SatelliteNetwork.satellite1.tcp.conn-8 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 599 SatelliteNetwork.satellite1.tcp.conn-8 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 600 SatelliteNetwork.satellite1.tcp.conn-8 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 601 SatelliteNetwork.satellite2.tcp.conn-9 state:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 602 SatelliteNetwork.satellite2.tcp.conn-9 sndWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 603 SatelliteNetwork.satellite2.tcp.conn-9 rcvWnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 604 SatelliteNetwork.satellite2.tcp.conn-9 rcvAdv:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 605 SatelliteNetwork.satellite2.tcp.conn-9 sndNxt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 606 SatelliteNetwork.satellite2.tcp.conn-9 sndAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 607 SatelliteNetwork.satellite2.tcp.conn-9 rcvSeq:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 608 SatelliteNetwork.satellite2.tcp.conn-9 rcvAck:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 609 SatelliteNetwork.satellite2.tcp.conn-9 unacked:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 610 SatelliteNetwork.satellite2.tcp.conn-9 dupAcks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 611 SatelliteNetwork.satellite2.tcp.conn-9 pipe:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 612 SatelliteNetwork.satellite2.tcp.conn-9 sndSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 613 SatelliteNetwork.satellite2.tcp.conn-9 rcvSacks:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 614 SatelliteNetwork.satellite2.tcp.conn-9 rcvOooSeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 615 SatelliteNetwork.satellite2.tcp.conn-9 rcvNASeg:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 616 SatelliteNetwork.satellite2.tcp.conn-9 sackedBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 617 SatelliteNetwork.satellite2.tcp.conn-9 tcpRcvQueueBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 618 SatelliteNetwork.satellite2.tcp.conn-9 tcpRcvQueueDrops:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 619 SatelliteNetwork.satellite2.tcp.conn-9 tcpRcvPayloadBytes:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 620 SatelliteNetwork.satellite2.tcp.conn-9 cwnd:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 621 SatelliteNetwork.satellite2.tcp.conn-9 ssthresh:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 622 SatelliteNetwork.satellite2.tcp.conn-9 rtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 623 SatelliteNetwork.satellite2.tcp.conn-9 srtt:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 624 SatelliteNetwork.satellite2.tcp.conn-9 rttvar:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 625 SatelliteNetwork.satellite2.tcp.conn-9 rto:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 626 SatelliteNetwork.satellite2.tcp.conn-9 numRtos:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 627 SatelliteNetwork.satellite2.tcp.conn-9 load:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 628 SatelliteNetwork.satellite2.tcp.conn-9 calcLoad:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-vector 629 SatelliteNetwork.satellite2.tcp.conn-9 markingProb:vector ETV
-attr interpolationmode sample-hold
-attr recordingmode vector
-559	148113 67 16 1851 0 45 5 0 0 0 0
-548	148180 67 16 1851 0 45 5 0 0 0 0
-546	148247 82 16 1851 0 45 5 7504 7504 37520 281550080
-545	148329 82 16 1851 0 45 5 7504 7504 37520 281550080
-588	148411 67 19 1852 0 45 5 0 0 0 0
-577	148478 67 19 1852 0 45 5 0 0 0 0
-575	148545 82 19 1852 0 45 5 7504 7504 37520 281550080
-574	148627 82 19 1852 0 45 5 7504 7504 37520 281550080
-617	148709 67 21 1853 0 45 5 0 0 0 0
-606	148776 67 21 1853 0 45 5 0 0 0 0
-604	148843 82 21 1853 0 45 5 7504 7504 37520 281550080
-603	148925 82 21 1853 0 45 5 7504 7504 37520 281550080
-4	149007 45 0 0 0 0 5 0 0 0 0
-5	149052 45 0 0 0 0 5 0 0 0 0
-16	149097 20 0 0 0 0 2 0 0 0 0
-18	149117 20 0 0 0 0 2 0 0 0 0
-19	149137 20 0 0 0 0 2 0 0 0 0
-21	149157 11 0 0 0 0 1 31 31 31 961
-38	149168 20 0 0 0 0 2 0 0 0 0
-52	149188 30 0 0 0 0 3 0 2 2 4
-53	149218 10 0 0 0 0 1 1 1 1 1
-55	149228 10 0 0 0 0 1 0 0 0 0
-62	149238 2953 23 3088 0 75.113567281742 107 44 528 35305 13412871
-64	152191 2886 18 3087 0 75.113567281742 102 112 508 33045 12040591
-66	155077 10 0 0 0 0 1 0 0 0 0
-67	155087 10 0 0 0 0 1 0 0 0 0
-68	155097 10 0 0 0 0 1 0 0 0 0
-69	155107 3063 0 3091 0 75.179884089623 105 800 3976 257048 725385664
-70	158170 11926 55 3091 0.1 75.1 751 0 39760 2548560 72058080000
-79	170096 2984 0 3085 0 75.113567281742 102 832 4000 257832 737177536
-80	173080 11922 49 3085 0.1 75.1 751 0 40000 2560400 73396627200
-89	185002 2885 2 3086 0 75.113567281742 102 104 500 32229 11518399
-95	187887 50 0 0 0 0 5 0 0 0 0
-96	187937 50 0 0 0 0 5 0 0 0 0
-107	187987 22 0 0 0 0 2 0 0 0 0
-109	188009 22 0 0 0 0 2 0 0 0 0
-110	188031 22 0 0 0 0 2 0 0 0 0
-112	188053 12 0 0 0 0 1 31 31 31 961
-129	188065 22 0 0 0 0 2 0 0 0 0
-143	188087 33 0 0 0 0 3 0 2 2 4
-144	188120 11 0 0 0 0 1 1 1 1 1
-146	188131 11 0 0 0 0 1 0 0 0 0
-153	188142 72 25 1857 0 45 5 44 44 220 9680
-157	188214 11 0 0 0 0 1 0 0 0 0
-158	188225 11 0 0 0 0 1 0 0 0 0
-159	188236 11 0 0 0 0 1 0 0 0 0
-168	188247 22 0 0 0 0 2 0 0 0 0
-173	188269 22 0 0 0 0 2 0 0 0 0
-177	188291 55 0 0 0 0 5 0 0 0 0
-178	188346 55 0 0 0 0 5 0 0 0 0
-192	188401 22 0 0 0 0 2 0 0 0 0
-199	188423 3058 0 3043 0 74.237017576465 101 896 3952 248728 700370368
-200	191481 12522 44 3043 0.1 74.2 742 0 39520 2478320 69956755200
-209	204003 22780 0 3083 0 75.1 754 450.0001260881 750 457992.91568006 286806009.13389
-210	226783 22793 0 3083 0 75.1 754 150.00011539538 449.9995172701 229792.17031255 78325791.869714
-211	249576 12322 0 3083 0 75.1 754 0 0 0 0
-216	261898 55 0 0 0 0 5 0 0 0 0
-217	261953 55 0 0 0 0 5 0 0 0 0
-228	262008 22 0 0 0 0 2 0 0 0 0
-230	262030 22 0 0 0 0 2 0 0 0 0
-231	262052 22 0 0 0 0 2 0 0 0 0
-233	262074 12 0 0 0 0 1 31 31 31 961
-250	262086 22 0 0 0 0 2 0 0 0 0
-264	262108 33 0 0 0 0 3 0 2 2 4
-265	262141 11 0 0 0 0 1 1 1 1 1
-267	262152 11 0 0 0 0 1 0 0 0 0
-274	262163 72 26 1858 0 45 5 44 44 220 9680
-278	262235 11 0 0 0 0 1 0 0 0 0
-279	262246 11 0 0 0 0 1 0 0 0 0
-280	262257 11 0 0 0 0 1 0 0 0 0
-289	262268 22 0 0 0 0 2 0 0 0 0
-294	262290 22 0 0 0 0 2 0 0 0 0
-298	262312 55 0 0 0 0 5 0 0 0 0
-299	262367 55 0 0 0 0 5 0 0 0 0
-313	262422 22 0 0 0 0 2 0 0 0 0
-320	262444 3024 0 3067 0 74.857150756171 100 816 3976 242848 675265536
-321	265468 12613 62 3067 0.1 74.8 748 0 39760 2411280 67230713600
-330	278081 22780 0 3084 0 75.1 754 450 749.9998739119 446807.08431994 273383011.50175
-331	300861 22792 0 3084 0 75.1 754 150.0004827299 449.99988460462 222607.82968745 74015187.494651
-332	323653 12322 0 3084 0 75.1 754 0 0 0 0
-337	335975 55 0 0 0 0 5 0 0 0 0
-338	336030 55 0 0 0 0 5 0 0 0 0
-349	336085 22 0 0 0 0 2 0 0 0 0
-351	336107 22 0 0 0 0 2 0 0 0 0
-352	336129 22 0 0 0 0 2 0 0 0 0
-354	336151 12 0 0 0 0 1 31 31 31 961
-371	336163 22 0 0 0 0 2 0 0 0 0
-385	336185 33 0 0 0 0 3 0 2 2 4
-386	336218 11 0 0 0 0 1 1 1 1 1
-388	336229 11 0 0 0 0 1 0 0 0 0
-399	336240 11 0 0 0 0 1 0 0 0 0
-400	336251 11 0 0 0 0 1 0 0 0 0
-401	336262 11 0 0 0 0 1 0 0 0 0
-410	336273 22 0 0 0 0 2 0 0 0 0
-415	336295 22 0 0 0 0 2 0 0 0 0
-419	336317 55 0 0 0 0 5 0 0 0 0
-420	336372 55 0 0 0 0 5 0 0 0 0
-434	336427 22 0 0 0 0 2 0 0 0 0
-453	336449 11 0 0 0 0 1 0 0 0 0
-454	336460 11 0 0 0 0 1 0 0 0 0
-455	336471 11 0 0 0 0 1 0 0 0 0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+16	0	0	0
+16	0	0	0
+18	0	0	0
+18	0	0	0
+19	0	0	0
+19	0	0	0
+21	0	0	31
+38	0	0	0
+38	0	0	0
+52	0	0	0
+52	0	0	0
+52	0	0	2
+53	0	0	1
+55	0	0	0
+66	0	0	0
+67	0	0	0
+68	0	0	0
+69	0	0	3672
+79	0	0	2488
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	0	0	0
+96	0	0	0
+96	0	0	0
+96	0	0	0
+96	0	0	0
+96	0	0	0
+107	0	0	0
+107	0	0	0
+109	0	0	0
+109	0	0	0
+110	0	0	0
+110	0	0	0
+112	0	0	31
+129	0	0	0
+129	0	0	0
+143	0	0	0
+143	0	0	0
+143	0	0	2
+144	0	0	1
+146	0	0	0
+157	0	0	0
+158	0	0	0
+159	0	0	0
+168	0	0	0
+168	0	0	0
+173	0	0	0
+173	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+177	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+178	0	0	0
+192	0	0	0
+192	0	0	0
+199	0	0	3136
+209	0	0	750
+210	0	0	300
+211	0	0	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+216	0	0	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+217	0	0	0
+228	0	0	0
+228	0	0	0
+230	0	0	0
+230	0	0	0
+231	0	0	0
+231	0	0	0
+233	0	0	31
+250	0	0	0
+250	0	0	0
+264	0	0	0
+264	0	0	0
+264	0	0	2
+265	0	0	1
+267	0	0	0
+278	0	0	0
+279	0	0	0
+280	0	0	0
+289	0	0	0
+289	0	0	0
+294	0	0	0
+294	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+298	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+299	0	0	0
+313	0	0	0
+313	0	0	0
+320	0	0	1504
+330	0	0	450
+331	0	0	300
+332	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+349	0	0	0
+349	0	0	0
+351	0	0	0
+351	0	0	0
+352	0	0	0
+352	0	0	0
+354	0	0	31
+371	0	0	0
+371	0	0	0
+385	0	0	0
+385	0	0	0
+385	0	0	2
+386	0	0	1
+388	0	0	0
+399	0	0	0
+400	0	0	0
+401	0	0	0
+410	0	0	0
+410	0	0	0
+415	0	0	0
+415	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+419	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+420	0	0	0
+434	0	0	0
+434	0	0	0
+453	0	0	0
+454	0	0	0
+455	0	0	0
 

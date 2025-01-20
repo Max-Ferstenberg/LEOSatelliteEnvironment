@@ -1,25 +1,37 @@
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
+#ifndef SATELLITENODE_H
+#define SATELLITENODE_H
 
-#ifndef SATELLITENODE_H_
-#define SATELLITENODE_H_
+#include <omnetpp.h>
+#include <map>
+#include <string>
 
-class SatelliteNode {
-public:
+namespace leosatelliteenvironment {
+
+using namespace omnetpp;
+
+class SatelliteNode : public cSimpleModule {
+  private:
+    cMessage *moveTimer;
+    cMessage *pingTimer;
+    int stepCount;
+
+    std::map<int, double> neighbors;
+    std::map<int, double> routingTable;
+
+  public:
     SatelliteNode();
     virtual ~SatelliteNode();
+
+  protected:
+    virtual void initialize() override;
+    virtual void handleMessage(cMessage *msg) override;
+    virtual void moveSatellite();
+    virtual void sendPing();
+    void updateLISLs();
+    void calculateShortestPaths(int sourceId);
+    cModule* findNextHop(const std::string &destinationAddress);
 };
 
-#endif /* SATELLITENODE_H_ */
+} // namespace leosatelliteenvironment
+
+#endif // SATELLITENODE_H

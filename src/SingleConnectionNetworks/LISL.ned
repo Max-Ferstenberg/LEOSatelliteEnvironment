@@ -5,6 +5,7 @@ import inet.visualizer.common.IntegratedVisualizer;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 
 import leosatelliteenvironment.Modules.*;
+import leosatelliteenvironment.*;
 
 network LISL
 {
@@ -21,11 +22,11 @@ network LISL
         radioMedium: Ieee80211ScalarRadioMedium {
             @display("p=50,250");
         }
-        satellite1: Satellite {
+        satellite1: SatelliteNode {
             parameters:
                 @display("r=,,#707070;p=450,300");
         }
-        satellite2: Satellite {
+        satellite2: SatelliteNode {
             parameters:
                 @display("r=,,#707070;p=310,300");
         }

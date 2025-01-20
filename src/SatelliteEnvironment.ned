@@ -24,10 +24,10 @@ network SatelliteNetwork
         userTerminal: UserTerminal {
             @display("p=300, 200;i=device/laptop");
         }
-        satellite1: Satellite {
+        satellite1: SatelliteNode {
             @display("p=450, 300;i=device/satellite");
         }
-        satellite2: Satellite {
+        satellite2: SatelliteNode {
             @display("p=750, 300;i=device/satellite");
         }
         groundStation: GroundStation {

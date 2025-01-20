@@ -6,6 +6,7 @@ import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMed
 import inet.visualizer.contract.IIntegratedVisualizer;
 
 import leosatelliteenvironment.Modules.*;
+import leosatelliteenvironment.**;
 
 network GroundToPoP {
     submodules:
@@ -35,6 +36,5 @@ network GroundToPoP {
         }
     
     connections:
-    	groundStation.ethg++ <--> Eth100G <--> pop.ethg++;
 
 }

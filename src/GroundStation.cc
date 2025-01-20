@@ -2,6 +2,8 @@
 #include <cmath>
 #include "inet/networklayer/contract/IRoutingTable.h"
 #include "inet/networklayer/ipv4/Ipv4Route.h"
+#include "inet/linklayer/common/MacAddressTag_m.h"
+#include "inet/common/ModuleAccess.h"
 
 using namespace omnetpp;
 using namespace inet;
@@ -9,7 +11,7 @@ using namespace inet;
 class GroundStation : public cSimpleModule {
   private:
     cMessage *pingTimer;       // Timer for periodic pings
-    double antennaRange = 800; // Antenna range
+    double antennaRange;       // Antenna range (read from parameters)
     cModule *closestSatellite; // Closest satellite in range
 
   public:
@@ -32,6 +34,20 @@ GroundStation::~GroundStation() {
 }
 
 void GroundStation::initialize() {
+    // Read parameters from NED file
+    antennaRange = par("antennaRange").doubleValue();
+
+    // Initialize the wireless interface(s) for the GroundStation
+    int numWlanInterfaces = par("numWlanInterfaces").intValue();
+    for (int i = 0; i < numWlanInterfaces; i++) {
+        cModule *wlanModule = getParentModule()->getSubmodule("wlan", i);
+        if (!wlanModule) {
+            throw cRuntimeError("GroundStation: wlan[%d] interface not found", i);
+        }
+        wlanModule->par("typename") = i == 0 ? "Ieee80211Interface" : "EthernetInterface";
+    }
+
+    // Initialize the ping timer
     pingTimer = new cMessage("PingTimer");
     scheduleAt(simTime() + 1.0, pingTimer);
 }
@@ -45,6 +61,7 @@ void GroundStation::handleMessage(cMessage *msg) {
                << closestSatellite->getFullName()
                << " (Distance: " << calculateDistance(closestSatellite) << " m)\n";
             sendPingToClosestSatellite();
+            updateRoutingTable(closestSatellite);
         } else {
             EV << "No satellite within range of GroundStation " << getName() << "\n";
         }
@@ -89,6 +106,7 @@ void GroundStation::sendPingToClosestSatellite() {
 void GroundStation::updateRoutingTable(cModule *closestSatellite) {
     if (!closestSatellite) return;
 
+    // Access the routing table
     IRoutingTable *routingTable = check_and_cast<IRoutingTable *>(getModuleByPath("^.routingTable"));
     if (!routingTable) {
         EV << "Routing table not found for GroundStation " << getName() << "\n";

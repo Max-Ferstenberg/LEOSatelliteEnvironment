@@ -6,6 +6,7 @@ import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.inet.StandardHost;
 
 import leosatelliteenvironment.Modules.*;
+import leosatelliteenvironment.*;
 
 network SatelliteToGround
 {
@@ -26,7 +27,7 @@ network SatelliteToGround
             parameters:
                 @display("r=,,#707070;p=150,300");
         }
-        satellite: Satellite {
+        satellite: SatelliteNode {
             parameters:
                 @display("r=,,#707070;p=450,300");
         }

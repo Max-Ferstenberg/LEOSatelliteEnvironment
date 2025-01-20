@@ -5,6 +5,8 @@ import inet.visualizer.common.IntegratedVisualizer;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 
 import leosatelliteenvironment.Modules.*;
+import leosatelliteenvironment.UserTerminal;
+import leosatelliteenvironment.SatelliteNode;
 
 network UserToSatellite
 {
@@ -24,7 +26,7 @@ network UserToSatellite
         userTerminal: UserTerminal {
             @display("p=340,248");
         }
-        satellite: Satellite {
+        satellite: SatelliteNode {
             @display("p=460,248");
         }
 

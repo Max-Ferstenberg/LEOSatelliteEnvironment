@@ -3,9 +3,9 @@
 #include <map>
 #include <queue>
 #include <limits>
+#include "SatelliteNode.h"
 
 using namespace omnetpp;
-using namespace inet;
 
 class SatelliteNode : public cSimpleModule {
   private:
@@ -30,9 +30,11 @@ class SatelliteNode : public cSimpleModule {
     // LISL Management and Shortest Path
     void updateLISLs();
     void calculateShortestPaths(int sourceId);
+    cModule* findNextHop(const std::string &destinationAddress);
 };
 
 Define_Module(SatelliteNode);
+Register_Class(SatelliteNode);
 
 SatelliteNode::~SatelliteNode() {
     cancelAndDelete(moveTimer);
@@ -169,13 +171,7 @@ cModule* SatelliteNode::findNextHop(const std::string &destinationAddress) {
     EV << "Satellite " << getName() << " is determining the next hop for destination: "
        << destinationAddress << "\n";
 
-    // Assuming a routing table lookup or Dijkstra logic here
-    cModule *nextHop = routingTable.lookup(destinationAddress);
-    if (nextHop) {
-        EV << "Next hop for destination " << destinationAddress << " is: "
-           << nextHop->getFullName() << "\n";
-    } else {
-        EV << "No next hop found for destination " << destinationAddress << "\n";
-    }
-    return nextHop;
+    // Placeholder for routing logic
+    // Implement lookup or logic to return the next hop module here
+    return nullptr;
 }
